@@ -1,0 +1,106 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AAInfographics",
+        "repositoryURL": "https://github.com/AAChartModel/AAChartKit-Swift.git",
+        "state": {
+          "branch": null,
+          "revision": "9be1dcdf92c5b9ed9e2b83f4dd9fbd801e40e1ce",
+          "version": "6.0.0"
+        }
+      },
+      {
+        "package": "Charts",
+        "repositoryURL": "https://github.com/danielgindi/Charts.git",
+        "state": {
+          "branch": "master",
+          "revision": "e91ba716190836b013ef8a9ca53e220ad5051e21",
+          "version": null
+        }
+      },
+      {
+        "package": "Hero",
+        "repositoryURL": "https://github.com/HeroTransitions/Hero.git",
+        "state": {
+          "branch": null,
+          "revision": "efa709686035831b23b7bf58f652b0c4b892aa1d",
+          "version": "1.6.1"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "44450a8f564d7c0165f736ba2250649ff8d3e556",
+          "version": "6.3.0"
+        }
+      },
+      {
+        "package": "Lottie",
+        "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "b3c60ba1716baab6faeeb217d8ce1da336f92718",
+          "version": "3.2.1"
+        }
+      },
+      {
+        "package": "PagingKit",
+        "repositoryURL": "https://github.com/kazuhiro4949/PagingKit.git",
+        "state": {
+          "branch": null,
+          "revision": "1ccc9fafafaaf9230bac1b8278185b433db2cd09",
+          "version": "1.16.0"
+        }
+      },
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "7e01c05f25c025143073eaa3be3532f9375c614b",
+          "version": "6.1.0"
+        }
+      },
+      {
+        "package": "SHSearchBar",
+        "repositoryURL": "https://github.com/Blackjacx/SHSearchBar.git",
+        "state": {
+          "branch": null,
+          "revision": "89e86e6979d305011edc7e4a4299cb2f40760978",
+          "version": "2.0.0"
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
+        "state": {
+          "branch": null,
+          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+          "version": "5.0.1"
+        }
+      },
+      {
+        "package": "swift-algorithms",
+        "repositoryURL": "https://github.com/apple/swift-algorithms",
+        "state": {
+          "branch": null,
+          "revision": "1e761dd787b0f148f0b7aec42a7ff401767c26fa",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "swift-numerics",
+        "repositoryURL": "https://github.com/apple/swift-numerics",
+        "state": {
+          "branch": null,
+          "revision": "6583ac70c326c3ee080c1d42d9ca3361dca816cd",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

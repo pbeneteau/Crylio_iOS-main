@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "starEmptyIcon.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

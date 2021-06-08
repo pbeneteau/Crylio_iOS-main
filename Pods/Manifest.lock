@@ -1,0 +1,28 @@
+PODS:
+  - DropDown (2.3.6)
+  - Macaw (0.9.7):
+    - SWXMLHash
+  - SwiftSVG (2.3.2)
+  - SWXMLHash (5.0.1)
+
+DEPENDENCIES:
+  - DropDown (= 2.3.6)
+  - Macaw (= 0.9.7)
+  - SwiftSVG (~> 2.3)
+
+SPEC REPOS:
+  trunk:
+    - DropDown
+    - Macaw
+    - SwiftSVG
+    - SWXMLHash
+
+SPEC CHECKSUMS:
+  DropDown: e8bfbce001b2e6b7e8abfdd42e12b565712d84f4
+  Macaw: 4a931baf9a9826b06d0d8ecf300014c962ab9d50
+  SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
+  SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+
+PODFILE CHECKSUM: b56294c6cd5b9e2f8d2a1ef457c4292c433344a8
+
+COCOAPODS: 1.10.1

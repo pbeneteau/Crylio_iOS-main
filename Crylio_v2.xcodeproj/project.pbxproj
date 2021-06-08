@@ -1,0 +1,1377 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BC5951FA7276710D99168B4 /* Pods_Crylio_v2_Crylio_v2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9020837FAD23D408521990 /* Pods_Crylio_v2_Crylio_v2UITests.framework */; };
+		2655D37617A7748F47FF3042 /* Pods_Crylio_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA50302F84F4703CCAD84D1 /* Pods_Crylio_v2.framework */; };
+		3800219925CD728000FA4773 /* MarketStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800219825CD728000FA4773 /* MarketStatsView.swift */; };
+		3820C5AB26618BB50022F1C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3820C5AA26618BB50022F1C5 /* Constants.swift */; };
+		38211C80264B02C100F7AF11 /* TradingViewChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38211C7F264B02C100F7AF11 /* TradingViewChart.swift */; };
+		38211C82264B049B00F7AF11 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38211C81264B049B00F7AF11 /* ChartViewController.swift */; };
+		3823E8E0265C262D00B93C31 /* DateRangeSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3823E8DF265C262D00B93C31 /* DateRangeSelectorCollectionViewCell.swift */; };
+		382D6A8E2667EBE500509669 /* CurrencyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D6A8D2667EBE500509669 /* CurrencyButtonView.swift */; };
+		382D6A902667EE4000509669 /* FavoriteFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D6A8F2667EE4000509669 /* FavoriteFilterButtonView.swift */; };
+		382D6A942667F17100509669 /* ChangeTimelineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D6A932667F17100509669 /* ChangeTimelineButton.swift */; };
+		382D6A96266A9A2400509669 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D6A95266A9A2400509669 /* MarketViewController.swift */; };
+		382D6A99266A9D4500509669 /* MarketStatsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D6A98266A9D4500509669 /* MarketStatsScrollView.swift */; };
+		382D6A9B266AA10200509669 /* MarketSubMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D6A9A266AA10200509669 /* MarketSubMenu.swift */; };
+		38350D1A2640ADF500B1E0C0 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38350D192640ADF500B1E0C0 /* CircleView.swift */; };
+		3837C12325FFA0390056BB27 /* NumberFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837C12225FFA0390056BB27 /* NumberFormatters.swift */; };
+		3837C12925FFB06F0056BB27 /* DistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837C12825FFB06F0056BB27 /* DistributionView.swift */; };
+		3837C12D25FFB2740056BB27 /* DistributionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837C12C25FFB2740056BB27 /* DistributionBar.swift */; };
+		3844884325D3177F002BF26C /* HomeHeaderPortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3844884225D3177F002BF26C /* HomeHeaderPortfolioView.swift */; };
+		3844884A25D333C3002BF26C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3844884925D333C3002BF26C /* RxSwift */; };
+		3844884C25D333C3002BF26C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3844884B25D333C3002BF26C /* RxCocoa */; };
+		38463C4C2645E3B4005331E4 /* HoldingsStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38463C4B2645E3B4005331E4 /* HoldingsStatView.swift */; };
+		38463C4E2645E80B005331E4 /* HoldingsBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38463C4D2645E80B005331E4 /* HoldingsBalanceView.swift */; };
+		3848D1BD25C4DC2B00203D7A /* HorizontalMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3848D1BC25C4DC2B00203D7A /* HorizontalMenuView.swift */; };
+		384CE01626456DF100C016DF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CE01526456DF100C016DF /* BaseViewController.swift */; };
+		384CE01926459F7800C016DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CE01826459F7800C016DF /* User.swift */; };
+		384CFA9625C1E67D0064C932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFA9525C1E67D0064C932 /* AppDelegate.swift */; };
+		384CFA9825C1E67D0064C932 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFA9725C1E67D0064C932 /* SceneDelegate.swift */; };
+		384CFA9A25C1E67D0064C932 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFA9925C1E67D0064C932 /* HomeViewController.swift */; };
+		384CFA9F25C1E67F0064C932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 384CFA9E25C1E67F0064C932 /* Assets.xcassets */; };
+		384CFAA225C1E67F0064C932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 384CFAA025C1E67F0064C932 /* LaunchScreen.storyboard */; };
+		384CFAAD25C1E67F0064C932 /* Crylio_v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFAAC25C1E67F0064C932 /* Crylio_v2Tests.swift */; };
+		384CFAB825C1E67F0064C932 /* Crylio_v2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFAB725C1E67F0064C932 /* Crylio_v2UITests.swift */; };
+		384CFAD025C1F0EA0064C932 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 384CFACF25C1F0EA0064C932 /* SnapKit */; };
+		384CFADC25C1F3240064C932 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFADB25C1F3240064C932 /* HomeHeaderView.swift */; };
+		384CFAF125C1F6960064C932 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFAF025C1F6960064C932 /* HomeTableViewCell.swift */; };
+		384CFAF625C1F7E20064C932 /* Cryptocurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFAF525C1F7E20064C932 /* Cryptocurrency.swift */; };
+		384CFB0225C21EC70064C932 /* PriceChangeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFB0125C21EC70064C932 /* PriceChangeBox.swift */; };
+		384CFB0725C2224D0064C932 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFB0625C2224D0064C932 /* AppColors.swift */; };
+		384CFB2825C451C50064C932 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CFB2725C451C50064C932 /* GradientView.swift */; };
+		38538058266FED5B005E5D46 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38538057266FED5B005E5D46 /* Extensions.swift */; };
+		38570390265686C30073724A /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3857038F265686C30073724A /* PieChartView.swift */; };
+		38598135261B75D1002F2FE3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38598134261B75D1002F2FE3 /* DateUtils.swift */; };
+		38598139261B8ABA002F2FE3 /* TransactionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38598138261B8ABA002F2FE3 /* TransactionsHeaderView.swift */; };
+		38619A742613B0660044D273 /* CryptoNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38619A732613B0660044D273 /* CryptoNewsCell.swift */; };
+		3870A4FF266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870A4FE266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift */; };
+		3870A501266E6C8D0089BB4A /* 62876-arrow-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 3870A500266E6C8D0089BB4A /* 62876-arrow-button.json */; };
+		3870A503266E77D90089BB4A /* MarketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870A502266E77D90089BB4A /* MarketTableViewCell.swift */; };
+		3870A505266FC4180089BB4A /* ArrowMacawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870A504266FC4180089BB4A /* ArrowMacawView.swift */; };
+		38741C8126600C3E0036AE2C /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38741C8026600C3E0036AE2C /* UserInputView.swift */; };
+		38828A852657BEF9008DB9B8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38828A842657BEF9008DB9B8 /* Colors.xcassets */; };
+		38828A882657F761008DB9B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 38828A872657F761008DB9B8 /* Kingfisher */; };
+		38828A8A2657F784008DB9B8 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38828A892657F784008DB9B8 /* ImageUtils.swift */; };
+		388A95A026611AAE009094A6 /* InputValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388A959F26611AAE009094A6 /* InputValidityCheck.swift */; };
+		388BBA4F265D5BA400F8C524 /* AddToFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388BBA4E265D5BA400F8C524 /* AddToFavoriteButton.swift */; };
+		388BBA51265D709200F8C524 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388BBA50265D709200F8C524 /* AddTransactionViewController.swift */; };
+		388BBA53265D76D800F8C524 /* AddTransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388BBA52265D76D800F8C524 /* AddTransactionTableViewCell.swift */; };
+		388D016825CD99D100AD0050 /* AAInfographics in Frameworks */ = {isa = PBXBuildFile; productRef = 388D016725CD99D100AD0050 /* AAInfographics */; };
+		3891ADA826569DD2005FF3CA /* ChartLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3891ADA726569DD2005FF3CA /* ChartLegendView.swift */; };
+		3891ADAA2656A004005FF3CA /* ChartLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3891ADA92656A004005FF3CA /* ChartLegendTableViewCell.swift */; };
+		389451F1265EAB2700C3CC26 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389451F0265EAB2700C3CC26 /* SearchTextField.swift */; };
+		389451F3265EB8A200C3CC26 /* SearchTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389451F2265EB8A200C3CC26 /* SearchTextFieldTableViewCell.swift */; };
+		389451F5265EBF1500C3CC26 /* SearchTextFieldSuggestionsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389451F4265EBF1500C3CC26 /* SearchTextFieldSuggestionsHeader.swift */; };
+		3894FCC425D16C5B00BFD26F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3894FCC325D16C5B00BFD26F /* Charts */; };
+		3894FCD225D17A9400BFD26F /* CryptoHoldingsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894FCD125D17A9400BFD26F /* CryptoHoldingsScrollView.swift */; };
+		3894FCD925D17BE000BFD26F /* PagingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3894FCD825D17BE000BFD26F /* PagingKit */; };
+		3894FCDF25D17FAB00BFD26F /* CryptoHoldingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894FCDE25D17FAB00BFD26F /* CryptoHoldingsViewController.swift */; };
+		3894FCE325D17FC500BFD26F /* CryptoTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894FCE225D17FC500BFD26F /* CryptoTransactionsViewController.swift */; };
+		3894FCE725D1801A00BFD26F /* CryptoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894FCE625D1801A00BFD26F /* CryptoDetailViewController.swift */; };
+		3894FCED25D18CCB00BFD26F /* CryptoNewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894FCEC25D18CCB00BFD26F /* CryptoNewsFeedViewController.swift */; };
+		3894FCF325D1A0B600BFD26F /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894FCF225D1A0B600BFD26F /* AboutView.swift */; };
+		389A55B72652A64200D7BF5B /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 389A55B62652A64200D7BF5B /* Hero */; };
+		389A55B82652A64200D7BF5B /* Hero in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 389A55B62652A64200D7BF5B /* Hero */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		389DE65225C5D27200954F4F /* CryptocurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE65125C5D27200954F4F /* CryptocurrencyViewController.swift */; };
+		389DE65725C758B500954F4F /* NavigationTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE65625C758B500954F4F /* NavigationTopBarView.swift */; };
+		389DE65F25C76F4700954F4F /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE65E25C76F4700954F4F /* RoundShadowView.swift */; };
+		389DE66425C8269E00954F4F /* CryptoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE66325C8269E00954F4F /* CryptoHeaderView.swift */; };
+		389DE66C25C82C1100954F4F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE66B25C82C1100954F4F /* ChartView.swift */; };
+		389DE68625C8379000954F4F /* CryptoDetailScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE68525C8379000954F4F /* CryptoDetailScrollView.swift */; };
+		38B6D5AB25D5A9D700AC8238 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 38B6D5AA25D5A9D700AC8238 /* Lottie */; };
+		38B6D5B125D5AB1400AC8238 /* waves-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 38B6D5B025D5AB1400AC8238 /* waves-animation.json */; };
+		38C0EB812658503F0034179C /* FilterMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB802658503F0034179C /* FilterMenuView.swift */; };
+		38C0EB84265851950034179C /* SHSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 38C0EB83265851950034179C /* SHSearchBar */; };
+		38C0EB862658536B0034179C /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB852658536B0034179C /* RoundCornersButton.swift */; };
+		38C0EB88265855510034179C /* UserAssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB87265855510034179C /* UserAssetsView.swift */; };
+		38C0EB8A26585C090034179C /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB8926585C090034179C /* CustomSearchBar.swift */; };
+		38E1AEC42647479500CD7D91 /* CryptoDetailBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1AEC32647479500CD7D91 /* CryptoDetailBalanceView.swift */; };
+		38EF19792667DB0100C92859 /* SortByButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF19782667DB0100C92859 /* SortByButtonView.swift */; };
+		38EF197B2667DBF500C92859 /* SortOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF197A2667DBF500C92859 /* SortOrderButton.swift */; };
+		38EF197D2667E13B00C92859 /* arrow-reverse.json in Sources */ = {isa = PBXBuildFile; fileRef = 38EF197C2667E13B00C92859 /* arrow-reverse.json */; };
+		38F153A7260911EC00AE7CE7 /* CryptoTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F153A6260911EC00AE7CE7 /* CryptoTransactionCell.swift */; };
+		3D997597B6FBE0861C2C5859 /* Pods_Crylio_v2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0E8ADB8ADE8446AD5FE0CD /* Pods_Crylio_v2Tests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		384CFAA925C1E67F0064C932 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 384CFA8A25C1E67D0064C932 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 384CFA9125C1E67D0064C932;
+			remoteInfo = Crylio_v2;
+		};
+		384CFAB425C1E67F0064C932 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 384CFA8A25C1E67D0064C932 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 384CFA9125C1E67D0064C932;
+			remoteInfo = Crylio_v2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		388D013C25CD887A00AD0050 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				389A55B82652A64200D7BF5B /* Hero in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		17E4E2893BFB3A4214E90F27 /* Pods-Crylio_v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crylio_v2.debug.xcconfig"; path = "Target Support Files/Pods-Crylio_v2/Pods-Crylio_v2.debug.xcconfig"; sourceTree = "<group>"; };
+		3800219825CD728000FA4773 /* MarketStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketStatsView.swift; sourceTree = "<group>"; };
+		3820C5AA26618BB50022F1C5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		38211C7F264B02C100F7AF11 /* TradingViewChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradingViewChart.swift; sourceTree = "<group>"; };
+		38211C81264B049B00F7AF11 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		3823E8DF265C262D00B93C31 /* DateRangeSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
+		382D6A8D2667EBE500509669 /* CurrencyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButtonView.swift; sourceTree = "<group>"; };
+		382D6A8F2667EE4000509669 /* FavoriteFilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFilterButtonView.swift; sourceTree = "<group>"; };
+		382D6A932667F17100509669 /* ChangeTimelineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTimelineButton.swift; sourceTree = "<group>"; };
+		382D6A95266A9A2400509669 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
+		382D6A98266A9D4500509669 /* MarketStatsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketStatsScrollView.swift; sourceTree = "<group>"; };
+		382D6A9A266AA10200509669 /* MarketSubMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSubMenu.swift; sourceTree = "<group>"; };
+		38350D192640ADF500B1E0C0 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		3837C12225FFA0390056BB27 /* NumberFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatters.swift; sourceTree = "<group>"; };
+		3837C12825FFB06F0056BB27 /* DistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributionView.swift; sourceTree = "<group>"; };
+		3837C12C25FFB2740056BB27 /* DistributionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributionBar.swift; sourceTree = "<group>"; };
+		3844884225D3177F002BF26C /* HomeHeaderPortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderPortfolioView.swift; sourceTree = "<group>"; };
+		38463C4B2645E3B4005331E4 /* HoldingsStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsStatView.swift; sourceTree = "<group>"; };
+		38463C4D2645E80B005331E4 /* HoldingsBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsBalanceView.swift; sourceTree = "<group>"; };
+		3848D1BC25C4DC2B00203D7A /* HorizontalMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuView.swift; sourceTree = "<group>"; };
+		384CE01526456DF100C016DF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		384CE01826459F7800C016DF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		384CFA9225C1E67D0064C932 /* Crylio_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crylio_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		384CFA9525C1E67D0064C932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		384CFA9725C1E67D0064C932 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		384CFA9925C1E67D0064C932 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		384CFA9E25C1E67F0064C932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		384CFAA125C1E67F0064C932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		384CFAA325C1E67F0064C932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		384CFAA825C1E67F0064C932 /* Crylio_v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Crylio_v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		384CFAAC25C1E67F0064C932 /* Crylio_v2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crylio_v2Tests.swift; sourceTree = "<group>"; };
+		384CFAAE25C1E67F0064C932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		384CFAB325C1E67F0064C932 /* Crylio_v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Crylio_v2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		384CFAB725C1E67F0064C932 /* Crylio_v2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crylio_v2UITests.swift; sourceTree = "<group>"; };
+		384CFAB925C1E67F0064C932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		384CFADB25C1F3240064C932 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		384CFAF025C1F6960064C932 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		384CFAF525C1F7E20064C932 /* Cryptocurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cryptocurrency.swift; sourceTree = "<group>"; };
+		384CFB0125C21EC70064C932 /* PriceChangeBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChangeBox.swift; sourceTree = "<group>"; };
+		384CFB0625C2224D0064C932 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		384CFB2725C451C50064C932 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		38538057266FED5B005E5D46 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3857038F265686C30073724A /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		38598134261B75D1002F2FE3 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		38598138261B8ABA002F2FE3 /* TransactionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHeaderView.swift; sourceTree = "<group>"; };
+		38619A732613B0660044D273 /* CryptoNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNewsCell.swift; sourceTree = "<group>"; };
+		3870A4FE266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSubMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		3870A500266E6C8D0089BB4A /* 62876-arrow-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "62876-arrow-button.json"; sourceTree = "<group>"; };
+		3870A502266E77D90089BB4A /* MarketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTableViewCell.swift; sourceTree = "<group>"; };
+		3870A504266FC4180089BB4A /* ArrowMacawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowMacawView.swift; sourceTree = "<group>"; };
+		38741C8026600C3E0036AE2C /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
+		38828A842657BEF9008DB9B8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		38828A892657F784008DB9B8 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		388A959F26611AAE009094A6 /* InputValidityCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidityCheck.swift; sourceTree = "<group>"; };
+		388BBA4E265D5BA400F8C524 /* AddToFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavoriteButton.swift; sourceTree = "<group>"; };
+		388BBA50265D709200F8C524 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		388BBA52265D76D800F8C524 /* AddTransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionTableViewCell.swift; sourceTree = "<group>"; };
+		3891ADA726569DD2005FF3CA /* ChartLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendView.swift; sourceTree = "<group>"; };
+		3891ADA92656A004005FF3CA /* ChartLegendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendTableViewCell.swift; sourceTree = "<group>"; };
+		389451F0265EAB2700C3CC26 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		389451F2265EB8A200C3CC26 /* SearchTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		389451F4265EBF1500C3CC26 /* SearchTextFieldSuggestionsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextFieldSuggestionsHeader.swift; sourceTree = "<group>"; };
+		3894FCD125D17A9400BFD26F /* CryptoHoldingsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHoldingsScrollView.swift; sourceTree = "<group>"; };
+		3894FCDE25D17FAB00BFD26F /* CryptoHoldingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHoldingsViewController.swift; sourceTree = "<group>"; };
+		3894FCE225D17FC500BFD26F /* CryptoTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTransactionsViewController.swift; sourceTree = "<group>"; };
+		3894FCE625D1801A00BFD26F /* CryptoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewController.swift; sourceTree = "<group>"; };
+		3894FCEC25D18CCB00BFD26F /* CryptoNewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNewsFeedViewController.swift; sourceTree = "<group>"; };
+		3894FCF225D1A0B600BFD26F /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		389DE65125C5D27200954F4F /* CryptocurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyViewController.swift; sourceTree = "<group>"; };
+		389DE65625C758B500954F4F /* NavigationTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTopBarView.swift; sourceTree = "<group>"; };
+		389DE65E25C76F4700954F4F /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
+		389DE66325C8269E00954F4F /* CryptoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHeaderView.swift; sourceTree = "<group>"; };
+		389DE66B25C82C1100954F4F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		389DE68525C8379000954F4F /* CryptoDetailScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailScrollView.swift; sourceTree = "<group>"; };
+		38B6D5B025D5AB1400AC8238 /* waves-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "waves-animation.json"; sourceTree = "<group>"; };
+		38C0EB802658503F0034179C /* FilterMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenuView.swift; sourceTree = "<group>"; };
+		38C0EB852658536B0034179C /* RoundCornersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornersButton.swift; sourceTree = "<group>"; };
+		38C0EB87265855510034179C /* UserAssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAssetsView.swift; sourceTree = "<group>"; };
+		38C0EB8926585C090034179C /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		38E1AEC32647479500CD7D91 /* CryptoDetailBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailBalanceView.swift; sourceTree = "<group>"; };
+		38EF19782667DB0100C92859 /* SortByButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortByButtonView.swift; sourceTree = "<group>"; };
+		38EF197A2667DBF500C92859 /* SortOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrderButton.swift; sourceTree = "<group>"; };
+		38EF197C2667E13B00C92859 /* arrow-reverse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "arrow-reverse.json"; sourceTree = "<group>"; };
+		38F153A6260911EC00AE7CE7 /* CryptoTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTransactionCell.swift; sourceTree = "<group>"; };
+		42D75D01F63C3B38F6719B86 /* Pods-Crylio_v2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crylio_v2Tests.release.xcconfig"; path = "Target Support Files/Pods-Crylio_v2Tests/Pods-Crylio_v2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		437D2995D4248700AFD9B0B8 /* Pods-Crylio_v2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crylio_v2Tests.debug.xcconfig"; path = "Target Support Files/Pods-Crylio_v2Tests/Pods-Crylio_v2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FA50302F84F4703CCAD84D1 /* Pods_Crylio_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crylio_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E9020837FAD23D408521990 /* Pods_Crylio_v2_Crylio_v2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crylio_v2_Crylio_v2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		819F7BA54C75E23486741B29 /* Pods-Crylio_v2-Crylio_v2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crylio_v2-Crylio_v2UITests.release.xcconfig"; path = "Target Support Files/Pods-Crylio_v2-Crylio_v2UITests/Pods-Crylio_v2-Crylio_v2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		8F0E8ADB8ADE8446AD5FE0CD /* Pods_Crylio_v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crylio_v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDF0DABDE6DA8281886CD1DE /* Pods-Crylio_v2-Crylio_v2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crylio_v2-Crylio_v2UITests.debug.xcconfig"; path = "Target Support Files/Pods-Crylio_v2-Crylio_v2UITests/Pods-Crylio_v2-Crylio_v2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E76A3114C113C64C440771B5 /* Pods-Crylio_v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crylio_v2.release.xcconfig"; path = "Target Support Files/Pods-Crylio_v2/Pods-Crylio_v2.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		384CFA8F25C1E67D0064C932 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3844884C25D333C3002BF26C /* RxCocoa in Frameworks */,
+				38B6D5AB25D5A9D700AC8238 /* Lottie in Frameworks */,
+				384CFAD025C1F0EA0064C932 /* SnapKit in Frameworks */,
+				3894FCC425D16C5B00BFD26F /* Charts in Frameworks */,
+				38828A882657F761008DB9B8 /* Kingfisher in Frameworks */,
+				3844884A25D333C3002BF26C /* RxSwift in Frameworks */,
+				388D016825CD99D100AD0050 /* AAInfographics in Frameworks */,
+				3894FCD925D17BE000BFD26F /* PagingKit in Frameworks */,
+				389A55B72652A64200D7BF5B /* Hero in Frameworks */,
+				2655D37617A7748F47FF3042 /* Pods_Crylio_v2.framework in Frameworks */,
+				38C0EB84265851950034179C /* SHSearchBar in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384CFAA525C1E67F0064C932 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D997597B6FBE0861C2C5859 /* Pods_Crylio_v2Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384CFAB025C1E67F0064C932 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BC5951FA7276710D99168B4 /* Pods_Crylio_v2_Crylio_v2UITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2868A64AE5C0D599F618706C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				17E4E2893BFB3A4214E90F27 /* Pods-Crylio_v2.debug.xcconfig */,
+				E76A3114C113C64C440771B5 /* Pods-Crylio_v2.release.xcconfig */,
+				BDF0DABDE6DA8281886CD1DE /* Pods-Crylio_v2-Crylio_v2UITests.debug.xcconfig */,
+				819F7BA54C75E23486741B29 /* Pods-Crylio_v2-Crylio_v2UITests.release.xcconfig */,
+				437D2995D4248700AFD9B0B8 /* Pods-Crylio_v2Tests.debug.xcconfig */,
+				42D75D01F63C3B38F6719B86 /* Pods-Crylio_v2Tests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		382D6A97266A9A2C00509669 /* Market */ = {
+			isa = PBXGroup;
+			children = (
+				382D6A95266A9A2400509669 /* MarketViewController.swift */,
+				3870A502266E77D90089BB4A /* MarketTableViewCell.swift */,
+				382D6A98266A9D4500509669 /* MarketStatsScrollView.swift */,
+				382D6A9A266AA10200509669 /* MarketSubMenu.swift */,
+				3870A4FE266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift */,
+			);
+			path = Market;
+			sourceTree = "<group>";
+		};
+		3837C12125FFA0280056BB27 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3837C12225FFA0390056BB27 /* NumberFormatters.swift */,
+				38598134261B75D1002F2FE3 /* DateUtils.swift */,
+				3820C5AA26618BB50022F1C5 /* Constants.swift */,
+				38538057266FED5B005E5D46 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		384CE01726458C2000C016DF /* Cryptocurrency */ = {
+			isa = PBXGroup;
+			children = (
+				389DE65125C5D27200954F4F /* CryptocurrencyViewController.swift */,
+				388BBA54265D78F500F8C524 /* AddTransaction */,
+				388DC27C25FBD2EB007B1B86 /* Details */,
+				388DC27925FBD2CE007B1B86 /* Holdings */,
+				38ECAAF526090A28008AF50B /* Transactions */,
+				38ECAAFA26090A39008AF50B /* News */,
+			);
+			path = Cryptocurrency;
+			sourceTree = "<group>";
+		};
+		384CFA8925C1E67D0064C932 = {
+			isa = PBXGroup;
+			children = (
+				384CFA9425C1E67D0064C932 /* Crylio_v2 */,
+				384CFAAB25C1E67F0064C932 /* Crylio_v2Tests */,
+				384CFAB625C1E67F0064C932 /* Crylio_v2UITests */,
+				384CFA9325C1E67D0064C932 /* Products */,
+				2868A64AE5C0D599F618706C /* Pods */,
+				BFF215B6FE16C78A7A8E2773 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		384CFA9325C1E67D0064C932 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				384CFA9225C1E67D0064C932 /* Crylio_v2.app */,
+				384CFAA825C1E67F0064C932 /* Crylio_v2Tests.xctest */,
+				384CFAB325C1E67F0064C932 /* Crylio_v2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		384CFA9425C1E67D0064C932 /* Crylio_v2 */ = {
+			isa = PBXGroup;
+			children = (
+				384CFA9525C1E67D0064C932 /* AppDelegate.swift */,
+				384CFA9725C1E67D0064C932 /* SceneDelegate.swift */,
+				3837C12125FFA0280056BB27 /* Utils */,
+				384CFAD525C1F2DA0064C932 /* Models */,
+				384CFAD425C1F2D40064C932 /* Views */,
+				384CFAD625C1F2DF0064C932 /* Resources */,
+				384CFAA325C1E67F0064C932 /* Info.plist */,
+				384CFAA025C1E67F0064C932 /* LaunchScreen.storyboard */,
+			);
+			path = Crylio_v2;
+			sourceTree = "<group>";
+		};
+		384CFAAB25C1E67F0064C932 /* Crylio_v2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				384CFAAC25C1E67F0064C932 /* Crylio_v2Tests.swift */,
+				384CFAAE25C1E67F0064C932 /* Info.plist */,
+			);
+			path = Crylio_v2Tests;
+			sourceTree = "<group>";
+		};
+		384CFAB625C1E67F0064C932 /* Crylio_v2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				384CFAB725C1E67F0064C932 /* Crylio_v2UITests.swift */,
+				384CFAB925C1E67F0064C932 /* Info.plist */,
+			);
+			path = Crylio_v2UITests;
+			sourceTree = "<group>";
+		};
+		384CFAD425C1F2D40064C932 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				388DC27825FBD2B0007B1B86 /* Home */,
+				384CFAFD25C21E9B0064C932 /* Components */,
+				384CFAD725C1F2F90064C932 /* ViewControllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		384CFAD525C1F2DA0064C932 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				384CFAF525C1F7E20064C932 /* Cryptocurrency.swift */,
+				38828A892657F784008DB9B8 /* ImageUtils.swift */,
+				38211C7F264B02C100F7AF11 /* TradingViewChart.swift */,
+				384CE01826459F7800C016DF /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		384CFAD625C1F2DF0064C932 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				38B6D5B425D5AB1D00AC8238 /* Lottie animations */,
+				384CFB0625C2224D0064C932 /* AppColors.swift */,
+				384CFA9E25C1E67F0064C932 /* Assets.xcassets */,
+				38828A842657BEF9008DB9B8 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		384CFAD725C1F2F90064C932 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				382D6A97266A9A2C00509669 /* Market */,
+				384CFA9925C1E67D0064C932 /* HomeViewController.swift */,
+				384CFAF025C1F6960064C932 /* HomeTableViewCell.swift */,
+				38C0EB802658503F0034179C /* FilterMenuView.swift */,
+				38C0EB87265855510034179C /* UserAssetsView.swift */,
+				384CE01726458C2000C016DF /* Cryptocurrency */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		384CFAFD25C21E9B0064C932 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				388A95A126611CF8009094A6 /* UserInput */,
+				389451ED265EAAAB00C3CC26 /* SearchTextfield */,
+				38EF19772667DAE000C92859 /* Buttons */,
+				389DE65625C758B500954F4F /* NavigationTopBarView.swift */,
+				389DE66325C8269E00954F4F /* CryptoHeaderView.swift */,
+				384CFB0125C21EC70064C932 /* PriceChangeBox.swift */,
+				384CFB2725C451C50064C932 /* GradientView.swift */,
+				389DE65E25C76F4700954F4F /* RoundShadowView.swift */,
+				3848D1BC25C4DC2B00203D7A /* HorizontalMenuView.swift */,
+				3837C12C25FFB2740056BB27 /* DistributionBar.swift */,
+				38350D192640ADF500B1E0C0 /* CircleView.swift */,
+				38C0EB8926585C090034179C /* CustomSearchBar.swift */,
+				3891ADAC2656A525005FF3CA /* Charts */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3870A4FD266E4B8F0089BB4A /* Market Menu */ = {
+			isa = PBXGroup;
+			children = (
+				38EF19782667DB0100C92859 /* SortByButtonView.swift */,
+				38EF197A2667DBF500C92859 /* SortOrderButton.swift */,
+				3870A504266FC4180089BB4A /* ArrowMacawView.swift */,
+				382D6A8F2667EE4000509669 /* FavoriteFilterButtonView.swift */,
+				382D6A8D2667EBE500509669 /* CurrencyButtonView.swift */,
+				382D6A932667F17100509669 /* ChangeTimelineButton.swift */,
+			);
+			path = "Market Menu";
+			sourceTree = "<group>";
+		};
+		388A95A126611CF8009094A6 /* UserInput */ = {
+			isa = PBXGroup;
+			children = (
+				388A959F26611AAE009094A6 /* InputValidityCheck.swift */,
+				38741C8026600C3E0036AE2C /* UserInputView.swift */,
+			);
+			path = UserInput;
+			sourceTree = "<group>";
+		};
+		388BBA54265D78F500F8C524 /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				388BBA50265D709200F8C524 /* AddTransactionViewController.swift */,
+				388BBA52265D76D800F8C524 /* AddTransactionTableViewCell.swift */,
+			);
+			path = AddTransaction;
+			sourceTree = "<group>";
+		};
+		388DC27825FBD2B0007B1B86 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3844884225D3177F002BF26C /* HomeHeaderPortfolioView.swift */,
+				384CFADB25C1F3240064C932 /* HomeHeaderView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		388DC27925FBD2CE007B1B86 /* Holdings */ = {
+			isa = PBXGroup;
+			children = (
+				3894FCDE25D17FAB00BFD26F /* CryptoHoldingsViewController.swift */,
+				3894FCD125D17A9400BFD26F /* CryptoHoldingsScrollView.swift */,
+				38463C4D2645E80B005331E4 /* HoldingsBalanceView.swift */,
+				38463C4B2645E3B4005331E4 /* HoldingsStatView.swift */,
+				3837C12825FFB06F0056BB27 /* DistributionView.swift */,
+			);
+			path = Holdings;
+			sourceTree = "<group>";
+		};
+		388DC27C25FBD2EB007B1B86 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3894FCE625D1801A00BFD26F /* CryptoDetailViewController.swift */,
+				389DE68525C8379000954F4F /* CryptoDetailScrollView.swift */,
+				389DE66B25C82C1100954F4F /* ChartView.swift */,
+				38E1AEC32647479500CD7D91 /* CryptoDetailBalanceView.swift */,
+				3800219825CD728000FA4773 /* MarketStatsView.swift */,
+				3894FCF225D1A0B600BFD26F /* AboutView.swift */,
+				38211C81264B049B00F7AF11 /* ChartViewController.swift */,
+				3823E8DF265C262D00B93C31 /* DateRangeSelectorCollectionViewCell.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		3891ADAB2656A25F005FF3CA /* ChartLegend */ = {
+			isa = PBXGroup;
+			children = (
+				3891ADA726569DD2005FF3CA /* ChartLegendView.swift */,
+				3891ADA92656A004005FF3CA /* ChartLegendTableViewCell.swift */,
+			);
+			path = ChartLegend;
+			sourceTree = "<group>";
+		};
+		3891ADAC2656A525005FF3CA /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				3857038F265686C30073724A /* PieChartView.swift */,
+				3891ADAB2656A25F005FF3CA /* ChartLegend */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		389451ED265EAAAB00C3CC26 /* SearchTextfield */ = {
+			isa = PBXGroup;
+			children = (
+				384CE01526456DF100C016DF /* BaseViewController.swift */,
+				389451F0265EAB2700C3CC26 /* SearchTextField.swift */,
+				389451F2265EB8A200C3CC26 /* SearchTextFieldTableViewCell.swift */,
+				389451F4265EBF1500C3CC26 /* SearchTextFieldSuggestionsHeader.swift */,
+			);
+			path = SearchTextfield;
+			sourceTree = "<group>";
+		};
+		38B6D5B425D5AB1D00AC8238 /* Lottie animations */ = {
+			isa = PBXGroup;
+			children = (
+				3870A500266E6C8D0089BB4A /* 62876-arrow-button.json */,
+				38B6D5B025D5AB1400AC8238 /* waves-animation.json */,
+				38EF197C2667E13B00C92859 /* arrow-reverse.json */,
+			);
+			path = "Lottie animations";
+			sourceTree = "<group>";
+		};
+		38ECAAF526090A28008AF50B /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3894FCE225D17FC500BFD26F /* CryptoTransactionsViewController.swift */,
+				38F153A6260911EC00AE7CE7 /* CryptoTransactionCell.swift */,
+				38598138261B8ABA002F2FE3 /* TransactionsHeaderView.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		38ECAAFA26090A39008AF50B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				3894FCEC25D18CCB00BFD26F /* CryptoNewsFeedViewController.swift */,
+				38619A732613B0660044D273 /* CryptoNewsCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		38EF19772667DAE000C92859 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				388BBA4E265D5BA400F8C524 /* AddToFavoriteButton.swift */,
+				38C0EB852658536B0034179C /* RoundCornersButton.swift */,
+				3870A4FD266E4B8F0089BB4A /* Market Menu */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		BFF215B6FE16C78A7A8E2773 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FA50302F84F4703CCAD84D1 /* Pods_Crylio_v2.framework */,
+				7E9020837FAD23D408521990 /* Pods_Crylio_v2_Crylio_v2UITests.framework */,
+				8F0E8ADB8ADE8446AD5FE0CD /* Pods_Crylio_v2Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		384CFA9125C1E67D0064C932 /* Crylio_v2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 384CFABC25C1E67F0064C932 /* Build configuration list for PBXNativeTarget "Crylio_v2" */;
+			buildPhases = (
+				457BC50947A806E14A309EA1 /* [CP] Check Pods Manifest.lock */,
+				384CFA8E25C1E67D0064C932 /* Sources */,
+				384CFA8F25C1E67D0064C932 /* Frameworks */,
+				384CFA9025C1E67D0064C932 /* Resources */,
+				388D013C25CD887A00AD0050 /* Embed Frameworks */,
+				09E87DBA2D3E011DC6F2DB2D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Crylio_v2;
+			packageProductDependencies = (
+				384CFACF25C1F0EA0064C932 /* SnapKit */,
+				388D016725CD99D100AD0050 /* AAInfographics */,
+				3894FCC325D16C5B00BFD26F /* Charts */,
+				3894FCD825D17BE000BFD26F /* PagingKit */,
+				3844884925D333C3002BF26C /* RxSwift */,
+				3844884B25D333C3002BF26C /* RxCocoa */,
+				38B6D5AA25D5A9D700AC8238 /* Lottie */,
+				389A55B62652A64200D7BF5B /* Hero */,
+				38828A872657F761008DB9B8 /* Kingfisher */,
+				38C0EB83265851950034179C /* SHSearchBar */,
+			);
+			productName = Crylio_v2;
+			productReference = 384CFA9225C1E67D0064C932 /* Crylio_v2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		384CFAA725C1E67F0064C932 /* Crylio_v2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 384CFABF25C1E67F0064C932 /* Build configuration list for PBXNativeTarget "Crylio_v2Tests" */;
+			buildPhases = (
+				2F092EDB32937AAAC1A7219D /* [CP] Check Pods Manifest.lock */,
+				384CFAA425C1E67F0064C932 /* Sources */,
+				384CFAA525C1E67F0064C932 /* Frameworks */,
+				384CFAA625C1E67F0064C932 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				384CFAAA25C1E67F0064C932 /* PBXTargetDependency */,
+			);
+			name = Crylio_v2Tests;
+			productName = Crylio_v2Tests;
+			productReference = 384CFAA825C1E67F0064C932 /* Crylio_v2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		384CFAB225C1E67F0064C932 /* Crylio_v2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 384CFAC225C1E67F0064C932 /* Build configuration list for PBXNativeTarget "Crylio_v2UITests" */;
+			buildPhases = (
+				17F3AAF59D368428BD05A7C4 /* [CP] Check Pods Manifest.lock */,
+				384CFAAF25C1E67F0064C932 /* Sources */,
+				384CFAB025C1E67F0064C932 /* Frameworks */,
+				384CFAB125C1E67F0064C932 /* Resources */,
+				57E127C231B25EE1D8C4C53C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				384CFAB525C1E67F0064C932 /* PBXTargetDependency */,
+			);
+			name = Crylio_v2UITests;
+			productName = Crylio_v2UITests;
+			productReference = 384CFAB325C1E67F0064C932 /* Crylio_v2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		384CFA8A25C1E67D0064C932 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					384CFA9125C1E67D0064C932 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					384CFAA725C1E67F0064C932 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 384CFA9125C1E67D0064C932;
+					};
+					384CFAB225C1E67F0064C932 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 384CFA9125C1E67D0064C932;
+					};
+				};
+			};
+			buildConfigurationList = 384CFA8D25C1E67D0064C932 /* Build configuration list for PBXProject "Crylio_v2" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 384CFA8925C1E67D0064C932;
+			packageReferences = (
+				384CFACE25C1F0EA0064C932 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				388D016625CD99D000AD0050 /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */,
+				3894FCC225D16C5B00BFD26F /* XCRemoteSwiftPackageReference "Charts" */,
+				3894FCD725D17BE000BFD26F /* XCRemoteSwiftPackageReference "PagingKit" */,
+				3844884825D333C3002BF26C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				38B6D5A925D5A9D600AC8238 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				389A55B52652A64200D7BF5B /* XCRemoteSwiftPackageReference "Hero" */,
+				38828A862657F761008DB9B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				38C0EB82265851950034179C /* XCRemoteSwiftPackageReference "SHSearchBar" */,
+			);
+			productRefGroup = 384CFA9325C1E67D0064C932 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				384CFA9125C1E67D0064C932 /* Crylio_v2 */,
+				384CFAA725C1E67F0064C932 /* Crylio_v2Tests */,
+				384CFAB225C1E67F0064C932 /* Crylio_v2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		384CFA9025C1E67D0064C932 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38B6D5B125D5AB1400AC8238 /* waves-animation.json in Resources */,
+				38828A852657BEF9008DB9B8 /* Colors.xcassets in Resources */,
+				384CFAA225C1E67F0064C932 /* LaunchScreen.storyboard in Resources */,
+				3870A501266E6C8D0089BB4A /* 62876-arrow-button.json in Resources */,
+				384CFA9F25C1E67F0064C932 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384CFAA625C1E67F0064C932 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384CFAB125C1E67F0064C932 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09E87DBA2D3E011DC6F2DB2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Crylio_v2/Pods-Crylio_v2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Crylio_v2/Pods-Crylio_v2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Crylio_v2/Pods-Crylio_v2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		17F3AAF59D368428BD05A7C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Crylio_v2-Crylio_v2UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F092EDB32937AAAC1A7219D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Crylio_v2Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		457BC50947A806E14A309EA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Crylio_v2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57E127C231B25EE1D8C4C53C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Crylio_v2-Crylio_v2UITests/Pods-Crylio_v2-Crylio_v2UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Crylio_v2-Crylio_v2UITests/Pods-Crylio_v2-Crylio_v2UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Crylio_v2-Crylio_v2UITests/Pods-Crylio_v2-Crylio_v2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		384CFA8E25C1E67D0064C932 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388A95A026611AAE009094A6 /* InputValidityCheck.swift in Sources */,
+				38570390265686C30073724A /* PieChartView.swift in Sources */,
+				3891ADAA2656A004005FF3CA /* ChartLegendTableViewCell.swift in Sources */,
+				384CFB0225C21EC70064C932 /* PriceChangeBox.swift in Sources */,
+				388BBA51265D709200F8C524 /* AddTransactionViewController.swift in Sources */,
+				382D6A99266A9D4500509669 /* MarketStatsScrollView.swift in Sources */,
+				3820C5AB26618BB50022F1C5 /* Constants.swift in Sources */,
+				384CFB0725C2224D0064C932 /* AppColors.swift in Sources */,
+				382D6A9B266AA10200509669 /* MarketSubMenu.swift in Sources */,
+				3894FCD225D17A9400BFD26F /* CryptoHoldingsScrollView.swift in Sources */,
+				3891ADA826569DD2005FF3CA /* ChartLegendView.swift in Sources */,
+				3894FCF325D1A0B600BFD26F /* AboutView.swift in Sources */,
+				38C0EB812658503F0034179C /* FilterMenuView.swift in Sources */,
+				388BBA4F265D5BA400F8C524 /* AddToFavoriteButton.swift in Sources */,
+				3837C12325FFA0390056BB27 /* NumberFormatters.swift in Sources */,
+				3844884325D3177F002BF26C /* HomeHeaderPortfolioView.swift in Sources */,
+				382D6A942667F17100509669 /* ChangeTimelineButton.swift in Sources */,
+				38EF197D2667E13B00C92859 /* arrow-reverse.json in Sources */,
+				389DE66425C8269E00954F4F /* CryptoHeaderView.swift in Sources */,
+				382D6A96266A9A2400509669 /* MarketViewController.swift in Sources */,
+				389451F3265EB8A200C3CC26 /* SearchTextFieldTableViewCell.swift in Sources */,
+				384CFB2825C451C50064C932 /* GradientView.swift in Sources */,
+				384CFAF125C1F6960064C932 /* HomeTableViewCell.swift in Sources */,
+				3800219925CD728000FA4773 /* MarketStatsView.swift in Sources */,
+				389DE65F25C76F4700954F4F /* RoundShadowView.swift in Sources */,
+				38619A742613B0660044D273 /* CryptoNewsCell.swift in Sources */,
+				38E1AEC42647479500CD7D91 /* CryptoDetailBalanceView.swift in Sources */,
+				389451F5265EBF1500C3CC26 /* SearchTextFieldSuggestionsHeader.swift in Sources */,
+				382D6A902667EE4000509669 /* FavoriteFilterButtonView.swift in Sources */,
+				389DE68625C8379000954F4F /* CryptoDetailScrollView.swift in Sources */,
+				38211C80264B02C100F7AF11 /* TradingViewChart.swift in Sources */,
+				389DE65225C5D27200954F4F /* CryptocurrencyViewController.swift in Sources */,
+				38741C8126600C3E0036AE2C /* UserInputView.swift in Sources */,
+				3894FCE725D1801A00BFD26F /* CryptoDetailViewController.swift in Sources */,
+				3870A4FF266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift in Sources */,
+				3870A505266FC4180089BB4A /* ArrowMacawView.swift in Sources */,
+				384CE01926459F7800C016DF /* User.swift in Sources */,
+				38463C4E2645E80B005331E4 /* HoldingsBalanceView.swift in Sources */,
+				38F153A7260911EC00AE7CE7 /* CryptoTransactionCell.swift in Sources */,
+				3870A503266E77D90089BB4A /* MarketTableViewCell.swift in Sources */,
+				384CFADC25C1F3240064C932 /* HomeHeaderView.swift in Sources */,
+				38EF197B2667DBF500C92859 /* SortOrderButton.swift in Sources */,
+				38598139261B8ABA002F2FE3 /* TransactionsHeaderView.swift in Sources */,
+				384CE01626456DF100C016DF /* BaseViewController.swift in Sources */,
+				3848D1BD25C4DC2B00203D7A /* HorizontalMenuView.swift in Sources */,
+				3894FCDF25D17FAB00BFD26F /* CryptoHoldingsViewController.swift in Sources */,
+				38598135261B75D1002F2FE3 /* DateUtils.swift in Sources */,
+				389DE65725C758B500954F4F /* NavigationTopBarView.swift in Sources */,
+				388BBA53265D76D800F8C524 /* AddTransactionTableViewCell.swift in Sources */,
+				3837C12D25FFB2740056BB27 /* DistributionBar.swift in Sources */,
+				38211C82264B049B00F7AF11 /* ChartViewController.swift in Sources */,
+				38C0EB8A26585C090034179C /* CustomSearchBar.swift in Sources */,
+				38EF19792667DB0100C92859 /* SortByButtonView.swift in Sources */,
+				38350D1A2640ADF500B1E0C0 /* CircleView.swift in Sources */,
+				3823E8E0265C262D00B93C31 /* DateRangeSelectorCollectionViewCell.swift in Sources */,
+				38538058266FED5B005E5D46 /* Extensions.swift in Sources */,
+				3894FCE325D17FC500BFD26F /* CryptoTransactionsViewController.swift in Sources */,
+				384CFA9A25C1E67D0064C932 /* HomeViewController.swift in Sources */,
+				38C0EB862658536B0034179C /* RoundCornersButton.swift in Sources */,
+				389451F1265EAB2700C3CC26 /* SearchTextField.swift in Sources */,
+				384CFA9625C1E67D0064C932 /* AppDelegate.swift in Sources */,
+				38828A8A2657F784008DB9B8 /* ImageUtils.swift in Sources */,
+				384CFAF625C1F7E20064C932 /* Cryptocurrency.swift in Sources */,
+				3894FCED25D18CCB00BFD26F /* CryptoNewsFeedViewController.swift in Sources */,
+				38463C4C2645E3B4005331E4 /* HoldingsStatView.swift in Sources */,
+				38C0EB88265855510034179C /* UserAssetsView.swift in Sources */,
+				384CFA9825C1E67D0064C932 /* SceneDelegate.swift in Sources */,
+				3837C12925FFB06F0056BB27 /* DistributionView.swift in Sources */,
+				389DE66C25C82C1100954F4F /* ChartView.swift in Sources */,
+				382D6A8E2667EBE500509669 /* CurrencyButtonView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384CFAA425C1E67F0064C932 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384CFAAD25C1E67F0064C932 /* Crylio_v2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384CFAAF25C1E67F0064C932 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384CFAB825C1E67F0064C932 /* Crylio_v2UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		384CFAAA25C1E67F0064C932 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 384CFA9125C1E67D0064C932 /* Crylio_v2 */;
+			targetProxy = 384CFAA925C1E67F0064C932 /* PBXContainerItemProxy */;
+		};
+		384CFAB525C1E67F0064C932 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 384CFA9125C1E67D0064C932 /* Crylio_v2 */;
+			targetProxy = 384CFAB425C1E67F0064C932 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		384CFAA025C1E67F0064C932 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				384CFAA125C1E67F0064C932 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		384CFABA25C1E67F0064C932 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		384CFABB25C1E67F0064C932 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		384CFABD25C1E67F0064C932 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17E4E2893BFB3A4214E90F27 /* Pods-Crylio_v2.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9UAR68B43;
+				INFOPLIST_FILE = Crylio_v2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Cylio.app.Crylio-v2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		384CFABE25C1E67F0064C932 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E76A3114C113C64C440771B5 /* Pods-Crylio_v2.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9UAR68B43;
+				INFOPLIST_FILE = Crylio_v2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Cylio.app.Crylio-v2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		384CFAC025C1E67F0064C932 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 437D2995D4248700AFD9B0B8 /* Pods-Crylio_v2Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9UAR68B43;
+				INFOPLIST_FILE = Crylio_v2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Cylio.app.Crylio-v2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crylio_v2.app/Crylio_v2";
+			};
+			name = Debug;
+		};
+		384CFAC125C1E67F0064C932 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42D75D01F63C3B38F6719B86 /* Pods-Crylio_v2Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9UAR68B43;
+				INFOPLIST_FILE = Crylio_v2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Cylio.app.Crylio-v2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crylio_v2.app/Crylio_v2";
+			};
+			name = Release;
+		};
+		384CFAC325C1E67F0064C932 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDF0DABDE6DA8281886CD1DE /* Pods-Crylio_v2-Crylio_v2UITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9UAR68B43;
+				INFOPLIST_FILE = Crylio_v2UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Cylio.app.Crylio-v2UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Crylio_v2;
+			};
+			name = Debug;
+		};
+		384CFAC425C1E67F0064C932 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 819F7BA54C75E23486741B29 /* Pods-Crylio_v2-Crylio_v2UITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9UAR68B43;
+				INFOPLIST_FILE = Crylio_v2UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Cylio.app.Crylio-v2UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Crylio_v2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		384CFA8D25C1E67D0064C932 /* Build configuration list for PBXProject "Crylio_v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384CFABA25C1E67F0064C932 /* Debug */,
+				384CFABB25C1E67F0064C932 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		384CFABC25C1E67F0064C932 /* Build configuration list for PBXNativeTarget "Crylio_v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384CFABD25C1E67F0064C932 /* Debug */,
+				384CFABE25C1E67F0064C932 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		384CFABF25C1E67F0064C932 /* Build configuration list for PBXNativeTarget "Crylio_v2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384CFAC025C1E67F0064C932 /* Debug */,
+				384CFAC125C1E67F0064C932 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		384CFAC225C1E67F0064C932 /* Build configuration list for PBXNativeTarget "Crylio_v2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384CFAC325C1E67F0064C932 /* Debug */,
+				384CFAC425C1E67F0064C932 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3844884825D333C3002BF26C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		384CFACE25C1F0EA0064C932 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		38828A862657F761008DB9B8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
+		388D016625CD99D000AD0050 /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AAChartModel/AAChartKit-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		3894FCC225D16C5B00BFD26F /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		3894FCD725D17BE000BFD26F /* XCRemoteSwiftPackageReference "PagingKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kazuhiro4949/PagingKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.16.0;
+			};
+		};
+		389A55B52652A64200D7BF5B /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.1;
+			};
+		};
+		38B6D5A925D5A9D600AC8238 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.1;
+			};
+		};
+		38C0EB82265851950034179C /* XCRemoteSwiftPackageReference "SHSearchBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Blackjacx/SHSearchBar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3844884925D333C3002BF26C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3844884825D333C3002BF26C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		3844884B25D333C3002BF26C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3844884825D333C3002BF26C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		384CFACF25C1F0EA0064C932 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384CFACE25C1F0EA0064C932 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		38828A872657F761008DB9B8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38828A862657F761008DB9B8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		388D016725CD99D100AD0050 /* AAInfographics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 388D016625CD99D000AD0050 /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */;
+			productName = AAInfographics;
+		};
+		3894FCC325D16C5B00BFD26F /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3894FCC225D16C5B00BFD26F /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		3894FCD825D17BE000BFD26F /* PagingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3894FCD725D17BE000BFD26F /* XCRemoteSwiftPackageReference "PagingKit" */;
+			productName = PagingKit;
+		};
+		389A55B62652A64200D7BF5B /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 389A55B52652A64200D7BF5B /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
+		};
+		38B6D5AA25D5A9D700AC8238 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B6D5A925D5A9D600AC8238 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		38C0EB83265851950034179C /* SHSearchBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38C0EB82265851950034179C /* XCRemoteSwiftPackageReference "SHSearchBar" */;
+			productName = SHSearchBar;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 384CFA8A25C1E67D0064C932 /* Project object */;
+}
