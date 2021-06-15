@@ -13,7 +13,7 @@ class DistributionView: UIView {
     
     lazy var title = UILabel()
     
-    lazy var backgroundBox = UIView()
+    lazy var backgroundBox = RoundShadowView()
     
     lazy var statesTitle = UILabel()
     
@@ -47,8 +47,6 @@ class DistributionView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
                 
         backgroundBox.backgroundColor = AppColors.background.secondary
-        
-        backgroundBox.layer.cornerRadius = 10
         
         title.text = "Distribution"
         statesTitle.text = "States"

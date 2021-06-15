@@ -10,32 +10,38 @@ import UIKit
 
 class RoundShadowView: UIView {
     
-    /// The corner radius of the `ShadowView`, inspectable in Interface Builder
-    @IBInspectable var cornerRadius: CGFloat = 14 {
+    /// The corner radius of the `ShadowView`
+    var cornerRadius: CGFloat = 10 {
         didSet {
             updateProperties()
         }
     }
-    /// The shadow color of the `ShadowView`, inspectable in Interface Builder
-    @IBInspectable var shadowColor: UIColor = UIColor.black {
+    /// The shadow color of the `ShadowView`
+    var shadowColor: UIColor = UIColor.black {
         didSet {
             updateProperties()
         }
     }
-    /// The shadow offset of the `ShadowView`, inspectable in Interface Builder
-    @IBInspectable var shadowOffset: CGSize = CGSize(width: 0.0, height: 2) {
+    /// The shadow offset of the `ShadowView`
+    var shadowOffset: CGSize = CGSize(width: 0.0, height: 2) {
         didSet {
             updateProperties()
         }
     }
-    /// The shadow radius of the `ShadowView`, inspectable in Interface Builder
-    @IBInspectable var shadowRadius: CGFloat = 20 {
+    /// The blur of the `ShadowView`
+    var blur: CGFloat = 20 {
         didSet {
             updateProperties()
         }
     }
-    /// The shadow opacity of the `ShadowView`, inspectable in Interface Builder
-    @IBInspectable var shadowOpacity: Float = 0.07 {
+    /// The spread of the `ShadowView`
+    var spread: CGFloat = 5 {
+        didSet {
+            updateProperties()
+        }
+    }
+    /// The shadow opacity of the `ShadowView`
+    var shadowOpacity: Float = 0.05 {
         didSet {
             updateProperties()
         }
@@ -49,6 +55,7 @@ class RoundShadowView: UIView {
         super.init(frame: frame)
         
         layer.masksToBounds = false
+        backgroundColor = AppColors.background.secondary
         
         updateProperties()
         updateShadowPath()
@@ -71,7 +78,7 @@ class RoundShadowView: UIView {
         layer.cornerRadius = cornerRadius
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOffset = shadowOffset
-        layer.shadowRadius = shadowRadius
+        layer.shadowRadius = blur / 2.0
         layer.shadowOpacity = shadowOpacity
         
         layer.shouldRasterize = true
@@ -83,7 +90,11 @@ class RoundShadowView: UIView {
      */
     fileprivate func updateShadowPath() {
         
-        layer.shadowPath = UIBezierPath(roundedRect: layer.bounds, cornerRadius: layer.cornerRadius).cgPath
+        if spread == 0 {
+            layer.shadowPath = nil
+        } else {
+            layer.shadowPath = UIBezierPath(roundedRect: bounds.insetBy(dx: -spread, dy: -spread), cornerRadius: cornerRadius).cgPath
+        }
     }
     
     /**

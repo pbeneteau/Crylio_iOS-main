@@ -42,13 +42,13 @@ extension Float {
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         
-        if self < 10 {
+        if self < 100 {
             formatter.maximumFractionDigits = 6
         }
         
         let number = NSNumber(value: self)
         
-        return formatter.string(from: number)! + " \(symbol)"
+        return formatter.string(from: number)! + "\(symbol)"
     }
     
     // =======
@@ -60,7 +60,7 @@ extension Float {
         let mutableAttributedString = NSMutableAttributedString()
         
         if colors {
-            mutableAttributedString.append(NSAttributedString(string: dollarString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: fontWeight), NSAttributedString.Key.foregroundColor: self >= 0 ? UIColor.systemGreen: UIColor.systemRed]))
+            mutableAttributedString.append(NSAttributedString(string: dollarString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: fontWeight), NSAttributedString.Key.foregroundColor: self >= 0 ? AppColors.accent.green: AppColors.accent.red]))
         } else {
             mutableAttributedString.append(NSAttributedString(string: dollarString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: fontWeight)]))
         }
@@ -75,7 +75,7 @@ extension Float {
         let mutableAttributedString = NSMutableAttributedString()
         
         if colors {
-            mutableAttributedString.append(NSAttributedString(string: percentString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: fontWeight), NSAttributedString.Key.foregroundColor: self >= 0 ? UIColor.systemGreen: UIColor.systemRed]))
+            mutableAttributedString.append(NSAttributedString(string: percentString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: fontWeight), NSAttributedString.Key.foregroundColor: self >= 0 ? AppColors.accent.green: AppColors.accent.red]))
         } else {
             mutableAttributedString.append(NSAttributedString(string: percentString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: fontWeight)]))
         }

@@ -9,18 +9,18 @@ import UIKit
 import Kingfisher
 
 
-class CryptoNewsCell: UITableViewCell {
+class CryptoNewsCell: UITableViewCell, UITextViewDelegate {
     
     static let reuseId = "FeedCell"
     
     lazy var contentBox = RoundShadowView()
-    lazy var typeImageBox = RoundShadowView()
+    lazy var typeImageBox = UIView()
     lazy var typeImageView = UIImageView()
     lazy var autorLabel = UILabel()
     lazy var separatorView = CircleView()
     lazy var timeLabel = UILabel()
     lazy var moreButton = UIButton()
-    lazy var titleLabel = UILabel()
+    lazy var textView = UITextView()
     lazy var newsImageView = UIImageView()
     
     var news: News! {
@@ -46,14 +46,11 @@ class CryptoNewsCell: UITableViewCell {
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-        
-        contentBox.backgroundColor = AppColors.background.primary
-        contentBox.layer.cornerRadius = 14
-        
+                
         typeImageBox.layer.cornerRadius = 4
-        typeImageBox.backgroundColor = AppColors.background.secondary
+        typeImageBox.backgroundColor = AppColors.background.primary
         
-        autorLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        autorLabel.font = .systemFont(ofSize: 15, weight: .medium)
         autorLabel.textColor = AppColors.label.secondary
         
         separatorView.backgroundColor = AppColors.label.secondary
@@ -61,8 +58,14 @@ class CryptoNewsCell: UITableViewCell {
         timeLabel.font = .systemFont(ofSize: 15)
         timeLabel.textColor = AppColors.label.secondary
         
-        titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        titleLabel.numberOfLines = 0
+        textView.font = .systemFont(ofSize: 17, weight: .semibold)
+        textView.isSelectable = true
+        textView.isEditable = false
+        textView.delegate = self
+        textView.translatesAutoresizingMaskIntoConstraints = true
+        textView.isScrollEnabled = false
+        textView.sizeToFit()
+        textView.backgroundColor = .clear
         
         newsImageView.clipsToBounds = true
         newsImageView.backgroundColor = AppColors.background.tertiary
@@ -81,20 +84,20 @@ class CryptoNewsCell: UITableViewCell {
         contentBox.addSubview(separatorView)
         contentBox.addSubview(timeLabel)
         contentBox.addSubview(moreButton)
-        contentBox.addSubview(titleLabel)
+        contentBox.addSubview(textView)
         contentBox.addSubview(newsImageView)
     }
     
     func initValues() {
         
         typeImageView.image = UIImage(named: news.type.rawValue + "Icon")?.withRenderingMode(.alwaysTemplate)
-        titleLabel.text = news.title
+        setCellText(text: news.title)
         autorLabel.text = news.autor
         timeLabel.text = news.time.timeAgoDisplay()
         
         if news.type == .web {
             typeImageView.tintColor = AppColors.label.primary
-            titleLabel.font = .systemFont(ofSize: 17, weight: .bold)
+            textView.font = .systemFont(ofSize: 17, weight: .bold)
         }
         
         if let url =  news.imageURL {
@@ -105,10 +108,42 @@ class CryptoNewsCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        newsImageView.roundCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radius: 14)
+        newsImageView.roundCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radius: contentBox.layer.cornerRadius)
     }
+    
 }
 
+
+// MARK: Text view delegate
+
+extension CryptoNewsCell {
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        textView.selectedTextRange = nil
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        // check for our fake URL scheme hash:helloWorld
+        switch URL.scheme {
+        case "hash" :
+            print("tapped hashtag.")
+        case "mention" :
+            print("tapped mention.")
+        default:
+            print("just a regular url")
+        }
+        
+        return true
+    }
+    
+    func setCellText(text: String) {
+        
+        textView.text = text
+        textView.resolveHashTags()
+    }
+    
+}
 
 // MARK: Gesture recognizer
 
@@ -148,8 +183,8 @@ extension CryptoNewsCell {
         contentBox.snp.makeConstraints { make in
             make.left.equalTo(SAFE_AREA_MARGIN)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(15)
-            make.bottom.equalToSuperview().inset(15)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().inset(30)
         }
         
         if news.imageURL != nil {
@@ -206,7 +241,7 @@ extension CryptoNewsCell {
             make.width.height.equalTo(25)
         }
         
-        titleLabel.snp.makeConstraints { make in
+        textView.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.top.equalTo(typeImageBox.snp.bottom).offset(8)

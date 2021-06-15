@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SortByButtonView: RoundShadowView {
+class SortByButtonView: UIView {
     
     lazy var sortByButton = UIButton()
     lazy var sortOrderButton = SortOrderButton()
@@ -51,7 +51,7 @@ class SortByButtonView: RoundShadowView {
         
         layoutIfNeeded()
     }
-    
+        
 }
 
 

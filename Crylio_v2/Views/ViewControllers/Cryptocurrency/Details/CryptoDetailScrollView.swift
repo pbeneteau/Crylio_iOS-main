@@ -72,23 +72,9 @@ class CryptoDetailScrollView: UIScrollView {
         scrollIndicatorInsets = UIEdgeInsets(top: menuMaxY-20, left: 0, bottom: 0, right: 0)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-                
-        aboutView.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(marketStatsView.snp.bottom).offset(30)
-            make.height.equalTo(aboutView.descriptionTextLabel.frame.maxY).offset(CONTENT_BOTTOM_MARGIN)
-        }
+    func resizeScrollViewContent() {
         
-        contentView.snp.remakeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.left.equalTo(SAFE_AREA_MARGIN)
-            make.width.equalToSuperview().offset(-SAFE_AREA_MARGIN*2)
-            make.height.equalTo(aboutView.frame.maxY)
-        }
-                
-        contentSize = CGSize(width: frame.width, height: contentView.frame.height * 1.4)
+        contentSize = CGSize(width: frame.width, height: aboutView.frame.maxY + contentInset.top)
     }
     
 }
@@ -108,8 +94,7 @@ extension CryptoDetailScrollView {
         }
         
         chartView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(16)
+            make.left.top.right.equalToSuperview()
             make.height.equalTo(428)
         }
         

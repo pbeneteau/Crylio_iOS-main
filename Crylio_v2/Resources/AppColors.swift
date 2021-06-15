@@ -13,12 +13,14 @@ class AppColors {
     
     struct accent {
         static var primary: UIColor { return UIColor(hexString: "#0A84FF") | UIColor(hexString: "#007AFF")}
+        static var red: UIColor { return UIColor(hexString: "#F6465D") | UIColor(hexString: "#F6465D")}
+        static var green: UIColor { return UIColor(hexString: "#2EBD85") | UIColor(hexString: "#2EBD85")}
     }
     
     struct background {
         static var primary: UIColor { return UIColor.systemBackground }
-        static var secondary: UIColor { return UIColor.white | UIColor(hexString: "#131621")}
-        static var tertiary: UIColor { return UIColor.systemGray5 | UIColor(hexString: "#2A2D37") }
+        static var secondary: UIColor { return UIColor.systemBackground | UIColor(hexString: "#131621")}
+        static var tertiary: UIColor { UIColor(hexString: "767680").withAlphaComponent(0.12) | UIColor(hexString: "767680").withAlphaComponent(0.24) }
     }
     
     struct foreground {
@@ -36,8 +38,7 @@ class AppColors {
     
     static let action = UIColor(red: 0.21, green: 0.53, blue: 0.96, alpha: 1.00)
     
-    static let green = UIColor(red: 0.18, green: 0.74, blue: 0.52, alpha: 1.00)
-    static let red = UIColor(red: 0.96, green: 0.27, blue: 0.36, alpha: 1.00)
+    
     
     static let icon = UIColor.label
     

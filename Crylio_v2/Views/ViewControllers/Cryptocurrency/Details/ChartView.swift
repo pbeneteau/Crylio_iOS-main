@@ -20,7 +20,7 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
     lazy var backgroundBox = RoundShadowView()
 
     lazy var chartView = WKWebView()
-    lazy var dateRangePicker = UISegmentedControl(items: TradingViewChartDateRange.allCases.map { return $0.description })
+    lazy var dateRangePicker = UISegmentedControl(items: ["1d", "1m", "3m", "1y", "all"])
     
     weak var delegate: ChartViewDelegate!
 
@@ -43,7 +43,6 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
         backgroundColor = .clear
         
         backgroundBox.backgroundColor = AppColors.background.secondary
-        backgroundBox.layer.cornerRadius = 10
         
         chartView.allowsBackForwardNavigationGestures = false
         chartView.scrollView.isScrollEnabled = false
@@ -54,6 +53,8 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
         chartView.scrollView.contentInsetAdjustmentBehavior = .never
         chartView.navigationDelegate = self
         chartView.allowsLinkPreview = false
+        chartView.layer.masksToBounds = true
+        chartView.layer.cornerRadius = 10
         //chartView.isUserInteractionEnabled = false
                 
         let tap = UITapGestureRecognizer(target: self, action: #selector(chartViewDoubleTapped))
@@ -76,7 +77,6 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
     func reloadChart(dateRange: TradingViewChartDateRange = .day) {
         
         let t = TradingViewChart(symbol: "BTCUSDT", exchange: .binance, theme: .dark)
-        
         chartView.loadHTMLString(t.getMinimizedChart(with: dateRange), baseURL: nil)
     }
     
@@ -84,6 +84,13 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
         
         delegate.chartViewDoubleTapped()
     }
+    
+}
+
+
+// MARK: - Constraints
+
+extension ChartView {
     
     override func updateConstraints() {
         
@@ -94,7 +101,7 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
         chartView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(1)
+            make.width.equalToSuperview()
             make.height.equalTo(374)
         }
         
@@ -110,7 +117,9 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
     
 }
 
-	
+
+// MARK: - Chart view delegate
+
 extension ChartView: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -123,17 +132,6 @@ extension ChartView: WKNavigationDelegate {
         }
         decisionHandler(.cancel)
         UIApplication.shared.open(url)
-        
    }
-    
-    
-}
-
-extension ChartView {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
-        return true
-    }
-    
 }

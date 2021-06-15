@@ -12,7 +12,7 @@ class ChartLegendTableViewCell: UITableViewCell {
     
     static let reuseId = "LegendCell"
     
-    lazy var dotView = RoundShadowView()
+    lazy var dotView = UIView()
     lazy var nameLabel = UILabel()
     lazy var valueLabel = UILabel()
     
@@ -37,8 +37,6 @@ class ChartLegendTableViewCell: UITableViewCell {
     }
     
     private func commonInit() {
-        
-        //translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColor = .clear
         

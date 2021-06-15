@@ -11,8 +11,8 @@ import SnapKit
 
 class HomeViewController: BaseViewController {
         
-    lazy var header = UIView()
-    lazy var filterMenuView = FilterMenuView()
+    lazy var header = HomeHeaderView()
+    lazy var subMenuView = MarketSubMenu(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     lazy var tableView = UITableView()
     var searchBar = CustomSearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
 
@@ -20,23 +20,12 @@ class HomeViewController: BaseViewController {
     
     var offsetSet = false
     
-    lazy var portfolio = UILabel()
-    lazy var walletBalance = UILabel()
-    lazy var balanceChange = UILabel()
-    lazy var balanceChangeFiat = UILabel()
-    
     var cryptos = [Cryptocurrency]()
     var filteredCryptos = [Cryptocurrency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //view.translatesAutoresizingMaskIntoConstraints = false
-        
-        header.backgroundColor = .lightGray
-        
-        filterMenuView.delegate = self
-        
+                                
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -49,7 +38,7 @@ class HomeViewController: BaseViewController {
         searchBar.delegate = self
                         
         view.addSubview(header)
-        view.addSubview(filterMenuView)
+        view.addSubview(subMenuView)
         view.addSubview(tableView)
         
         loadCryptos()
@@ -175,6 +164,10 @@ extension HomeViewController: AssetsFilterDelegate {
         tableView.reloadData()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        
+        searchBar.layer.borderColor = AppColors.background.primary.cgColor
+    }
 }
 
 
@@ -214,7 +207,6 @@ extension HomeViewController: UISearchBarDelegate {
         } else {
             searchActive = true
         }
-        
         tableView.reloadData()
     }
     
@@ -231,18 +223,18 @@ extension HomeViewController {
             make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
             make.top.equalToSuperview().offset(60)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.height.equalTo(180)
+            make.height.equalTo(150)
         }
         
-        filterMenuView.snp.makeConstraints { make in
+        subMenuView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.top.equalTo(header.snp.bottom).offset(30)
-            make.height.equalTo(30)
+            make.height.equalTo(35)
         }
                 
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(filterMenuView.snp.bottom).offset(16)
+            make.top.equalTo(subMenuView.snp.bottom).offset(16)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()

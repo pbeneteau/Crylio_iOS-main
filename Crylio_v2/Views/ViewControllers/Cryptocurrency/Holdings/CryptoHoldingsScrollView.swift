@@ -86,9 +86,13 @@ class CryptoHoldingsScrollView: UIScrollView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentSize = CGSize(width: frame.width, height: contentView.frame.height * 1.2)
+        resizeScrollViewContent()
     }
 
+    func resizeScrollViewContent() {
+        
+        contentSize = CGSize(width: frame.width, height: distributionView.frame.maxY + contentInset.top)
+    }
 }
 
 
@@ -106,9 +110,7 @@ extension CryptoHoldingsScrollView {
         }
         
         balanceView.snp.makeConstraints { make in
-            make.left.equalTo(0)
-            make.right.equalToSuperview()
-            make.top.equalTo(16)
+            make.left.top.right.equalToSuperview()
             make.height.equalTo(126)
         }
         

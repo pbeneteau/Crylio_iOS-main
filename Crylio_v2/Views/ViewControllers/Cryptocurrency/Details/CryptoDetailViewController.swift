@@ -35,7 +35,11 @@ class CryptoDetailViewController: BaseViewController {
         view.addSubview(scrollView)
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        scrollView.resizeScrollViewContent()
+    }
     
     @objc func refresh() {
         
@@ -70,6 +74,7 @@ extension CryptoDetailViewController: ChartViewDelegate {
 extension CryptoDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         guard let delegate = scrollViewDelegate else { return }
         delegate.scrollViewDidScrollVertically(scrollView: scrollView)
     }

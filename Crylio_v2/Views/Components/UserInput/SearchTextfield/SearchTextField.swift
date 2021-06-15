@@ -35,7 +35,7 @@ class BaseTextField: UITextField, UITextFieldDelegate {
         setSelectionViewAlpha(0, animated: false)
         
         selectionView.backgroundColor = .systemBlue
-        
+                
         addSubview(selectionView)
         bringSubviewToFront(selectionView)
     }

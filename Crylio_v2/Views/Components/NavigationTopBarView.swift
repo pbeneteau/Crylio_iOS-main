@@ -9,7 +9,6 @@ import UIKit
 
 protocol NavigationTopBarDelegate: NSObjectProtocol {
     func backButtonAction()
-    func addButtonAction()
 }
 
 class NavigationTopBarView: UIView {
@@ -27,12 +26,11 @@ class NavigationTopBarView: UIView {
     
     // right
     lazy var addToFavoriteButton = AddToFavoriteButton()
-    lazy var addTransactionButton = UIButton()
     
     var isTitleHidden = true
     var isBlurriedViewHidden = true
     
-    weak var backButtonDelegate: NavigationTopBarDelegate!
+    weak var delegate: NavigationTopBarDelegate!
     
 
     override init(frame: CGRect) {
@@ -70,9 +68,6 @@ class NavigationTopBarView: UIView {
         changeLabel.alpha = 0
         changeLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         
-        addTransactionButton.setImage(UIImage(named: "add"), for: .normal)
-        addTransactionButton.addTarget(self, action: #selector(addButtonAction(sender:)), for: .touchUpInside)
-        
         addBottomBorder()
         
         addSubview(blurredView)
@@ -81,7 +76,6 @@ class NavigationTopBarView: UIView {
         addSubview(titleLabel)
         addSubview(changeLabel)
         addSubview(addToFavoriteButton)
-        addSubview(addTransactionButton)
     }
     
     func hideTitle() {
@@ -112,15 +106,8 @@ class NavigationTopBarView: UIView {
     
     @objc func backButtonAction(sender: UIButton!) {
         
-        if let delegate = backButtonDelegate {
+        if let delegate = delegate {
             delegate.backButtonAction()
-        }
-    }
-    
-    @objc func addButtonAction(sender: UIButton!) {
-        
-        if let delegate = backButtonDelegate {
-            delegate.addButtonAction()
         }
     }
     
@@ -172,14 +159,8 @@ extension NavigationTopBarView {
             make.width.equalTo(changeLabel.intrinsicContentSize.width)
         }
         
-        addTransactionButton.snp.remakeConstraints { make in
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.centerY.equalTo(backButton)
-            make.height.width.equalTo(21)
-        }
-        
         addToFavoriteButton.snp.remakeConstraints { make in
-            make.right.equalTo(addTransactionButton.snp.left).offset(-13)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.centerY.equalTo(backButton)
             make.height.width.equalTo(21)
         }

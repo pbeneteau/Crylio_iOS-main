@@ -57,11 +57,15 @@ class BaseInputView: UIView {
     
     var didUpdateConstraints = false
     
-    lazy var backgroundView = RoundShadowView()
+    lazy var backgroundView = UIView()
     lazy var titleLabel = UILabel()
     lazy var affixLabel = UILabel()
     
-    var input: UserInput!
+    var input: UserInput! {
+        didSet {
+            initValues()
+        }
+    }
     
     var isInputValid = true
     
@@ -102,6 +106,7 @@ class BaseInputView: UIView {
         
         backgroundView.backgroundColor = AppColors.background.tertiary
         backgroundView.layer.cornerRadius = 7
+        backgroundView.clipsToBounds = true
         
         affixLabel.textAlignment = .left
         affixLabel.textColor = AppColors.label.secondary
@@ -120,6 +125,8 @@ class BaseInputView: UIView {
 class UserInputView: BaseInputView {
     
     lazy var textField = BaseTextField()
+    
+    var textFieldValue = String()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -162,20 +169,22 @@ class UserInputView: BaseInputView {
             }
         }
         
-        self.isInputValid = true
+        isInputValid = true
         self.textField.setSelectionValid(true)
         
         if let inputString = textField.text {
-            if !checkInputValidity(of: inputString, inputType: input.type) {
+            if !checkInputValidity(of: inputString.replacingOccurrences(of: ",", with: "."), inputType: input.type) {
                 isInputValid = false
                 self.textField.setSelectionValid(false)
             }
         }
     }
     
+    // MARK: - Constraints
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-                
+        
         if !didUpdateConstraints {
             
             backgroundView.snp.makeConstraints { make in
@@ -312,7 +321,7 @@ class SearchUserInputView: BaseInputView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-                        
+        
         if !didUpdateConstraints {
             
             backgroundView.snp.makeConstraints { make in
@@ -327,7 +336,7 @@ class SearchUserInputView: BaseInputView {
             }
             
             if let type = input.affix?.type, type == .suffix {
-                                
+                
                 affixLabel.snp.makeConstraints { make in
                     make.right.equalToSuperview().inset(13)
                     make.centerY.equalToSuperview()

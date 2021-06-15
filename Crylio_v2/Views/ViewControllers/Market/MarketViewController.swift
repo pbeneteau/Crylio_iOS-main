@@ -34,7 +34,7 @@ class MarketViewController: BaseViewController {
         
         subtitleLabel.textColor = AppColors.label.secondary
         
-        separationLineView.backgroundColor = .systemBackground.withAlphaComponent(0.15)
+        separationLineView.backgroundColor = .label.withAlphaComponent(0.1)
         
         subMenuView.reloadData()
         
@@ -113,14 +113,16 @@ class MarketViewController: BaseViewController {
         tableView.reloadData()
     }
     
-    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        
+        searchBar.layer.borderColor = AppColors.background.primary.cgColor
+    }
 }
 
 
 // MARK: - Table view delegate and datasource
 
 extension MarketViewController: UITableViewDelegate, UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 
@@ -210,6 +212,7 @@ extension MarketViewController: UISearchBarDelegate {
     
 }
 
+
 // MARK: - Constraints
 
 extension MarketViewController {
@@ -246,7 +249,7 @@ extension MarketViewController {
         
         separationLineView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(marketStatsScrollView.snp.bottom)
+            make.top.equalTo(marketStatsScrollView.snp.bottom).offset(10)
             make.height.equalTo(1)
         }
         

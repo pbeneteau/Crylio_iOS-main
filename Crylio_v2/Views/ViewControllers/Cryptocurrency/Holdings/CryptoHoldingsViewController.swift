@@ -37,6 +37,12 @@ class CryptoHoldingsViewController: BaseViewController {
         self.crypto = crypto
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        scrollView.resizeScrollViewContent()
+    }
+    
     @objc func refresh() {
         
         print("Refreshing data...")

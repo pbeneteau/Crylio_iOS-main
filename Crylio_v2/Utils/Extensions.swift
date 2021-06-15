@@ -41,7 +41,7 @@ extension CALayer {
 
 extension UIView {
     
-    func roundCorners(corners: UIRectCorner, radius: Int = 8) {
+    func roundCorners(corners: UIRectCorner, radius: CGFloat = 8) {
         
         let maskPath1 = UIBezierPath(roundedRect: bounds,
                                      byRoundingCorners: corners,
@@ -51,4 +51,31 @@ extension UIView {
         maskLayer1.path = maskPath1.cgPath
         layer.mask = maskLayer1
     }
+    
+    func addDropShadow(shouldRasterize: Bool = true) {
+        
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: -1, height: 1)
+        layer.shadowRadius = 1
+        
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        if shouldRasterize {
+            layer.shouldRasterize = true
+            layer.rasterizationScale = UIScreen.main.scale
+        }
+    }
+    
+    func addBlurEffect() {
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.cornerRadius = layer.cornerRadius
+        blurEffectView.layer.masksToBounds = true
+        addSubview(blurEffectView)
+    }
 }
+
