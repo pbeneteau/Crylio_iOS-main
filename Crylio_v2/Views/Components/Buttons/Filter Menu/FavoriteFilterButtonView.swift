@@ -27,12 +27,9 @@ class FavoriteFilterButtonView: RoundCornersButton {
     private func commonInit() {
         
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .label.withAlphaComponent(0.1)
-                
+        backgroundColor = AppColors.background.tertiary
         tintColor = .label
-        
         contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-                
         setImage(UIImage(named: "starEmpty"), for: .normal)
         setImage(UIImage(named: "starFilled")?.withRenderingMode(.alwaysTemplate), for: .selected)
         addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)

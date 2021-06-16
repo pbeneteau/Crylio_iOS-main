@@ -29,7 +29,7 @@ class SortByButtonView: UIView {
     private func commonInit() {
         
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .label.withAlphaComponent(0.1)
+        backgroundColor = AppColors.background.tertiary
         
         sortByButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         

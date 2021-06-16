@@ -1,5 +1,5 @@
 //
-//  FilledLineChartView.swift
+//  LineChartView.swift
 //  Crylio_v2
 //
 //  Created by Paul Bénéteau on 12/06/2021.
@@ -25,13 +25,21 @@ extension PointEntry: Comparable {
 }
 
 
-class LineChart: UIView {
+class LineChartView: UIView {
     
     /// Contains the main line which represents the data
     private var dataLayer: CALayer = CALayer()
     
     /// Contains the main line which represents the data
     private var lineLayer: CAShapeLayer = CAShapeLayer()
+    
+    /// Line chart top offset
+    var topOffset: CGFloat = 20.0
+    
+    var shadow = true
+    
+    var lineWidth: CGFloat = 0.0
+    var lineColor: UIColor = .black
     
     /// Contains shadow of the line
     private var shadowLayer: CALayer = CALayer()
@@ -59,29 +67,39 @@ class LineChart: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        clean()
-        
-        setupView()
-        
         dataLayer.frame.size = frame.size
         lineLayer.frame.size = frame.size
-        shadowLayer.frame.size = frame.size
-                
+        if shadow {
+            shadowLayer.frame.size = frame.size
+        }
+        
         update()
     }
     
     func setupView() {
         
+        clean()
+        
         backgroundColor = .clear
         
         layer.addSublayer(dataLayer)
         dataLayer.addSublayer(lineLayer)
+        
+        dataLayer.frame.size = frame.size
+        lineLayer.frame.size = frame.size
+        if shadow {
+            shadowLayer.frame.size = frame.size
+        }
+        
+        dataLayer.contentsScale = UIScreen.main.scale
+        lineLayer.contentsScale = UIScreen.main.scale
+        shadowLayer.contentsScale = UIScreen.main.scale
     }
     
     func update() {
-        
-        convertPointEntryToCGPoint()
                 
+        convertPointEntryToCGPoint()
+        
         let config = BezierConfiguration()
         let controlPoints = config.configureControlPoints(data: points)
         
@@ -94,17 +112,23 @@ class LineChart: UIView {
                 bezierPath.addCurve(to: point, controlPoint1: segment.firstControlPoint, controlPoint2: segment.secondControlPoint)
             }
         }
-        bezierPath.close()
+        
+        if fillColor != .clear {
+            bezierPath.close()
+        }
         
         lineLayer.path = bezierPath.cgPath
-        lineLayer.lineWidth = 0
-        lineLayer.strokeColor = UIColor.black.cgColor
+        lineLayer.lineWidth = lineWidth
+        lineLayer.strokeColor = lineColor.cgColor
         lineLayer.fillColor = fillColor.cgColor
         
-        shadowLayer = createShadowLayer()
-        
-        shadowLayer.insertSublayer(lineLayer, at: 0)
-        dataLayer.addSublayer(shadowLayer)
+        if shadow {
+            shadowLayer = createShadowLayer()
+            shadowLayer.insertSublayer(lineLayer, at: 0)
+            dataLayer.addSublayer(shadowLayer)
+        } else {
+            dataLayer.addSublayer(lineLayer)
+        }
     }
     
     private func convertPointEntryToCGPoint() {
@@ -112,17 +136,30 @@ class LineChart: UIView {
         var points = [CGPoint]()
         
         let pointGap = frame.width / CGFloat(pointEntries.count-1)
-        points.append(CGPoint(x: 0, y: frame.height))
+        
+        if fillColor != .clear {
+            points.append(CGPoint(x: 0, y: frame.height))
+        }
         
         if let max = pointEntries.max()?.value, let min = pointEntries.min()?.value {
-            for (i, point) in pointEntries.enumerated() {
+            for (i, entry) in pointEntries.enumerated() {
                 
-                let percent = 1 - (point.value - min * 0.9) / (max - min * 0.9)
+                let percent = 1 - entry.value / max
+                
+                //  let percent = 1 - (point.value - min * 0.9) / (max - min * 0.9)
+
+                
                 let point = CGPoint(x: CGFloat(i) * pointGap, y: frame.height * CGFloat(percent))
+                
+                //print(entry.value, frame.height * CGFloat(percent))
+                
                 points.append(point)
             }
         }
-        points.append(CGPoint(x: frame.width, y: frame.height))
+        
+        if fillColor != .clear {
+            points.append(CGPoint(x: frame.width, y: frame.height))
+        }
         
         self.points = points
     }
@@ -143,9 +180,9 @@ class LineChart: UIView {
         
         let shadowLayer = CALayer()
         shadowLayer.shadowColor = UIColor.black.cgColor
-        shadowLayer.shadowOffset = CGSize(width: 0, height: -5)
+        shadowLayer.shadowOffset = CGSize(width: 0, height: -3)
         shadowLayer.shadowRadius = 10
-        shadowLayer.shadowOpacity = 0.1
+        shadowLayer.shadowOpacity = 0.07
         shadowLayer.backgroundColor = UIColor.clear.cgColor
         
         return shadowLayer

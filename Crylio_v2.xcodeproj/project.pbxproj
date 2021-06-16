@@ -85,7 +85,7 @@
 		389DE66C25C82C1100954F4F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE66B25C82C1100954F4F /* ChartView.swift */; };
 		389DE68625C8379000954F4F /* CryptoDetailScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389DE68525C8379000954F4F /* CryptoDetailScrollView.swift */; };
 		38A3F32F2673900B0018E1D7 /* ContextTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3F32E2673900B0018E1D7 /* ContextTextView.swift */; };
-		38A3F3312674CE1C0018E1D7 /* FilledLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3F3302674CE1C0018E1D7 /* FilledLineChartView.swift */; };
+		38A3F3312674CE1C0018E1D7 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3F3302674CE1C0018E1D7 /* LineChartView.swift */; };
 		38B6D5AB25D5A9D700AC8238 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 38B6D5AA25D5A9D700AC8238 /* Lottie */; };
 		38C0DCC72677A387002D17D6 /* BezierConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0DCC62677A387002D17D6 /* BezierConfiguration.swift */; };
 		38C0DCCA2678A910002D17D6 /* SelectCryptoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0DCC92678A910002D17D6 /* SelectCryptoViewController.swift */; };
@@ -95,6 +95,7 @@
 		38C0EB862658536B0034179C /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB852658536B0034179C /* RoundCornersButton.swift */; };
 		38C0EB88265855510034179C /* UserAssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB87265855510034179C /* UserAssetsView.swift */; };
 		38C0EB8A26585C090034179C /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0EB8926585C090034179C /* CustomSearchBar.swift */; };
+		38C4EA3C267A05BA000FD901 /* GainersLosersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4EA3B267A05BA000FD901 /* GainersLosersCollectionViewCell.swift */; };
 		38E1AEC42647479500CD7D91 /* CryptoDetailBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1AEC32647479500CD7D91 /* CryptoDetailBalanceView.swift */; };
 		38EF19792667DB0100C92859 /* SortByButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF19782667DB0100C92859 /* SortByButtonView.swift */; };
 		38EF197B2667DBF500C92859 /* SortOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF197A2667DBF500C92859 /* SortOrderButton.swift */; };
@@ -208,7 +209,7 @@
 		389DE66B25C82C1100954F4F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		389DE68525C8379000954F4F /* CryptoDetailScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailScrollView.swift; sourceTree = "<group>"; };
 		38A3F32E2673900B0018E1D7 /* ContextTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTextView.swift; sourceTree = "<group>"; };
-		38A3F3302674CE1C0018E1D7 /* FilledLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledLineChartView.swift; sourceTree = "<group>"; };
+		38A3F3302674CE1C0018E1D7 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		38C0DCC62677A387002D17D6 /* BezierConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierConfiguration.swift; sourceTree = "<group>"; };
 		38C0DCC92678A910002D17D6 /* SelectCryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCryptoViewController.swift; sourceTree = "<group>"; };
 		38C0DCCB2679157E002D17D6 /* SelectCryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCryptoTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +217,7 @@
 		38C0EB852658536B0034179C /* RoundCornersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornersButton.swift; sourceTree = "<group>"; };
 		38C0EB87265855510034179C /* UserAssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAssetsView.swift; sourceTree = "<group>"; };
 		38C0EB8926585C090034179C /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		38C4EA3B267A05BA000FD901 /* GainersLosersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainersLosersCollectionViewCell.swift; sourceTree = "<group>"; };
 		38E1AEC32647479500CD7D91 /* CryptoDetailBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailBalanceView.swift; sourceTree = "<group>"; };
 		38EF19782667DB0100C92859 /* SortByButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortByButtonView.swift; sourceTree = "<group>"; };
 		38EF197A2667DBF500C92859 /* SortOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrderButton.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 			children = (
 				382D6A97266A9A2C00509669 /* Market */,
 				384CFA9925C1E67D0064C932 /* HomeViewController.swift */,
+				38C4EA3B267A05BA000FD901 /* GainersLosersCollectionViewCell.swift */,
 				384CFAF025C1F6960064C932 /* HomeTableViewCell.swift */,
 				38C0EB802658503F0034179C /* FilterMenuView.swift */,
 				38C0EB87265855510034179C /* UserAssetsView.swift */,
@@ -438,7 +441,7 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		3870A4FD266E4B8F0089BB4A /* Market Menu */ = {
+		3870A4FD266E4B8F0089BB4A /* Filter Menu */ = {
 			isa = PBXGroup;
 			children = (
 				38EF19782667DB0100C92859 /* SortByButtonView.swift */,
@@ -448,7 +451,7 @@
 				382D6A8D2667EBE500509669 /* CurrencyButtonView.swift */,
 				382D6A932667F17100509669 /* ChangeTimelineButton.swift */,
 			);
-			path = "Market Menu";
+			path = "Filter Menu";
 			sourceTree = "<group>";
 		};
 		388A95A126611CF8009094A6 /* UserInput */ = {
@@ -547,7 +550,7 @@
 		38C0DCC82677F1CA002D17D6 /* FilledcurvedlineChart */ = {
 			isa = PBXGroup;
 			children = (
-				38A3F3302674CE1C0018E1D7 /* FilledLineChartView.swift */,
+				38A3F3302674CE1C0018E1D7 /* LineChartView.swift */,
 				38C0DCC62677A387002D17D6 /* BezierConfiguration.swift */,
 			);
 			path = FilledcurvedlineChart;
@@ -577,7 +580,7 @@
 			children = (
 				388BBA4E265D5BA400F8C524 /* AddToFavoriteButton.swift */,
 				38C0EB852658536B0034179C /* RoundCornersButton.swift */,
-				3870A4FD266E4B8F0089BB4A /* Market Menu */,
+				3870A4FD266E4B8F0089BB4A /* Filter Menu */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				38570390265686C30073724A /* PieChartView.swift in Sources */,
 				3891ADAA2656A004005FF3CA /* ChartLegendTableViewCell.swift in Sources */,
 				384CFB0225C21EC70064C932 /* PriceChangeBox.swift in Sources */,
+				38C4EA3C267A05BA000FD901 /* GainersLosersCollectionViewCell.swift in Sources */,
 				388BBA51265D709200F8C524 /* AddTransactionViewController.swift in Sources */,
 				382D6A99266A9D4500509669 /* MarketStatsScrollView.swift in Sources */,
 				3820C5AB26618BB50022F1C5 /* Constants.swift in Sources */,
@@ -869,7 +873,7 @@
 				3891ADA826569DD2005FF3CA /* ChartLegendView.swift in Sources */,
 				3894FCF325D1A0B600BFD26F /* AboutView.swift in Sources */,
 				38C0EB812658503F0034179C /* FilterMenuView.swift in Sources */,
-				38A3F3312674CE1C0018E1D7 /* FilledLineChartView.swift in Sources */,
+				38A3F3312674CE1C0018E1D7 /* LineChartView.swift in Sources */,
 				388BBA4F265D5BA400F8C524 /* AddToFavoriteButton.swift in Sources */,
 				3837C12325FFA0390056BB27 /* NumberFormatters.swift in Sources */,
 				3844884325D3177F002BF26C /* HomeHeaderPortfolioView.swift in Sources */,

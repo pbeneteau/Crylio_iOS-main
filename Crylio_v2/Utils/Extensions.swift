@@ -77,5 +77,20 @@ extension UIView {
         blurEffectView.layer.masksToBounds = true
         addSubview(blurEffectView)
     }
+    
 }
 
+
+
+extension UIVisualEffectView {
+    
+    func addBottomBorder() {
+        
+        let border = UIView()
+        border.backgroundColor = .systemGray.withAlphaComponent(0.1)
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y:  frame.size.height - 0.3, width: frame.size.width, height: 0.3)
+        contentView.addSubview(border)
+    }
+    
+}

@@ -16,7 +16,9 @@ class HomeHeaderView: RoundShadowView {
     lazy var worthLabel = UILabel()
     
     lazy var chartContainerView = UIView()
-    lazy var lineChart = LineChart()
+    lazy var lineChart = LineChartView()
+    
+    var chartInitialized = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,14 +37,16 @@ class HomeHeaderView: RoundShadowView {
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         layer.shadowOpacity = 0.1
+        clipsToBounds = true
         
         chartContainerView.layer.cornerRadius = 10
         chartContainerView.clipsToBounds = true
         
         lineChart.pointEntries = generateRandomEntries()
         
-        portfolioLabel.font = .systemFont(ofSize: 15, weight: .semibold)
-        portfolioLabel.textColor = .white.withAlphaComponent(0.5)
+        portfolioLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        portfolioLabel.textColor = .white
+        portfolioLabel.alpha = 0.7
         
         changeLabel.textAlignment = .center
         changeLabel.layer.cornerRadius = 5
@@ -75,8 +79,8 @@ class HomeHeaderView: RoundShadowView {
     private func generateRandomEntries() -> [PointEntry] {
         
         var result: [PointEntry] = []
-        for i in 0..<7 {
-            let value = Float.random(in: 80000...100000)
+        for i in 0..<14 {
+            let value = Float.random(in: 50000...100000)
             
             let formatter = DateFormatter()
             formatter.dateFormat = "d MMM"
@@ -107,6 +111,25 @@ class HomeHeaderView: RoundShadowView {
         changeLabel.textColor = .white
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+//        if !chartInitialized && frame.height != 0 {
+//            lineChart.update()
+//            chartInitialized = true
+//        }
+        
+    }
+    
+    func updateLayout(_ delta: CGFloat) {
+        
+        portfolioLabel.alpha = 1 - 0.3*delta
+        worthLabel.alpha = delta
+        chartContainerView.alpha = delta
+        let center = frame.width/2 - portfolioLabel.frame.width/2
+        portfolioLabel.transform = CGAffineTransform(translationX: center*(1-delta), y: 0)
+    }
+    
 }
 
 
@@ -118,33 +141,34 @@ extension HomeHeaderView {
         
         portfolioLabel.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(CONTENT_TOP_MARGIN)
+            make.top.equalTo(15)
             make.right.equalTo(snp.centerX).inset(8)
-            make.height.equalTo(18)
+            make.height.equalTo(20)
         }
         
         changeLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(portfolioLabel)
+            make.right.equalToSuperview().inset(11)
+            make.top.equalTo(11)
             make.width.equalTo(changeLabel.intrinsicContentSize.width + 20)
-            make.height.equalTo(30)
+            make.height.equalTo(28)
         }
         
         worthLabel.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(portfolioLabel.snp.bottom)
+            make.top.equalTo(portfolioLabel.snp.bottom).offset(5)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.height.equalTo(41)
         }
         
         chartContainerView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(worthLabel.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(worthLabel.snp.bottom).offset(5)
+            make.height.equalTo(64)
         }
         
         lineChart.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(15)
         }
         
         super.updateConstraints()

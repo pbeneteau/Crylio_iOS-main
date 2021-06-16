@@ -54,20 +54,23 @@ class RoundShadowView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        layer.masksToBounds = false
-        backgroundColor = AppColors.background.secondary
-        
-        updateProperties()
-        updateShadowPath()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        layer.masksToBounds = false
+        commonInit()
+    }
+    
+    private func commonInit() {
         
+        layer.masksToBounds = false
+        backgroundColor = AppColors.background.secondary
         updateProperties()
-        updateShadowPath()
+        if traitCollection.userInterfaceStyle == .light {
+            updateShadowPath()
+        }
     }
     
     /**
@@ -76,13 +79,15 @@ class RoundShadowView: UIView {
     fileprivate func updateProperties() {
         
         layer.cornerRadius = cornerRadius
-        layer.shadowColor = shadowColor.cgColor
-        layer.shadowOffset = shadowOffset
-        layer.shadowRadius = blur / 2.0
-        layer.shadowOpacity = shadowOpacity
-        
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale
+        if traitCollection.userInterfaceStyle == .light {
+            layer.shadowColor = shadowColor.cgColor
+            layer.shadowOffset = shadowOffset
+            layer.shadowRadius = blur / 2.0
+            layer.shadowOpacity = shadowOpacity
+            
+            layer.shouldRasterize = true
+            layer.rasterizationScale = UIScreen.main.scale
+        }
     }
     
     /**

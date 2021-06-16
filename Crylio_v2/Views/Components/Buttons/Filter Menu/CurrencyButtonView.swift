@@ -27,18 +27,13 @@ class CurrencyButtonView: RoundCornersButton {
     private func commonInit() {
         
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .label.withAlphaComponent(0.1)
-        
+        backgroundColor = AppColors.background.tertiary
         titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         titleLabel?.textAlignment = .center
-        
         setTitleColor(AppColors.label.primary, for: .normal)
-
         contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
-        
         setTitle(currencies[0], for: .normal)
         setTitle(currencies[1], for: .selected)
-        
         addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
     }
     

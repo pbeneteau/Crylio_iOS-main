@@ -50,6 +50,7 @@ class NavigationTopBarView: UIView {
         topBar.backgroundColor = AppColors.background.primary
         
         blurredView.backgroundColor = AppColors.blur
+        blurredView.addBottomBorder()
         blurredView.alpha = 0
 
         // create chevron image
@@ -67,8 +68,6 @@ class NavigationTopBarView: UIView {
         
         changeLabel.alpha = 0
         changeLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        
-        addBottomBorder()
         
         addSubview(blurredView)
         addSubview(topBar)
@@ -109,15 +108,6 @@ class NavigationTopBarView: UIView {
         if let delegate = delegate {
             delegate.backButtonAction()
         }
-    }
-    
-    func addBottomBorder() {
-        
-        let border = UIView()
-        border.backgroundColor = .systemGray.withAlphaComponent(0.1)
-        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
-        border.frame = CGRect(x: 0, y:  blurredView.frame.size.height - 0.3, width:  blurredView.frame.size.width, height: 0.3)
-        blurredView.contentView.addSubview(border)
     }
 }
 

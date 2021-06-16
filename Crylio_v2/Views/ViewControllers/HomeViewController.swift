@@ -10,36 +10,69 @@ import SnapKit
 
 
 class HomeViewController: BaseViewController {
-        
+    
+    lazy var blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
     lazy var header = HomeHeaderView()
+    lazy var gainersLosersLabel = UILabel()
+    lazy var gainersLosersCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var subMenuView = MarketSubMenu(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-    lazy var tableView = UITableView()
+    lazy var cryptosTableView = UITableView()
     var searchBar = CustomSearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
-
+    
     var searchActive = false
+    var viewAppeard = false
+    var savedYOffset: CGFloat!
     
-    var offsetSet = false
-    
+    var gainersLosers = [Cryptocurrency]()
     var cryptos = [Cryptocurrency]()
     var filteredCryptos = [Cryptocurrency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                                
-        tableView.delegate = self
-        tableView.dataSource = self
         
-        tableView.backgroundColor = .clear
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseId)
-        tableView.separatorStyle = .none
-        tableView.keyboardDismissMode = .onDrag
-        tableView.tableHeaderView = searchBar
-
+        blurredView.backgroundColor = AppColors.blur
+        blurredView.alpha = 0
+        
+        header.shadowOpacity = 0.15
+        
+        gainersLosersLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        gainersLosersLabel.text = "Gainers & Losers"
+        
+        gainersLosersCollectionView.delegate = self
+        gainersLosersCollectionView.dataSource = self
+        gainersLosersCollectionView.register(GainersLosersCollectionViewCell.self, forCellWithReuseIdentifier: GainersLosersCollectionViewCell.reuseId)
+        gainersLosersCollectionView.backgroundColor = .clear
+        gainersLosersCollectionView.contentInset = UIEdgeInsets(top: 0, left: SAFE_AREA_MARGIN, bottom: 0, right: SAFE_AREA_MARGIN)
+        gainersLosersCollectionView.layer.masksToBounds = false
+        gainersLosersCollectionView.showsHorizontalScrollIndicator = false
+        
+        if let layout = gainersLosersCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
+        
+        cryptosTableView.delegate = self
+        cryptosTableView.dataSource = self
+        cryptosTableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseId)
+        cryptosTableView.backgroundColor = .clear
+        cryptosTableView.separatorStyle = .none
+        cryptosTableView.keyboardDismissMode = .onDrag
+        cryptosTableView.tableHeaderView = searchBar
+        cryptosTableView.contentInset = UIEdgeInsets(top: 512.0, left: 0, bottom: 100, right: 0)
+        cryptosTableView.contentOffset.y = -cryptosTableView.contentInset.top
+        cryptosTableView.contentInsetAdjustmentBehavior = .never
+        cryptosTableView.showsVerticalScrollIndicator = false
+        
         searchBar.delegate = self
-                        
-        view.addSubview(header)
+        searchBar.backgroundColor = .clear
+        searchBar.tintColor = .clear
+        
+        view.addSubview(cryptosTableView)
+        view.addSubview(gainersLosersLabel)
+        view.addSubview(gainersLosersCollectionView)
+        view.addSubview(blurredView)
         view.addSubview(subMenuView)
-        view.addSubview(tableView)
+        view.addSubview(header)
+        
         
         loadCryptos()
     }
@@ -47,7 +80,6 @@ class HomeViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tableView.setContentOffset(CGPoint(x: 0, y: 44), animated: false) /// hide search bar
     }
     
     func loadCryptos() {
@@ -60,7 +92,7 @@ class HomeViewController: BaseViewController {
                                                      balance: 343492.98,
                                                      amount: 11.2,
                                                      price: 34467.15,
-                                                     change: 4.56,
+                                                     change: -4.56,
                                                      iconURL: "https://s2.coinmarketcap.com/static/img/coins/128x128/1.png",
                                                      marketStats: CryptoMarketStats(volume24: 115149016927.31, volume24Change: 2.61, marketCap: 625760348347.31, marketCapChange: 2.61, availableSupply: 45425790652.52, availableSupplyChange: 1.5, totalSupply: 100000000000.62))!
         
@@ -76,22 +108,94 @@ class HomeViewController: BaseViewController {
                                                      iconURL: "https://s2.coinmarketcap.com/static/img/coins/128x128/52.png",
                                                      marketStats: CryptoMarketStats(volume24: 115149016927.31, volume24Change: 2.61, marketCap: 625760348347.31, marketCapChange: 2.61, availableSupply: 45425790652.52, availableSupplyChange: 1.5, totalSupply: 100000000000.62))!
         
-        cryptos += [crypto1, crypto2, crypto1, crypto2, crypto1]
+        cryptos += [crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1]
+        filteredCryptos = cryptos
+        gainersLosers += [crypto1, crypto2, crypto1]
         
-        tableView.reloadData()
+        sortGainersLosers()
+        
+        cryptosTableView.reloadData()
+        gainersLosersCollectionView.reloadData()
+    }
+    
+    private func sortGainersLosers() {
+        
+        gainersLosers.sort { a, b in
+            return a.change > b.change
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewAppeard = true
+        //cryptosTableView.setContentOffset(CGPoint(x: 0, y: -512), animated: false)
+    }
+    
+    private func setCryptosTableViewSearchOffset() {
+        
+        //        if searchActive {
+        //            cryptosTableView.setContentOffset(CGPoint(x: 0, y: 180), animated: true)
+        //        } else {
+        //            searchBar.endEditing(true)
+        //            cryptosTableView.setContentOffset(CGPoint(x: 0, y: savedYOffset ?? cryptosTableView.contentInset.top), animated: true)
+        //        }
     }
     
 }
+
+
+// MARK: - Collection view delegate and datasource
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return gainersLosers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = gainersLosersCollectionView.dequeueReusableCell(withReuseIdentifier: GainersLosersCollectionViewCell.reuseId, for: indexPath) as? GainersLosersCollectionViewCell  else {
+            fatalError("The dequeued cell is not an instance of gainersLosersCollectionView.")
+        }
+        
+        cell.symbolLabel.text = gainersLosers[indexPath.row].symbol
+        cell.nameLabel.text = gainersLosers[indexPath.row].name
+        cell.priceLabel.text = gainersLosers[indexPath.row].price.toDollarString()
+        cell.changeLabel.setPercentMutableString(value: gainersLosers[indexPath.row].change, colors: true)
+        cell.iconImageView.setImage(from: gainersLosers[indexPath.row].iconURL)
+        cell.symbolLabel.text = gainersLosers[indexPath.row].symbol
+        cell.lineChartView.lineColor = cell.changeLabel.textColor
+        
+        cell.iconImageView.kf.cancelDownloadTask()
+        cell.layoutIfNeeded()
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150, height: 150)
+    }
+    
+}
+
 
 
 // MARK: - Table view delegate and datasource
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchActive {
+        if searchActive == true {
             return filteredCryptos.count
         }
         return cryptos.count
@@ -104,19 +208,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseId, for: indexPath) as? HomeTableViewCell  else {
+        guard let cell = self.cryptosTableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseId, for: indexPath) as? HomeTableViewCell  else {
             fatalError("The dequeued cell is not an instance of HomeTableViewCell.")
         }
         
-        if !searchActive {
-            cell.crypto = cryptos[indexPath.row]
-        } else {
+        if searchActive == true {
             cell.crypto = filteredCryptos[indexPath.row]
+        } else {
+            cell.crypto = cryptos[indexPath.row]
         }
         
         cell.iconImageView.kf.cancelDownloadTask()
         cell.layoutIfNeeded()
-                
+        
         return cell
     }
     
@@ -131,6 +235,36 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 25
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if viewAppeard {
+            if scrollView.isKind(of: UITableView.self) {
+                let y = scrollView.contentOffset.y + scrollView.contentInset.top
+                updateContentOffset(y)
+            }
+        }
+    }
+    
+    private func updateContentOffset(_ yOffset: CGFloat) {
+                
+        header.snp.updateConstraints { make in
+            make.height.equalTo(min(max(150-yOffset, 50), 150))
+        }
+        
+        gainersLosersLabel.transform = CGAffineTransform(translationX: 0, y: -yOffset)
+        gainersLosersCollectionView.transform = CGAffineTransform(translationX: 0, y: -yOffset)
+        
+        subMenuView.snp.remakeConstraints { make in
+            make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
+            make.top.equalTo(max(gainersLosersCollectionView.frame.maxY+30, header.frame.maxY + 20)).priority(999)
+            make.height.equalTo(35)
+        }
+        
+        header.updateLayout(min(1, (header.frame.height-50)/100))
+        blurredView.alpha = 1 - (subMenuView.frame.maxY-5-blurredView.frame.maxY)/30
+    }
+    
 }
 
 
@@ -139,7 +273,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: AssetsFilterDelegate {
     
     func filterDidChanged(_ sender: RoundCornersButton, order: FilterOrderingMode) {
-                
+        
         switch sender.tag {
         case 0:
             /// name
@@ -153,15 +287,15 @@ extension HomeViewController: AssetsFilterDelegate {
         default:
             filteredCryptos = cryptos
         }
-                
+        
         searchActive = true
-        tableView.reloadData()
+        cryptosTableView.reloadData()
     }
     
     func filterIsNotActive() {
         
         searchActive = false
-        tableView.reloadData()
+        cryptosTableView.reloadData()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -176,7 +310,7 @@ extension HomeViewController: AssetsFilterDelegate {
 extension HomeViewController: UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        tableView.reloadData()
+        cryptosTableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -184,18 +318,15 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-        searchBar.endEditing(true)
+        searchActive = false
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-        searchBar.endEditing(true)
+        searchActive = false
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-        searchBar.endEditing(true)
+        searchActive = false
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -207,7 +338,7 @@ extension HomeViewController: UISearchBarDelegate {
         } else {
             searchActive = true
         }
-        tableView.reloadData()
+        cryptosTableView.reloadData()
     }
     
 }
@@ -219,25 +350,40 @@ extension HomeViewController {
     
     override func updateViewConstraints() {
         
-        header.snp.makeConstraints { make in
+        cryptosTableView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        blurredView.snp.remakeConstraints { make in
+            make.left.width.top.equalToSuperview()
+            make.height.equalTo(170)
+        }
+        
+        header.snp.remakeConstraints { make in
             make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
-            make.top.equalToSuperview().offset(60)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
+            make.top.equalTo(60)
             make.height.equalTo(150)
         }
         
-        subMenuView.snp.makeConstraints { make in
+        gainersLosersLabel.snp.remakeConstraints { make in
+            make.left.equalTo(SAFE_AREA_MARGIN)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
+            make.height.equalTo(22)
+            make.top.equalTo(60 + 150 + 30)
+        }
+        
+        gainersLosersCollectionView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.height.equalTo(150)
+            make.top.equalTo(gainersLosersLabel.snp.bottom).offset(15)
+        }
+        
+        subMenuView.snp.remakeConstraints { make in
             make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(header.snp.bottom).offset(30)
+            make.top.equalTo(458)
             make.height.equalTo(35)
-        }
-                
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(subMenuView.snp.bottom).offset(16)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
         }
         
         super.updateViewConstraints()

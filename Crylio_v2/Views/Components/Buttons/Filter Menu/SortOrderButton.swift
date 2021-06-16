@@ -18,7 +18,7 @@ fileprivate enum ProgressKeyFrames: CGFloat {
     case end_2 = 125
   }
 
-class SortOrderButton: RoundShadowView {
+class SortOrderButton: UIView {
     
     lazy var arrowView = ArrowMacawView(frame: CGRect.zero)
     
@@ -40,8 +40,7 @@ class SortOrderButton: RoundShadowView {
     private func configure() {
         
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .label.withAlphaComponent(0.1)
-        
+        backgroundColor = AppColors.background.tertiary
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         addGestureRecognizer(tap)
         

@@ -109,7 +109,6 @@ class CryptocurrencyViewController: BaseViewController, UIGestureRecognizerDeleg
         menuScrollView.addSubview(ordersVC.view)
         menuScrollView.addSubview(transactionsVC.view)
         
-        
         addTransactionButton.layer.cornerRadius = 30
         addTransactionButton.backgroundColor = .systemBlue
         addTransactionButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonAction(_:))))
@@ -143,7 +142,7 @@ class CryptocurrencyViewController: BaseViewController, UIGestureRecognizerDeleg
 extension CryptocurrencyViewController: ScrollViewDidScrollDelegate, UIScrollViewDelegate {
     
     func scrollViewDidScrollVertically(scrollView: UIScrollView) {
-        
+                
         let yOffset = scrollView.contentOffset.y + scrollView.contentInset.top
         
         if scrollView.tag == displayedVCTag {
@@ -335,11 +334,11 @@ extension CryptocurrencyViewController {
         
         navigationTopBar.snp.makeConstraints { make in
             make.left.width.top.equalToSuperview()
-            make.height.equalTo(91 + 35 + 10)
+            make.height.equalTo(136)
         }
         
         header.snp.makeConstraints { make in
-            make.left.width.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(navigationTopBar.topBar.snp.bottom)
             make.height.equalTo(95)
         }
@@ -351,10 +350,7 @@ extension CryptocurrencyViewController {
         }
         
         menuScrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         detailVC.view.snp.makeConstraints { make in
