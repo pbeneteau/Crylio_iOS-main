@@ -8,8 +8,8 @@
 import UIKit
 
 
-public let SAFE_AREA_MARGIN = CGFloat(19.0)
-public let CONTENT_HORIZONTAL_MARGIN = CGFloat(18.0)
-public let CONTENT_TOP_MARGIN = CGFloat(15.0)
-public let CONTENT_BOTTOM_MARGIN = CGFloat(13.0)
+public let SAFE_AREA_MARGIN: CGFloat = 19.0
+public let CONTENT_HORIZONTAL_MARGIN: CGFloat = 16.0
+public let CONTENT_TOP_MARGIN: CGFloat = 15.0
+public let CONTENT_BOTTOM_MARGIN: CGFloat = 13.0
 

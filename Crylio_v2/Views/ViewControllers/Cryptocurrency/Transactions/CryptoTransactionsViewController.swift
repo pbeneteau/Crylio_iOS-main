@@ -70,15 +70,16 @@ class CryptoTransactionsViewController: BaseViewController {
     var refreshControl = UIRefreshControl()
     
     weak var scrollViewDelegate: ScrollViewDidScrollDelegate?
-        
+    
     var blurredHeaderViewAlpha: CGFloat = 0.0
     var scrollViewYOffset: CGFloat = 0.0
     
     var crypto: Cryptocurrency!
-
+    
     var sections = [TransactionsMonthSection]()
     var transactions = [Transaction]()
     
+    var expandedCells = [IndexPath]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,12 +88,12 @@ class CryptoTransactionsViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-                
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         tableView.backgroundColor = .clear
         
-        tableView.rowHeight = 99
+        tableView.estimatedRowHeight = 112
+        tableView.rowHeight = UITableView.automaticDimension
+        
         tableView.sectionHeaderHeight = 50
         
         tableView.register(CryptoTransactionCell.self, forCellReuseIdentifier: CryptoTransactionCell.reuseId)
@@ -102,7 +103,9 @@ class CryptoTransactionsViewController: BaseViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
         tableView.separatorStyle = .none
         
-                        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        
         view.addSubview(tableView)
         tableView.addSubview(refreshControl)
         
@@ -135,7 +138,6 @@ class CryptoTransactionsViewController: BaseViewController {
         sections.sort { (lhs, rhs) in lhs.month < rhs.month }
         
         tableView.reloadData()
-        
     }
     
     func updateInsets(menuMaxY: CGFloat) {
@@ -159,29 +161,19 @@ class CryptoTransactionsViewController: BaseViewController {
 }
 
 
-// TABLE VIEW DELEGATE
+// MARK: - Table view delegate and datasource
 
 extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
-    // SECTIONS
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return sections.count
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
-        return 50
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return sections[section].transactions.count
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -191,9 +183,6 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         return header
     }
     
-    
-    // CELLS
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTransactionCell.reuseId, for: indexPath) as? CryptoTransactionCell  else {
@@ -201,39 +190,41 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         }
         
         cell.transaction = sections[indexPath.section].transactions[indexPath.row]
+        cell.layoutIfNeeded()
         
-        if tableView.numberOfRows(inSection: indexPath.section) == 1 {
-            cell.bgView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]
-        } else if indexPath.row == 0 {
-            cell.bgView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        } else if indexPath.row == tableView.numberOfRows(inSection: indexPath.section)-1 {
-            cell.bgView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        } else {
-            cell.bgView.layer.cornerRadius = 0
-        }
-                
         return cell
     }
     
-
-  // FOOTERS
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? CryptoTransactionCell else { return }
+        
+        
+        if let index = expandedCells.firstIndex(of: indexPath) {
+            
+            cell.hideDetailView()
+            expandedCells.remove(at: index)
+        } else {
+            cell.showDetailView()
+            expandedCells.append(indexPath)
+        }
+        tableView.performBatchUpdates(nil)
+    }
+        
     // Add some space after section
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-
         return 20
     }
     
     // Eliminate extra separators below UITableView 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
         return UIView()
     }
-
+    
 }
 
 
-// SCROLL VIEW DELEGATE
+// Mark: - Scroll view delegate
 
 extension CryptoTransactionsViewController {
     
@@ -248,7 +239,7 @@ extension CryptoTransactionsViewController {
 }
 
 
-// CONSTRAINTS
+// MARK: - Constraints
 
 extension CryptoTransactionsViewController {
     

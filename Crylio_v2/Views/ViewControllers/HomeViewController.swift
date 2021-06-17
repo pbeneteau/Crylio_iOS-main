@@ -133,12 +133,12 @@ class HomeViewController: BaseViewController {
     
     private func setCryptosTableViewSearchOffset() {
         
-        //        if searchActive {
-        //            cryptosTableView.setContentOffset(CGPoint(x: 0, y: 180), animated: true)
-        //        } else {
-        //            searchBar.endEditing(true)
-        //            cryptosTableView.setContentOffset(CGPoint(x: 0, y: savedYOffset ?? cryptosTableView.contentInset.top), animated: true)
-        //        }
+                if searchActive {
+                    cryptosTableView.setContentOffset(CGPoint(x: 0, y: 180), animated: true)
+                } else {
+                    searchBar.endEditing(true)
+                    cryptosTableView.setContentOffset(CGPoint(x: 0, y: savedYOffset ?? cryptosTableView.contentInset.top), animated: true)
+                }
     }
     
 }
@@ -239,6 +239,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         if viewAppeard {
             if scrollView.isKind(of: UITableView.self) {
+                savedYOffset = scrollView.contentOffset.y
                 let y = scrollView.contentOffset.y + scrollView.contentInset.top
                 updateContentOffset(y)
             }

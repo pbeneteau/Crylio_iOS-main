@@ -43,7 +43,7 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = AppColors.label.secondary
         
         lineChartView.lineColor = .white
-        lineChartView.lineWidth = 2
+        lineChartView.lineWidth = 1
         lineChartView.fillColor = .clear
         lineChartView.shadow = false
         lineChartView.pointEntries = generateRandomEntries()

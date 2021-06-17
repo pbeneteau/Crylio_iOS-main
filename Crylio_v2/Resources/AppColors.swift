@@ -81,7 +81,7 @@ public extension UIColor {
 
 extension UILabel {
     
-    func setSpannedColor (fullText : String , changeText : String, color: UIColor) {
+    func setSpannedColor (fullText: String , changeText: String, color: UIColor) {
         
         let strNumber: NSString = fullText as NSString
         let range = (strNumber).range(of: changeText)

@@ -51,6 +51,7 @@
 		38598135261B75D1002F2FE3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38598134261B75D1002F2FE3 /* DateUtils.swift */; };
 		38598139261B8ABA002F2FE3 /* TransactionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38598138261B8ABA002F2FE3 /* TransactionsHeaderView.swift */; };
 		38619A742613B0660044D273 /* CryptoNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38619A732613B0660044D273 /* CryptoNewsCell.swift */; };
+		38626DBA267B75630028BF9A /* TranscationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38626DB9267B75630028BF9A /* TranscationCellView.swift */; };
 		3870A4FF266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870A4FE266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift */; };
 		3870A503266E77D90089BB4A /* MarketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870A502266E77D90089BB4A /* MarketTableViewCell.swift */; };
 		3870A505266FC4180089BB4A /* ArrowMacawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870A504266FC4180089BB4A /* ArrowMacawView.swift */; };
@@ -181,6 +182,7 @@
 		38598134261B75D1002F2FE3 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		38598138261B8ABA002F2FE3 /* TransactionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHeaderView.swift; sourceTree = "<group>"; };
 		38619A732613B0660044D273 /* CryptoNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNewsCell.swift; sourceTree = "<group>"; };
+		38626DB9267B75630028BF9A /* TranscationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscationCellView.swift; sourceTree = "<group>"; };
 		3870A4FE266E574F0089BB4A /* MarketSubMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSubMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		3870A502266E77D90089BB4A /* MarketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTableViewCell.swift; sourceTree = "<group>"; };
 		3870A504266FC4180089BB4A /* ArrowMacawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowMacawView.swift; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				3894FCE225D17FC500BFD26F /* CryptoTransactionsViewController.swift */,
 				38F153A6260911EC00AE7CE7 /* CryptoTransactionCell.swift */,
 				38598138261B8ABA002F2FE3 /* TransactionsHeaderView.swift */,
+				38626DB9267B75630028BF9A /* TranscationCellView.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				38A3F32F2673900B0018E1D7 /* ContextTextView.swift in Sources */,
 				388A95A026611AAE009094A6 /* InputValidityCheck.swift in Sources */,
 				38570390265686C30073724A /* PieChartView.swift in Sources */,
+				38626DBA267B75630028BF9A /* TranscationCellView.swift in Sources */,
 				3891ADAA2656A004005FF3CA /* ChartLegendTableViewCell.swift in Sources */,
 				384CFB0225C21EC70064C932 /* PriceChangeBox.swift in Sources */,
 				38C4EA3C267A05BA000FD901 /* GainersLosersCollectionViewCell.swift in Sources */,

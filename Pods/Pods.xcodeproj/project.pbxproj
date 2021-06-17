@@ -318,7 +318,7 @@
 		08D1B1A57220C8D2568BEF16B2B1A5DB /* Pods-Crylio_v2-Crylio_v2UITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Crylio_v2-Crylio_v2UITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0971DC86710A30C50DE5E8A6A7F4B847 /* PathSegment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PathSegment.swift; path = Source/model/geom2d/PathSegment.swift; sourceTree = "<group>"; };
 		0D2939E2D979E2733C63BA8647A9F6E0 /* ImageRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageRenderer.swift; path = Source/render/ImageRenderer.swift; sourceTree = "<group>"; };
-		0E39A8D969E90609143E69F2E4132DC6 /* Pods_Crylio_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crylio_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E39A8D969E90609143E69F2E4132DC6 /* Pods_Crylio_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Crylio_v2.framework; path = "Pods-Crylio_v2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E5D459AC4DDAB0E56D437D94D628015 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		10EBD803E74C9A85301CD33074C5623A /* PathFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PathFunctions.swift; path = Source/animation/layer_animation/PathFunctions.swift; sourceTree = "<group>"; };
 		11A7201CF450068106B0323AC2C030A3 /* BinaryFloatingPoint+ParseLengthString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "BinaryFloatingPoint+ParseLengthString.swift"; path = "SwiftSVG/SVG/Helpers/BinaryFloatingPoint+ParseLengthString.swift"; sourceTree = "<group>"; };
@@ -402,7 +402,7 @@
 		5E7D6BB7A1C2B5FE8138E75734DBED1C /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
 		5FF853DCCC903B73295B992595FBC648 /* ContentsInterpolation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentsInterpolation.swift; path = Source/animation/layer_animation/Extensions/ContentsInterpolation.swift; sourceTree = "<group>"; };
 		61FE4B3AC8F31DF9B113203042FAC502 /* CAShapeLayer+SVG.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CAShapeLayer+SVG.swift"; path = "SwiftSVG/SVG Extensions/CAShapeLayer+SVG.swift"; sourceTree = "<group>"; };
-		62DF1BDA41B723D7B0440FD765F1C141 /* SwiftSVG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62DF1BDA41B723D7B0440FD765F1C141 /* SwiftSVG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftSVG.framework; path = SwiftSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		631483575B8FA81BDD1996639DF0B8D8 /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
 		63FD73C21C4B97D5236AB84015B055BC /* Pods-Crylio_v2Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Crylio_v2Tests.modulemap"; sourceTree = "<group>"; };
 		68A32FEAAEDDB2D27E095FBA6611BB69 /* ContentLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentLayout.swift; path = Source/layout/ContentLayout.swift; sourceTree = "<group>"; };
@@ -442,7 +442,7 @@
 		8525ED2B05A2F9562D688F3D3BF25B65 /* SwiftSVG-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftSVG-dummy.m"; sourceTree = "<group>"; };
 		86820C8F78042E94C13284659AEB6CA1 /* SwiftSVG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftSVG.release.xcconfig; sourceTree = "<group>"; };
 		8B5C80B83F04CFC10EEA7C964C067A10 /* Pods-Crylio_v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Crylio_v2.release.xcconfig"; sourceTree = "<group>"; };
-		8B961A2EFBDAC765AB0EB1AEC06F6B8F /* Pods_Crylio_v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crylio_v2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B961A2EFBDAC765AB0EB1AEC06F6B8F /* Pods_Crylio_v2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Crylio_v2Tests.framework; path = "Pods-Crylio_v2Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D16E311ABD743E45B28D915E2E64CD9 /* MDisplayLink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MDisplayLink.swift; path = Source/platform/MDisplayLink.swift; sourceTree = "<group>"; };
 		8D89B6445A098A6DA7F24C2E8A6CF36D /* Data+CacheKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+CacheKey.swift"; path = "SwiftSVG/SVG/Helpers/Data+CacheKey.swift"; sourceTree = "<group>"; };
 		8E46E0C721653798326A2D00852CA1DA /* RadialGradient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RadialGradient.swift; path = Source/model/draw/RadialGradient.swift; sourceTree = "<group>"; };
@@ -458,14 +458,14 @@
 		95631CA5A18BAD5F342F66FCC52E9ECE /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
 		956783EE084703AD242E1E61181501BE /* CombineAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CombineAnimation.swift; path = Source/animation/types/CombineAnimation.swift; sourceTree = "<group>"; };
 		95F4E541A0B3A7AEB1A11A94EA2D1CBA /* CAAnimationClosure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CAAnimationClosure.swift; path = Source/thirdparty/CAAnimationClosure.swift; sourceTree = "<group>"; };
-		97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SWXMLHash.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		985B278176FFEDAC589FCF2A33549515 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTimer+Closure.swift"; path = "Source/thirdparty/NSTimer+Closure.swift"; sourceTree = "<group>"; };
 		98EC08CD709811EA80E239DEA8C0549F /* MacawView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MacawView.swift; path = Source/views/MacawView.swift; sourceTree = "<group>"; };
 		991B77D2329B82DCFDAFA99F108E4654 /* SVGGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SVGGroup.swift; path = SwiftSVG/SVG/Elements/SVGGroup.swift; sourceTree = "<group>"; };
-		9B6725B782188F18CB76A740433F14E4 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B6725B782188F18CB76A740433F14E4 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C2D3DF8C50EE959D4F9B3CD496D4116 /* AnimationUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimationUtils.swift; path = Source/animation/AnimationUtils.swift; sourceTree = "<group>"; };
 		9D521500B003FCCA1266BA4D268545A1 /* SVGRootElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SVGRootElement.swift; path = SwiftSVG/SVG/Elements/SVGRootElement.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DC1D9AB3FDD61A8117BD23794E44277 /* NSBezierPath+CrossPlatform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBezierPath+CrossPlatform.swift"; path = "SwiftSVG/NSBezierPath+CrossPlatform.swift"; sourceTree = "<group>"; };
 		9E0B3BDED984A97BC4C3430B9A1B7185 /* AlphaEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlphaEffect.swift; path = Source/model/draw/AlphaEffect.swift; sourceTree = "<group>"; };
 		9E934EA2C270E674A0ABE43371A7115A /* Fillable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fillable.swift; path = SwiftSVG/SVG/Attributes/Fillable.swift; sourceTree = "<group>"; };
@@ -486,7 +486,7 @@
 		B22481FD13A8FB98369BF19319A038CC /* CrossPlatform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CrossPlatform.swift; path = SwiftSVG/CrossPlatform.swift; sourceTree = "<group>"; };
 		B33C15BB0A22A0545A68383E0051FACA /* MBezierPath+Extension_macOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MBezierPath+Extension_macOS.swift"; path = "Source/platform/macOS/MBezierPath+Extension_macOS.swift"; sourceTree = "<group>"; };
 		B5F6C87FF2D41AA7901C040C01E02D62 /* Polyline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Polyline.swift; path = Source/model/geom2d/Polyline.swift; sourceTree = "<group>"; };
-		B7822D6BD1C43C841BFD723FAA3256EB /* Pods_Crylio_v2_Crylio_v2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crylio_v2_Crylio_v2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7822D6BD1C43C841BFD723FAA3256EB /* Pods_Crylio_v2_Crylio_v2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Crylio_v2_Crylio_v2UITests.framework; path = "Pods-Crylio_v2-Crylio_v2UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B874B07FB837F77EB1C3C04A0784621B /* Graphics_iOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Graphics_iOS.swift; path = Source/platform/iOS/Graphics_iOS.swift; sourceTree = "<group>"; };
 		B91E9872278D75A14635A131D731B315 /* MView_macOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MView_macOS.swift; path = Source/platform/macOS/MView_macOS.swift; sourceTree = "<group>"; };
 		B9753F328D6271DBBD46714686254EE3 /* DoubleInterpolation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DoubleInterpolation.swift; path = Source/animation/layer_animation/Extensions/DoubleInterpolation.swift; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 		C14C6FB3A5CEE068420C3BC2225349EF /* Disposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Disposable.swift; path = Source/bindings/Disposable.swift; sourceTree = "<group>"; };
 		C15E3667468D05489EF0C983F6CDBFE5 /* DelaysApplyingAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DelaysApplyingAttributes.swift; path = SwiftSVG/SVG/Attributes/DelaysApplyingAttributes.swift; sourceTree = "<group>"; };
 		C2D9703B52572681C224C125C2D13DB8 /* AnimationSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimationSequence.swift; path = Source/animation/types/AnimationSequence.swift; sourceTree = "<group>"; };
-		C387806CE1F7FC814E9EE915DD03EEF9 /* Macaw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Macaw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C387806CE1F7FC814E9EE915DD03EEF9 /* Macaw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Macaw.framework; path = Macaw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B4035175E3C0D89794477B110C9529 /* Easing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Easing.swift; path = Source/animation/Easing.swift; sourceTree = "<group>"; };
 		C6BB69E8668424B18157507B2BFC99EB /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
 		C7445D28EF853CB64FF82E5DE1E755E3 /* Shape.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shape.swift; path = Source/model/scene/Shape.swift; sourceTree = "<group>"; };
@@ -762,6 +762,7 @@
 				78FF464D1531DB432CBDA28679BD413B /* Unown.swift */,
 				90D401BB9E4AEABDA6980637AAAE5DA4 /* Support Files */,
 			);
+			name = SwiftSVG;
 			path = SwiftSVG;
 			sourceTree = "<group>";
 		};
@@ -799,6 +800,7 @@
 				795DA862D823F9298A1AB04FA1EC9BB6 /* Resources */,
 				52145835EF9423E25EDE04DF11B918D7 /* Support Files */,
 			);
+			name = DropDown;
 			path = DropDown;
 			sourceTree = "<group>";
 		};
@@ -848,6 +850,7 @@
 				BB63A530CC0862F076544AA2FB79AE83 /* XMLIndexer+XMLIndexerDeserializable.swift */,
 				29E04B41E9AB502AE638CA8FB235BB68 /* Support Files */,
 			);
+			name = SWXMLHash;
 			path = SWXMLHash;
 			sourceTree = "<group>";
 		};
@@ -1027,6 +1030,7 @@
 				4387A07C3FB65063033E513530D305BB /* Variable.swift */,
 				6FD7A0BB57863F21C2FA862A319469FE /* Support Files */,
 			);
+			name = Macaw;
 			path = Macaw;
 			sourceTree = "<group>";
 		};
@@ -1896,7 +1900,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1995,7 +1999,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
