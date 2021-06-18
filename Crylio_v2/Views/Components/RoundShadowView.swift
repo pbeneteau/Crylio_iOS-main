@@ -8,7 +8,9 @@
 import UIKit
 
 
-class RoundShadowView: UIView {
+class RoundShadowView: BaseView {
+    
+    lazy var shadowView = UIView()
     
     /// The corner radius of the `ShadowView`
     var cornerRadius: CGFloat = 10 {
@@ -23,7 +25,7 @@ class RoundShadowView: UIView {
         }
     }
     /// The shadow offset of the `ShadowView`
-    var shadowOffset: CGSize = CGSize(width: 0.0, height: 2) {
+    var shadowOffset: CGSize = CGSize(width: 0.0, height: 1) {
         didSet {
             updateProperties()
         }
@@ -47,6 +49,18 @@ class RoundShadowView: UIView {
         }
     }
     
+    var shouldRasterize: Bool = true {
+        didSet {
+            updateProperties()
+        }
+    }
+    
+    var insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
+        didSet {
+            updateConstraints()
+        }
+    }
+    
     /**
      Masks the layer to it's bounds and updates the layer properties and shadow path.
      */
@@ -65,12 +79,19 @@ class RoundShadowView: UIView {
     
     private func commonInit() {
         
-        layer.masksToBounds = false
-        backgroundColor = AppColors.background.secondary
+        backgroundColor = .clear
+        
+        shadowView.layer.masksToBounds = false
+        shadowView.backgroundColor = AppColors.background.secondary
+        
         updateProperties()
         if traitCollection.userInterfaceStyle == .light {
             updateShadowPath()
         }
+        
+        addSubview(shadowView)
+        
+        setNeedsUpdateConstraints()
     }
     
     /**
@@ -78,15 +99,17 @@ class RoundShadowView: UIView {
      */
     fileprivate func updateProperties() {
         
-        layer.cornerRadius = cornerRadius
+        shadowView.layer.cornerRadius = cornerRadius
+        
         if traitCollection.userInterfaceStyle == .light {
-            layer.shadowColor = shadowColor.cgColor
-            layer.shadowOffset = shadowOffset
-            layer.shadowRadius = blur / 2.0
-            layer.shadowOpacity = shadowOpacity
             
-            layer.shouldRasterize = true
-            layer.rasterizationScale = UIScreen.main.scale
+            shadowView.layer.shadowColor = shadowColor.cgColor
+            shadowView.layer.shadowOffset = shadowOffset
+            shadowView.layer.shadowRadius = blur / 2.0
+            shadowView.layer.shadowOpacity = shadowOpacity
+            
+            shadowView.layer.shouldRasterize = shouldRasterize
+            shadowView.layer.rasterizationScale = UIScreen.main.scale
         }
     }
     
@@ -96,19 +119,128 @@ class RoundShadowView: UIView {
     fileprivate func updateShadowPath() {
         
         if spread == 0 {
-            layer.shadowPath = nil
+            shadowView.layer.shadowPath = nil
         } else {
-            layer.shadowPath = UIBezierPath(roundedRect: bounds.insetBy(dx: -spread, dy: -spread), cornerRadius: cornerRadius).cgPath
+            shadowView.layer.shadowPath = UIBezierPath(roundedRect: shadowView.bounds.insetBy(dx: -spread, dy: -spread), cornerRadius: cornerRadius).cgPath
         }
     }
     
     /**
-     Updates the shadow path everytime the views frame changes.
+     Updates the shadow path everytime the views frame changes. Also make it compatible with animations
      */
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        updateShadowPath()
+        let oldShadowPath = shadowView.layer.shadowPath
+        let newShadowPath = CGPath(rect: shadowView.bounds, transform: nil)
+        
+        if let boundsAnimation = shadowView.layer.animation(forKey: "bounds.size") as? CABasicAnimation {
+            let shadowPathAnimation = CABasicAnimation(keyPath: "shadowPath")
+            
+            shadowPathAnimation.duration = boundsAnimation.duration
+            shadowPathAnimation.timingFunction = boundsAnimation.timingFunction
+            
+            shadowPathAnimation.fromValue = oldShadowPath
+            shadowPathAnimation.toValue = newShadowPath
+            
+            shadowView.layer.add(shadowPathAnimation, forKey: "shadowPath")
+        }
+        
+        shadowView.layer.shadowPath = newShadowPath
     }
     
+    override func makeConstraints() {
+         
+        shadowView.snp.remakeConstraints { make in
+            make.left.equalTo(insets.left)
+            make.right.equalToSuperview().inset(insets.right)
+            make.top.equalTo(insets.top)
+            make.bottom.equalToSuperview().inset(insets.bottom)
+        }
+    }
+    
+}
+
+
+class AnimatingShadowView: UIView {
+
+    struct DropShadowParameters {
+        var shadowOpacity: Float = 0
+        var shadowColor: UIColor? = .black
+        var shadowRadius: CGFloat = 0
+        var shadowOffset: CGSize = .zero
+
+        static let defaultParameters = DropShadowParameters(shadowOpacity: 0.15,
+                                                            shadowColor: .black,
+                                                            shadowRadius: 5,
+                                                            shadowOffset: CGSize(width: 0, height: 1))
+    }
+
+    lazy var contentView = UIView()
+
+    var shadowParameters: DropShadowParameters = DropShadowParameters.defaultParameters
+
+    private func apply(dropShadow: DropShadowParameters) {
+        let layer = self.layer
+        layer.shadowColor = dropShadow.shadowColor?.cgColor
+        layer.shadowOffset = dropShadow.shadowOffset
+        layer.shadowOpacity = dropShadow.shadowOpacity
+        layer.shadowRadius = dropShadow.shadowRadius
+        layer.masksToBounds = false
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        addSubview(contentView)
+        
+        let layer = self.layer
+        layer.backgroundColor = nil
+
+        let contentLayer = self.contentView.layer
+        assert(contentLayer.superlayer == layer, "contentView must be a direct subview of AnimatingShadowView!")
+
+        self.apply(dropShadow: self.shadowParameters)
+
+        let radius = contentLayer.cornerRadius
+        layer.shadowPath = UIBezierPath(roundedRect: contentLayer.frame, cornerRadius: radius).cgPath
+    }
+
+    override func action(for layer: CALayer, forKey event: String) -> CAAction? {
+        guard event == "shadowPath" else {
+            return super.action(for: layer, forKey: event)
+        }
+
+        guard let priorPath = layer.shadowPath else {
+            return super.action(for: layer, forKey: event)
+        }
+
+        guard let sizeAnimation = layer.animation(forKey: "bounds.size") as? CABasicAnimation else {
+            return super.action(for: layer, forKey: event)
+        }
+
+        let animation = sizeAnimation.copy() as! CABasicAnimation
+        animation.keyPath = "shadowPath"
+        let action = ShadowingViewAction()
+        action.priorPath = priorPath
+        action.pendingAnimation = animation
+        return action
+    }
+}
+
+
+private class ShadowingViewAction: NSObject, CAAction {
+    var pendingAnimation: CABasicAnimation? = nil
+    var priorPath: CGPath? = nil
+
+    // CAAction Protocol
+    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable : Any]?) {
+        guard let layer = anObject as? CALayer, let animation = self.pendingAnimation else {
+            return
+        }
+
+        animation.fromValue = self.priorPath
+        animation.toValue = layer.shadowPath
+        layer.add(animation, forKey: "shadowPath")
+    }
 }

@@ -24,7 +24,9 @@ class TransactionsHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configure() {
-        
+        backgroundView?.backgroundColor = .clear
+        backgroundView?.layer.masksToBounds = false
+        layer.masksToBounds = false
         tintColor = .clear
         
         date.font = .systemFont(ofSize: 20, weight: .bold)
@@ -33,7 +35,7 @@ class TransactionsHeaderView: UITableViewHeaderFooterView {
         
         date.snp.makeConstraints { make in
             make.left.equalTo(SAFE_AREA_MARGIN)
-            make.top.equalTo(16)
+            make.bottom.equalToSuperview()
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.height.equalTo(24)
         }

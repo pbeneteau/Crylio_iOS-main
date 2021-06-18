@@ -40,6 +40,7 @@ class CryptoDetailScrollView: UIScrollView {
         translatesAutoresizingMaskIntoConstraints = false
         contentInsetAdjustmentBehavior = .never
         showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear

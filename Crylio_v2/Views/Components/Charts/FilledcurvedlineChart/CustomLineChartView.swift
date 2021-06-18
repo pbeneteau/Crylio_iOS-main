@@ -1,5 +1,5 @@
 //
-//  LineChartView.swift
+//  CustomLineChartView.swift
 //  Crylio_v2
 //
 //  Created by Paul Bénéteau on 12/06/2021.
@@ -25,7 +25,7 @@ extension PointEntry: Comparable {
 }
 
 
-class LineChartView: UIView {
+class CustomLineChartView: UIView {
     
     /// Contains the main line which represents the data
     private var dataLayer: CALayer = CALayer()

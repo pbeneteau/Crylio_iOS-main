@@ -74,6 +74,8 @@ class CryptoNewsFeedViewController: BaseViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.tableFooterView = UIView() // remove extra separators below UITableView
         tableView.addSubview(refreshControl)
+        tableView.showsVerticalScrollIndicator = false
+
 
         view.addSubview(tableView)
     }

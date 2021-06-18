@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class HomeTableViewCell: UITableViewCell {
+class HomeTableViewCell: BaseTableViewCell {
     
     static let reuseId = "HomeTableViewCell"
 
@@ -76,6 +76,8 @@ class HomeTableViewCell: UITableViewCell {
         backgroundBox.addSubview(amountLabel)
         backgroundBox.addSubview(priceLabel)
         backgroundBox.addSubview(changeLabel)
+        
+        setNeedsUpdateConstraints()
     }
     
     private func initValues() {
@@ -91,15 +93,10 @@ class HomeTableViewCell: UITableViewCell {
             changeLabel.setPercentMutableString(value: crypto.change, colors: true)
         }
     }
+
+    // MARK: - Constraints
     
-}
-
-
-// MARK: - Constraints
-
-extension HomeTableViewCell {
-    
-    override func layoutIfNeeded() {
+    override func makeConstraints() {
         
         backgroundBox.snp.makeConstraints { make in
             make.left.equalTo(SAFE_AREA_MARGIN)
@@ -155,7 +152,6 @@ extension HomeTableViewCell {
             make.width.equalTo(110)
             make.height.equalTo(16)
         }
-        
-        super.layoutIfNeeded()
     }
+    
 }

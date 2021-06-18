@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MarketTableViewCell: UITableViewCell {
+class MarketTableViewCell: BaseTableViewCell {
     
     static let reuseId = "MarketTableViewCell"
     
@@ -70,6 +70,8 @@ class MarketTableViewCell: UITableViewCell {
         contentView.addSubview(changeLabel)
         contentView.addSubview(marketcapLabel)
         contentView.addSubview(volumeLabel)
+        
+        setNeedsUpdateConstraints()
     }
 
     func configure(crypto: Cryptocurrency) {
@@ -84,8 +86,9 @@ class MarketTableViewCell: UITableViewCell {
         volumeLabel.text = "89.3B"
     }
     
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
+    // MARK: - Constraints
+    
+    override func makeConstraints() {
         
         iconImageView.snp.makeConstraints { make in
             make.left.equalTo(SAFE_AREA_MARGIN)

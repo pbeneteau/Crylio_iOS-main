@@ -11,14 +11,17 @@ import UIKit
 
 struct Transaction {
     
-    var asset: String
-    var transactionType: TransactionType
+    var asset: (name: String, symbol: String)
+    var type: TransactionType
     var exchange: String
     var amount: Float
-    var amountExecuted: Float
     var time: Date
+    var price: Float
     var worth: Float
     var status: TransactionStatus
+    var currentValue: Float
+    var allTimeChange: Float
+    var allTimePNL: Float
 }
 
 enum TransactionType: String {
@@ -65,7 +68,6 @@ struct TransactionsMonthSection {
 
 class CryptoTransactionsViewController: BaseViewController {
     
-    
     lazy var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     var refreshControl = UIRefreshControl()
     
@@ -94,7 +96,7 @@ class CryptoTransactionsViewController: BaseViewController {
         tableView.estimatedRowHeight = 112
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.sectionHeaderHeight = 50
+        tableView.sectionHeaderHeight = 30
         
         tableView.register(CryptoTransactionCell.self, forCellReuseIdentifier: CryptoTransactionCell.reuseId)
         tableView.register(TransactionsHeaderView.self, forHeaderFooterViewReuseIdentifier: TransactionsHeaderView.reuseId)
@@ -120,15 +122,15 @@ class CryptoTransactionsViewController: BaseViewController {
     
     private func data() {
         
-        let item1 = Transaction(asset: "BTC", transactionType: .marketBuy, exchange: "Binance", amount: 0.48591, amountExecuted: 2.4, time: Date(), worth: 9401.41, status: .filled)
-        let item2 = Transaction(asset: "BTC", transactionType: .limitSell, exchange: "Bitfinex", amount: 0.94114, amountExecuted: 2.4, time: Date(), worth: 41491.67, status: .canceled)
+        let item1 = Transaction(asset: ("Bitcoin", "BTC"), type: .marketBuy, exchange: "Binance", amount: 0.48591, time: Date(), price: 400, worth: 9401.41, status: .filled, currentValue: 57195.15, allTimeChange: 16.71, allTimePNL: 4156.71)
+        let item2 = Transaction(asset: ("Bitcoin", "BTC"), type: .limitSell, exchange: "Bitfinex", amount: 0.94114, time: Date(), price: 5711.51, worth: 41491.67, status: .canceled, currentValue: 57195.15, allTimeChange: 16.71, allTimePNL: 4156.71)
         
         var dateComponent = DateComponents()
         
         dateComponent.month = 1
         let futureDate = Calendar.current.date(byAdding: dateComponent, to: Date())
         
-        let item3 = Transaction(asset: "BTC", transactionType: .transferIn, exchange: "Coinbase", amount: 0.24123, amountExecuted: 2.4, time: futureDate!, worth: 5141.10, status: .transfered)
+        let item3 = Transaction(asset: ("Bitcoin", "BTC"), type: .transferIn, exchange: "Coinbase", amount: 0.24123, time: futureDate!, price: 415.61, worth: 5141.10, status: .transfered, currentValue: 57195.15, allTimeChange: 16.71, allTimePNL: 4156.71)
         
         transactions.append(item1)
         transactions.append(item2)
@@ -186,19 +188,24 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTransactionCell.reuseId, for: indexPath) as? CryptoTransactionCell  else {
-            fatalError("The dequeued cell is not an instance of HomeTableViewCell.")
+            fatalError("The dequeued cell is not an instance of CryptoTransactionCell.")
         }
         
         cell.transaction = sections[indexPath.section].transactions[indexPath.row]
         cell.layoutIfNeeded()
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? CryptoTransactionCell else { return }
+        if sections[indexPath.section].transactions[indexPath.row].type == .transferIn {
+            return
+        }
+        if sections[indexPath.section].transactions[indexPath.row].type == .transferOut {
+            return
+        }
         
+        guard let cell = tableView.cellForRow(at: indexPath) as? CryptoTransactionCell else { return }
         
         if let index = expandedCells.firstIndex(of: indexPath) {
             
@@ -221,6 +228,9 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         return UIView()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 
 

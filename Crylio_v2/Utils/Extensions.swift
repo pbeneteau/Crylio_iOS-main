@@ -9,6 +9,31 @@ import Foundation
 import UIKit
 
 
+public func print(_ items: String..., filename: String = #file, function : String = #function, line: Int = #line, separator: String = " ", terminator: String = "\n") {
+    
+    #if DEBUG
+    let formater = DateFormatter()
+    formater.dateFormat = "HH:mm:ss"
+    let pretty = "\(formater.string(from: Date())) - " + "\(URL(fileURLWithPath: filename).lastPathComponent) [#\(line)] \(function): "
+    let output = items.map { "\($0)" }.joined(separator: separator)
+    Swift.print(pretty+output, terminator: terminator)
+    #else
+    Swift.print("RELEASE MODE")
+    #endif
+}
+
+public func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    
+    #if DEBUG
+    let formater = DateFormatter()
+    formater.dateFormat = "HH:mm:ss"
+    let output = "\(formater.string(from: Date())) - " + items.map { "\($0)" }.joined(separator: separator)
+    Swift.print(output, terminator: terminator)
+    #else
+    Swift.print("RELEASE MODE")
+    #endif
+}
+
 extension CALayer {
     
     func applySketchShadow(
@@ -78,6 +103,15 @@ extension UIView {
         addSubview(blurEffectView)
     }
     
+    func addTopBorder() {
+        
+        let border = UIView()
+        border.backgroundColor = .systemGray.withAlphaComponent(0.1)
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 0.1)
+        addSubview(border)
+    }
+    
 }
 
 
@@ -89,7 +123,7 @@ extension UIVisualEffectView {
         let border = UIView()
         border.backgroundColor = .systemGray.withAlphaComponent(0.1)
         border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
-        border.frame = CGRect(x: 0, y:  frame.size.height - 0.3, width: frame.size.width, height: 0.3)
+        border.frame = CGRect(x: 0, y:  frame.size.height - 0.1, width: frame.size.width, height: 0.1)
         contentView.addSubview(border)
     }
     

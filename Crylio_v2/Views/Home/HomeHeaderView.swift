@@ -16,7 +16,7 @@ class HomeHeaderView: RoundShadowView {
     lazy var worthLabel = UILabel()
     
     lazy var chartContainerView = UIView()
-    lazy var lineChart = LineChartView()
+    lazy var lineChart = CustomLineChartView()
     
     var chartInitialized = false
     

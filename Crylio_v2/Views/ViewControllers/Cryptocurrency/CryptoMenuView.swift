@@ -21,6 +21,8 @@ class CryptoMenuView: UIView {
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = false
         view.contentInsetAdjustmentBehavior = .never
+        view.clipsToBounds = false
+        view.layer.masksToBounds = false
         return view
     }()
     
@@ -51,19 +53,17 @@ class CryptoMenuView: UIView {
         
         commonInit()
     }
-    
+        
     private func commonInit() {
         
         translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColor = .clear
+        
+        layer.masksToBounds = false
+        clipsToBounds = false
                 
-        selectedButtonView.backgroundColor = AppColors.background.secondary
-        selectedButtonView.cornerRadius = 10
-        selectedButtonView.spread = 2
-        selectedButtonView.blur = 15
-        selectedButtonView.shadowOpacity = 0.05
-        selectedButtonView.shadowOffset = CGSize(width: 0, height: 5)
+        selectedButtonView.shadowView.backgroundColor = AppColors.background.secondary
         selectedButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(scrollView)

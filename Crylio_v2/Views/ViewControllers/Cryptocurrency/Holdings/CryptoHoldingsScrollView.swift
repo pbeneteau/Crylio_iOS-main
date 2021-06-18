@@ -43,6 +43,7 @@ class CryptoHoldingsScrollView: UIScrollView {
         translatesAutoresizingMaskIntoConstraints = false
         contentInsetAdjustmentBehavior = .never
         showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
         
         contentView.backgroundColor = .clear
         

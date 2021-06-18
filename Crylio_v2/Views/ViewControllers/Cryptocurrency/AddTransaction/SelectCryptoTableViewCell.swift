@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelectCryptoTableViewCell: UITableViewCell {
+class SelectCryptoTableViewCell: BaseTableViewCell {
     
     static let reuseId = "SelectCryptoTableViewCell"
     
@@ -41,16 +41,13 @@ class SelectCryptoTableViewCell: UITableViewCell {
         contentView.addSubview(iconImageView)
         contentView.addSubview(symbolLabel)
         contentView.addSubview(nameLabel)
+        
+        setNeedsUpdateConstraints()
     }
     
-}
-
-
-// MARK: - Constraints
-
-extension SelectCryptoTableViewCell {
+    // MARK: - Constraints
     
-    override func layoutIfNeeded() {
+    override func makeConstraints() {
         
         iconImageView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(CONTENT_HORIZONTAL_MARGIN)
@@ -71,8 +68,6 @@ extension SelectCryptoTableViewCell {
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.height.equalTo(16)
         }
-        
-        super.layoutIfNeeded()
     }
     
 }

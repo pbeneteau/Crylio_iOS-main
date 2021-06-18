@@ -18,7 +18,7 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
     lazy var nameLabel = UILabel()
     lazy var priceLabel = UILabel()
     lazy var changeLabel = UILabel()
-    lazy var lineChartView = LineChartView()
+    lazy var lineChartView = CustomLineChartView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

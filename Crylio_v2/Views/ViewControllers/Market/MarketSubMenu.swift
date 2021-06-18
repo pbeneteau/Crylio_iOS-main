@@ -25,6 +25,9 @@ class MarketSubMenu: UICollectionView, UICollectionViewDelegate, UICollectionVie
         
         backgroundColor = .clear
         
+        layer.masksToBounds = false
+        clipsToBounds = false
+        
         translatesAutoresizingMaskIntoConstraints = false
         contentInsetAdjustmentBehavior = .never
         showsHorizontalScrollIndicator = false

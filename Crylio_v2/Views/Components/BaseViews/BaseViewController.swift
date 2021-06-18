@@ -11,6 +11,8 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    open var didMakeConstraints = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +47,20 @@ class BaseViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         
         initColors()
+    }
+    
+
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        
+        if !didMakeConstraints {
+            didMakeConstraints = true
+            makeConstraints()
+        }
+    }
+    
+    open func makeConstraints() {
+        
     }
     
 }
