@@ -11,7 +11,7 @@ protocol AddToFavoriteButtonDelegate: NSObjectProtocol {
     func favoriteStateDidChange(favorite: Bool)
 }
 
-class AddToFavoriteButton: UIView {
+class AddToFavoriteButton: BaseView {
     
     lazy var starView = UIImageView(image: UIImage(named: "starFilled")?.withRenderingMode(.alwaysTemplate))
     
@@ -19,20 +19,8 @@ class AddToFavoriteButton: UIView {
     
     weak var delegate: AddToFavoriteButtonDelegate!
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
                 
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView(_:))))
         

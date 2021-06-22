@@ -13,7 +13,7 @@ class CryptoNewsCell: UITableViewCell, UITextViewDelegate {
     
     static let reuseId = "FeedCell"
     
-    lazy var contentBox = RoundShadowView()
+    lazy var contentBox = BackgroundBoxView()
     lazy var typeImageBox = UIView()
     lazy var typeImageView = UIImageView()
     lazy var autorLabel = UILabel()

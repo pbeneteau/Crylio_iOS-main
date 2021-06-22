@@ -12,7 +12,7 @@ protocol HorizontalMenuProtocol: NSObjectProtocol {
     func menuButtonTapped(sender: UIButton!)
 }
 
-class CryptoMenuView: UIView {
+class CryptoMenuView: BaseView {
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -27,37 +27,25 @@ class CryptoMenuView: UIView {
     }()
     
     var buttons = [UIButton]()
-    lazy var selectedButtonView = RoundShadowView()
+    lazy var selectedButtonView = BackgroundBoxView()
     var selectedButtonTag = 0
     
     weak var delegate: HorizontalMenuProtocol? = nil
     
     var items = [String]()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
     init(items: [String]) {
-        super.init(frame: CGRect.zero)
-        
         self.items = items
-        
-        commonInit()
+        super.init(frame: CGRect.zero)        
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-        
-    private func commonInit() {
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
+    
+    override func commonInit() {
+        super.commonInit()
+                
         backgroundColor = .clear
         
         layer.masksToBounds = false
@@ -83,7 +71,7 @@ class CryptoMenuView: UIView {
             buttons.append(button)
             scrollView.addSubview(button)
         }
-        
+                
         buttons[selectedButtonTag].isSelected = true
     }
     

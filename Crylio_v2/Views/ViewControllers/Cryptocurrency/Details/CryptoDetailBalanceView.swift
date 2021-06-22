@@ -11,7 +11,7 @@ protocol CryptoDetailBalanceDelegate: NSObjectProtocol {
     func CryptoDetailBalanceTouched()
 }
 
-class CryptoDetailBalanceView: RoundShadowView {
+class CryptoDetailBalanceView: BackgroundBoxView {
     
     weak var delegate: CryptoDetailBalanceDelegate!
         
@@ -38,20 +38,9 @@ class CryptoDetailBalanceView: RoundShadowView {
             amountLabel.text = amount.toAmountString(symbol: symbol!)
         }
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         

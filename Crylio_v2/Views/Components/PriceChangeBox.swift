@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 
-class PriceChangeBox: UIView {
+class PriceChangeBox: BaseView {
     
     lazy var boxView = UIImageView()
     lazy var changeLabel = UILabel()
@@ -20,19 +20,8 @@ class PriceChangeBox: UIView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         backgroundColor = .clear
         

@@ -8,9 +8,15 @@
 import UIKit
 
 
-class RoundShadowView: BaseView {
+class BackgroundBoxView: BaseView {
     
     lazy var shadowView = UIView()
+    
+    var forceShadowEnabled = false {
+        didSet {
+            updateProperties()
+        }
+    }
     
     /// The corner radius of the `ShadowView`
     var cornerRadius: CGFloat = 10 {
@@ -61,33 +67,22 @@ class RoundShadowView: BaseView {
         }
     }
     
-    /**
-     Masks the layer to it's bounds and updates the layer properties and shadow path.
-     */
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
+    var bgColor: UIColor = AppColors.background.secondary {
+        didSet {
+            shadowView.backgroundColor = bgColor
+        }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         backgroundColor = .clear
         
+        layer.masksToBounds = false
         shadowView.layer.masksToBounds = false
-        shadowView.backgroundColor = AppColors.background.secondary
+        shadowView.backgroundColor = bgColor
         
         updateProperties()
-        if traitCollection.userInterfaceStyle == .light {
-            updateShadowPath()
-        }
         
         addSubview(shadowView)
         
@@ -101,7 +96,7 @@ class RoundShadowView: BaseView {
         
         shadowView.layer.cornerRadius = cornerRadius
         
-        if traitCollection.userInterfaceStyle == .light {
+        if traitCollection.userInterfaceStyle == .light || forceShadowEnabled == true {
             
             shadowView.layer.shadowColor = shadowColor.cgColor
             shadowView.layer.shadowOffset = shadowOffset
@@ -110,18 +105,6 @@ class RoundShadowView: BaseView {
             
             shadowView.layer.shouldRasterize = shouldRasterize
             shadowView.layer.rasterizationScale = UIScreen.main.scale
-        }
-    }
-    
-    /**
-     Updates the bezier path of the shadow to be the same as the layer's bounds, taking the layer's corner radius into account.
-     */
-    fileprivate func updateShadowPath() {
-        
-        if spread == 0 {
-            shadowView.layer.shadowPath = nil
-        } else {
-            shadowView.layer.shadowPath = UIBezierPath(roundedRect: shadowView.bounds.insetBy(dx: -spread, dy: -spread), cornerRadius: cornerRadius).cgPath
         }
     }
     
@@ -150,7 +133,7 @@ class RoundShadowView: BaseView {
     }
     
     override func makeConstraints() {
-         
+                 
         shadowView.snp.remakeConstraints { make in
             make.left.equalTo(insets.left)
             make.right.equalToSuperview().inset(insets.right)

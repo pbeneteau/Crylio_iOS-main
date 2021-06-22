@@ -11,7 +11,7 @@ protocol NavigationTopBarDelegate: NSObjectProtocol {
     func backButtonAction()
 }
 
-class NavigationTopBarView: UIView {
+class NavigationTopBarView: BaseView {
     
     lazy var topBar = UIView()
     
@@ -32,20 +32,8 @@ class NavigationTopBarView: UIView {
     
     weak var delegate: NavigationTopBarDelegate!
     
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
                 
         topBar.backgroundColor = AppColors.background.primary
         

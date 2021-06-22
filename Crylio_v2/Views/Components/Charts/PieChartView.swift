@@ -16,7 +16,7 @@ struct PieChartValue {
     var color: UIColor
 }
 
-class PieChartView_2: UIView {
+class PieChartView_2: BaseView {
     
     lazy var chartView = PieChartView()
     lazy var legendView = ChartLegendView()
@@ -29,19 +29,8 @@ class PieChartView_2: UIView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -102,7 +91,11 @@ class PieChartView_2: UIView {
     
     fileprivate func updateLegendData(_ values: [PieChartValue]) {
         
-        legendView.values = values
+        let items: [ChartLegendItem] = values.map { value in
+            return ChartLegendItem(title: value.name, value: value.value.toPercentString(), accentColor: value.color)
+        }
+        
+        legendView.values = items
     }
     
 }

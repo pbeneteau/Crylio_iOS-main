@@ -7,24 +7,12 @@
 
 import UIKit
 
-class UserAssetsView: UIView {
+class UserAssetsView: BaseView {
     
     lazy var filterMenuView = FilterMenuView()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-
-    private func commonInit() {
-        
+    override func commonInit() {
+        super.commonInit()
         
         addSubview(filterMenuView)
     }

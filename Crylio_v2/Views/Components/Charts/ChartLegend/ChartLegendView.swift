@@ -14,8 +14,15 @@ internal enum ChartLegendDirection {
     case vertical
 }
 
+struct ChartLegendItem {
+    
+    var title: String
+    var value: String
+    var accentColor: UIColor
+}
 
-class ChartLegendView: UIView {
+
+class ChartLegendView: BaseView {
     
     var direction: ChartLegendDirection = .vertical
     
@@ -24,25 +31,14 @@ class ChartLegendView: UIView {
     
     lazy var tableView = UITableView()
     
-    var values: [PieChartValue]! {
+    var values: [ChartLegendItem]! {
         didSet {
             updateData()
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -69,7 +65,7 @@ class ChartLegendView: UIView {
 }
 
 
-// MARKS: Table View delegate and datasource
+// MARK: - Table View delegate and datasource
 
 extension ChartLegendView: UITableViewDelegate, UITableViewDataSource {
     
@@ -96,7 +92,7 @@ extension ChartLegendView: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-// MARKS: Constraints
+// MARK: - Constraints
 
 extension ChartLegendView {
    

@@ -7,24 +7,13 @@
 
 import UIKit
 
-class HoldingsStatView: RoundShadowView {
+class HoldingsStatView: BackgroundBoxView {
     
     lazy var title = UILabel()
     lazy var value = UILabel()
- 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         

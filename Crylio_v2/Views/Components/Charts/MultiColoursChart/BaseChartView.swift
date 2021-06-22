@@ -1,5 +1,5 @@
 //
-//  Chart.swift
+//  BaseChartView.swift
 //
 //  Created by Giampaolo Bellavite on 07/11/14.
 //  Copyright (c) 2014 Giampaolo Bellavite. All rights reserved.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol ChartDelegate: AnyObject {
+public protocol BaseChartDelegate: AnyObject {
 
     /**
     Tells the delegate that the specified chart has been touched.
@@ -19,7 +19,7 @@ public protocol ChartDelegate: AnyObject {
     - parameter left: The distance from the left side of the chart.
 
     */
-    func didTouchChart(_ chart: Chart, indexes: [Int?], x: Double, left: CGFloat)
+    func didTouchChart(_ chart: BaseChartView, indexes: [Int?], x: Double, left: CGFloat)
 
     /**
     Tells the delegate that the user finished touching the chart. The user will 
@@ -28,7 +28,7 @@ public protocol ChartDelegate: AnyObject {
     - parameter chart: The chart that has been touched.
 
     */
-    func didFinishTouchingChart(_ chart: Chart)
+    func didFinishTouchingChart(_ chart: BaseChartView)
     /**
      Tells the delegate that the user ended touching the chart. The user 
      will "end" touching the chart whenever the touchesDidEnd method is 
@@ -37,7 +37,7 @@ public protocol ChartDelegate: AnyObject {
      - parameter chart: The chart that has been touched.
      
      */
-    func didEndTouchingChart(_ chart: Chart)
+    func didEndTouchingChart(_ chart: BaseChartView)
 }
 
 /**
@@ -54,7 +54,7 @@ public enum ChartLabelOrientation {
 }
 
 @IBDesignable
-open class Chart: UIControl {
+open class BaseChartView: UIControl {
 
     // MARK: Options
 
@@ -180,7 +180,7 @@ open class Chart: UIControl {
     /**
     Delegate for listening to Chart touch events.
     */
-    weak open var delegate: ChartDelegate?
+    weak open var delegate: BaseChartDelegate?
 
     /**
     Custom minimum value for the x-axis.
@@ -347,7 +347,7 @@ open class Chart: UIControl {
         for (index, series) in self.series.enumerated() {
 
             // Separate each line in multiple segments over and below the x axis
-            let segments = Chart.segmentLine(series.data as ChartLineSegment, zeroLevel: series.colors.zeroLevel)
+            let segments = BaseChartView.segmentLine(series.data as ChartLineSegment, zeroLevel: series.colors.zeroLevel)
             
             if drawZeroLevelAxes { drawZeroLevelAxis(zeroLevel: series.colors.zeroLevel) }
             
@@ -763,7 +763,7 @@ open class Chart: UIControl {
             var index: Int? = nil
             let xValues = series.data.map({ (point: ChartPoint) -> Double in
                 return point.x })
-            let closest = Chart.findClosestInValues(xValues, forValue: x)
+            let closest = BaseChartView.findClosestInValues(xValues, forValue: x)
             if closest.lowestIndex != nil && closest.highestIndex != nil {
                 // Consider valid only values on the right
                 index = closest.lowestIndex
@@ -848,7 +848,7 @@ open class Chart: UIControl {
                 let nextPoint = line[i+1]
                 if point.y >= zeroLevel && nextPoint.y < zeroLevel || point.y < zeroLevel && nextPoint.y >= zeroLevel {
                     // The segment intersects zeroLevel, close the segment with the intersection point
-                    let closingPoint = Chart.intersectionWithLevel(point, and: nextPoint, level: zeroLevel)
+                    let closingPoint = BaseChartView.intersectionWithLevel(point, and: nextPoint, level: zeroLevel)
                     segment.append(closingPoint)
                     segments.append(segment)
                     // Start a new segment

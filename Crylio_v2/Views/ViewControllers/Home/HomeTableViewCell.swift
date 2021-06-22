@@ -13,7 +13,7 @@ class HomeTableViewCell: BaseTableViewCell {
     
     static let reuseId = "HomeTableViewCell"
 
-    lazy var backgroundBox = RoundShadowView()
+    lazy var backgroundBox = BackgroundBoxView()
     
     lazy var iconImageView = UIImageView()
     
@@ -101,8 +101,8 @@ class HomeTableViewCell: BaseTableViewCell {
         backgroundBox.snp.makeConstraints { make in
             make.left.equalTo(SAFE_AREA_MARGIN)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(8)
-            make.bottom.equalToSuperview().inset(8)
+            make.top.equalTo(16)
+            make.bottom.equalToSuperview()
         }
         
         iconImageView.snp.makeConstraints { make in

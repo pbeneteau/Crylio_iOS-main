@@ -1,5 +1,5 @@
 //
-//  HoldingsBalanceView.swift
+//  BalanceView.swift
 //  Crylio_v2
 //
 //  Created by Paul Bénéteau on 07/05/2021.
@@ -7,43 +7,29 @@
 
 import UIKit
 
-class HoldingsBalanceView: RoundShadowView {
+class BalanceView: BaseView {
 
-    lazy var title = UILabel()
-    lazy var value = UILabel()
+    lazy var titleLabel = UILabel()
+    lazy var valueLabel = UILabel()
     
     lazy var progressBar = UIProgressView()
     lazy var ath = UILabel()
     lazy var percent = UILabel()
     
- 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = AppColors.background.secondary
-        
-        layer.cornerRadius = 10
-        
-        title.font = .systemFont(ofSize: 13)
-        value.font = .systemFont(ofSize: 26, weight: .bold)
+        backgroundColor = .clear
+                
+        titleLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        valueLabel.font = .systemFont(ofSize: 26, weight: .bold)
         percent.font = .systemFont(ofSize: 13, weight: .medium)
-        ath.font = .systemFont(ofSize: 13)
+        ath.font = .systemFont(ofSize: 13, weight: .medium)
 
-        title.textColor = AppColors.label.secondary
-        value.textColor = AppColors.label.primary
+        titleLabel.textColor = AppColors.label.secondary
+        valueLabel.textColor = AppColors.label.primary
         percent.textColor = AppColors.label.primary
         ath.textColor = AppColors.label.secondary
         
@@ -51,15 +37,15 @@ class HoldingsBalanceView: RoundShadowView {
         percent.textAlignment = .center
         
         progressBar.progressTintColor = .systemTeal
-        progressBar.trackTintColor = AppColors.label.secondary
+        progressBar.trackTintColor = AppColors.background.tertiary
         progressBar.clipsToBounds = true
         progressBar.progressViewStyle = .bar
         
-        title.text = "Current Balance"
+        titleLabel.text = "Current Balance"
         ath.text = "ATH"
         
-        addSubview(title)
-        addSubview(value)
+        addSubview(titleLabel)
+        addSubview(valueLabel)
         addSubview(progressBar)
         addSubview(percent)
         addSubview(ath)
@@ -67,12 +53,12 @@ class HoldingsBalanceView: RoundShadowView {
     }
     
     override func layoutSubviews() {
-        
         super.layoutSubviews()
-        progressBar.layer.cornerRadius = progressBar.frame.height / 2
+        
+        progressBar.layer.cornerRadius = progressBar.frame.height/2
         
         percent.snp.remakeConstraints { make in
-            make.centerX.equalTo(progressBar.subviews[1].frame.maxX + 16)
+            make.centerX.equalTo(min(progressBar.subviews[1].frame.maxX+16, ath.frame.minX-percent.frame.width/2-5))
             make.top.equalTo(progressBar.snp.bottom).offset(5)
             make.width.equalTo(percent.intrinsicContentSize.width)
             make.height.equalTo(16)
@@ -84,20 +70,20 @@ class HoldingsBalanceView: RoundShadowView {
 
 // CONSTRAINTS
 
-extension HoldingsBalanceView {
+extension BalanceView {
     
     override func updateConstraints() {
         
-        title.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
             make.top.equalTo(CONTENT_TOP_MARGIN)
-            make.width.equalTo(title.intrinsicContentSize.width)
+            make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.height.equalTo(16)
         }
         
-        value.snp.makeConstraints { make in
+        valueLabel.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(title.snp.bottom).offset(5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.height.equalTo(31)
         }
@@ -105,7 +91,7 @@ extension HoldingsBalanceView {
         progressBar.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(value.snp.bottom).offset(15)
+            make.top.equalTo(valueLabel.snp.bottom).offset(15)
             make.height.equalTo(8)
         }
         

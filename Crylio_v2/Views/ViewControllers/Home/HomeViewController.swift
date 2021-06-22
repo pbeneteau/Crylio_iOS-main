@@ -34,6 +34,7 @@ class HomeViewController: BaseViewController {
         blurredView.alpha = 0
         
         header.shadowOpacity = 0.15
+        header.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeader(_:))))
         
         gainersLosersLabel.font = .systemFont(ofSize: 20, weight: .bold)
         gainersLosersLabel.text = "Gainers & Losers"
@@ -57,7 +58,7 @@ class HomeViewController: BaseViewController {
         cryptosTableView.separatorStyle = .none
         cryptosTableView.keyboardDismissMode = .onDrag
         cryptosTableView.tableHeaderView = searchBar
-        cryptosTableView.contentInset = UIEdgeInsets(top: 512.0, left: 0, bottom: 100, right: 0)
+        cryptosTableView.contentInset = UIEdgeInsets(top: 505, left: 0, bottom: 100, right: 0)
         cryptosTableView.contentOffset.y = -cryptosTableView.contentInset.top
         cryptosTableView.contentInsetAdjustmentBehavior = .never
         cryptosTableView.showsVerticalScrollIndicator = false
@@ -73,7 +74,6 @@ class HomeViewController: BaseViewController {
         view.addSubview(subMenuView)
         view.addSubview(header)
         
-        
         loadCryptos()
     }
     
@@ -83,30 +83,6 @@ class HomeViewController: BaseViewController {
     }
     
     func loadCryptos() {
-        
-        let crypto1: Cryptocurrency = Cryptocurrency(id: 0,
-                                                     name: "Bitcoin",
-                                                     slug: "bitcoin",
-                                                     symbol: "BTC",
-                                                     description: "Bitcoin is first.",
-                                                     balance: 343492.98,
-                                                     amount: 11.2,
-                                                     price: 34467.15,
-                                                     change: -4.56,
-                                                     iconURL: "https://s2.coinmarketcap.com/static/img/coins/128x128/1.png",
-                                                     marketStats: CryptoMarketStats(volume24: 115149016927.31, volume24Change: 2.61, marketCap: 625760348347.31, marketCapChange: 2.61, availableSupply: 45425790652.52, availableSupplyChange: 1.5, totalSupply: 100000000000.62))!
-        
-        let crypto2: Cryptocurrency = Cryptocurrency(id: 1,
-                                                     name: "Ripple",
-                                                     slug: "ripple",
-                                                     symbol: "XRP",
-                                                     description: "XRP is second.",
-                                                     balance: 34392.62,
-                                                     amount: 62923.55,
-                                                     price: 1.45,
-                                                     change: 12.52,
-                                                     iconURL: "https://s2.coinmarketcap.com/static/img/coins/128x128/52.png",
-                                                     marketStats: CryptoMarketStats(volume24: 115149016927.31, volume24Change: 2.61, marketCap: 625760348347.31, marketCapChange: 2.61, availableSupply: 45425790652.52, availableSupplyChange: 1.5, totalSupply: 100000000000.62))!
         
         cryptos += [crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1]
         filteredCryptos = cryptos
@@ -133,12 +109,12 @@ class HomeViewController: BaseViewController {
     
     private func setCryptosTableViewSearchOffset() {
         
-                if searchActive {
-                    cryptosTableView.setContentOffset(CGPoint(x: 0, y: 180), animated: true)
-                } else {
-                    searchBar.endEditing(true)
-                    cryptosTableView.setContentOffset(CGPoint(x: 0, y: savedYOffset ?? cryptosTableView.contentInset.top), animated: true)
-                }
+        if searchActive {
+            cryptosTableView.setContentOffset(CGPoint(x: 0, y: 180), animated: true)
+        } else {
+            searchBar.endEditing(true)
+            cryptosTableView.setContentOffset(CGPoint(x: 0, y: savedYOffset ?? cryptosTableView.contentInset.top), animated: true)
+        }
     }
     
 }
@@ -158,14 +134,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             fatalError("The dequeued cell is not an instance of gainersLosersCollectionView.")
         }
         
-        cell.symbolLabel.text = gainersLosers[indexPath.row].symbol
-        cell.nameLabel.text = gainersLosers[indexPath.row].name
-        cell.priceLabel.text = gainersLosers[indexPath.row].price.toDollarString()
-        cell.changeLabel.setPercentMutableString(value: gainersLosers[indexPath.row].change, colors: true)
-        cell.iconImageView.setImage(from: gainersLosers[indexPath.row].iconURL)
-        cell.symbolLabel.text = gainersLosers[indexPath.row].symbol
-        cell.lineChartView.lineColor = cell.changeLabel.textColor
+        let chartData: [Double] = (1...40).map {_ in Double.random(in: 300...600)}
+        let data = GainersLosersCollectionViewCellModel(
+            iconUrl: gainersLosers[indexPath.row].iconURL,
+            symbol: gainersLosers[indexPath.row].symbol,
+            name: gainersLosers[indexPath.row].name,
+            price: gainersLosers[indexPath.row].price,
+            change: gainersLosers[indexPath.row].change,
+            chartData: chartData)
         
+        cell.configure(with: data)
         cell.iconImageView.kf.cancelDownloadTask()
         cell.layoutIfNeeded()
         
@@ -188,6 +166,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 
+// MARK: - Gestures delegate
+
+extension HomeViewController {
+    
+    @objc func didTapHeader(_ sender: UITapGestureRecognizer) {
+        
+        let controller = PortfolioDetailViewController()
+        controller.title = "Main Portfolio"
+        
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
 
 // MARK: - Table view delegate and datasource
 
@@ -195,7 +186,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchActive == true {
+        if searchActive == true && searchBar.text != "" {
             return filteredCryptos.count
         }
         return cryptos.count
@@ -203,7 +194,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 80
+        return 85
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -212,14 +203,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("The dequeued cell is not an instance of HomeTableViewCell.")
         }
         
-        if searchActive == true {
+        if searchActive == true && searchBar.text != "" {
             cell.crypto = filteredCryptos[indexPath.row]
         } else {
             cell.crypto = cryptos[indexPath.row]
         }
         
         cell.iconImageView.kf.cancelDownloadTask()
-        cell.layoutIfNeeded()
         
         return cell
     }
@@ -247,7 +237,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func updateContentOffset(_ yOffset: CGFloat) {
-                
+        
         header.snp.updateConstraints { make in
             make.height.equalTo(min(max(150-yOffset, 50), 150))
         }
@@ -329,7 +319,7 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredCryptos = cryptos.filter { $0.name.localizedCaseInsensitiveContains(searchText) || $0.symbol.localizedCaseInsensitiveContains(searchText)}
@@ -383,7 +373,7 @@ extension HomeViewController {
         subMenuView.snp.remakeConstraints { make in
             make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(458)
+            make.top.equalTo(460)
             make.height.equalTo(35)
         }
         

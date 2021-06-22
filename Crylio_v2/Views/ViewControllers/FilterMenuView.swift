@@ -21,7 +21,7 @@ enum FilterOrderingMode {
 }
 
 
-class FilterMenuView: UIView {
+class FilterMenuView: BaseView {
     
     lazy var nameFilterButton = RoundCornersButton()
     lazy var holdingsFilterButton = RoundCornersButton()
@@ -31,19 +31,8 @@ class FilterMenuView: UIView {
     
     var filterOrder: FilterOrderingMode = .descending
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         

@@ -24,17 +24,8 @@ class TransactionCellView: BaseView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         transactionTypeLabel.font = .systemFont(ofSize: 17)
         
@@ -156,10 +147,10 @@ class TransactionCellView: BaseView {
 }
 
 
-final class TransactionCellDetailView: BaseView, ChartDelegate {
+final class TransactionCellDetailView: BaseView, BaseChartDelegate {
     
     lazy var stackView = UIStackView()
-    lazy var chartView = Chart()
+    lazy var chartView = BaseChartView()
     lazy var dataView = UIView()
     lazy var pnlLabel = UILabel()
     lazy var worthLabel = UILabel()
@@ -171,17 +162,8 @@ final class TransactionCellDetailView: BaseView, ChartDelegate {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         stackView.clipsToBounds = true
         stackView.axis = .vertical
@@ -227,20 +209,21 @@ final class TransactionCellDetailView: BaseView, ChartDelegate {
         let pnlTitleString = transaction.allTimePNL >= 0 ? "Profit\n": "Loss\n"
         let pnlValueString = "\(transaction.allTimeChange.toPercentString()) (\(transaction.allTimePNL.toDollarString()))"
                 
-        let pnlAttriText = NSMutableAttributedString(string: pnlTitleString + pnlValueString, attributes: [NSAttributedString.Key.foregroundColor: accentColor])
+        pnlLabel.setAttributedText(with: pnlTitleString + pnlValueString, attributedStrings: [
+                                    AttributedStringsParameters(text: pnlTitleString,
+                                                                font: UIFont.systemFont(ofSize: 13, weight: .regular),
+                                                                color: AppColors.label.secondary),
+                                    AttributedStringsParameters(text: pnlValueString,
+                                                                font: .systemFont(ofSize: 17),
+                                                                color: accentColor)])
         
-        pnlAttriText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 13, weight: .regular), range: NSRange(location:0, length: pnlTitleString.count))
-        
-        pnlAttriText.addAttribute(NSAttributedString.Key.foregroundColor, value: AppColors.label.secondary, range: NSRange(location:0, length: pnlTitleString.count))
-        
-        let worthAttriText = NSMutableAttributedString(string: "Current value\n" + transaction.currentValue.toDollarString(), attributes: [NSAttributedString.Key.foregroundColor: AppColors.label.primary])
-        
-        worthAttriText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 13, weight: .regular), range: NSRange(location:0, length:"Current value".count))
-        
-        worthAttriText.addAttribute(NSAttributedString.Key.foregroundColor, value: AppColors.label.secondary, range: NSRange(location:0, length:"Current value".count))
-        
-        pnlLabel.attributedText = pnlAttriText
-        worthLabel.attributedText = worthAttriText
+        worthLabel.setAttributedText(with: "Current value\n" + transaction.currentValue.toDollarString(), attributedStrings: [
+                                    AttributedStringsParameters(text: "Current value\n",
+                                                                font: UIFont.systemFont(ofSize: 13, weight: .regular),
+                                                                color: AppColors.label.secondary),
+                                    AttributedStringsParameters(text: transaction.currentValue.toDollarString(),
+                                                                font: .systemFont(ofSize: 17),
+                                                                color: AppColors.label.primary)])
         updateChartData()
     }
     
@@ -275,11 +258,10 @@ final class TransactionCellDetailView: BaseView, ChartDelegate {
             }
             
         }
-        
         chartView.add(series)
     }
     
-    func didTouchChart(_ chart: Chart, indexes: Array<Int?>, x: Double, left: CGFloat) {
+    func didTouchChart(_ chart: BaseChartView, indexes: Array<Int?>, x: Double, left: CGFloat) {
         
         for (seriesIndex, dataIndex) in indexes.enumerated() {
             if dataIndex != nil {
@@ -299,11 +281,11 @@ final class TransactionCellDetailView: BaseView, ChartDelegate {
         }
     }
     
-    func didFinishTouchingChart(_ chart: Chart) {
+    func didFinishTouchingChart(_ chart: BaseChartView) {
         highlightedValueLabel.isHidden = true
     }
     
-    func didEndTouchingChart(_ chart: Chart) {
+    func didEndTouchingChart(_ chart: BaseChartView) {
         highlightedValueLabel.isHidden = true
     }
     

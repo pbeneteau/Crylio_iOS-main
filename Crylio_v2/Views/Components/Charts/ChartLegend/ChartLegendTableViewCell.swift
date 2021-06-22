@@ -10,13 +10,13 @@ import UIKit
 
 class ChartLegendTableViewCell: UITableViewCell {
     
-    static let reuseId = "LegendCell"
+    static let reuseId = "ChartLegendTableViewCell"
     
     lazy var dotView = UIView()
-    lazy var nameLabel = UILabel()
+    lazy var titleLabel = UILabel()
     lazy var valueLabel = UILabel()
     
-    var value: PieChartValue! {
+    var value: ChartLegendItem! {
         didSet {
             updateValues()
         }
@@ -44,16 +44,16 @@ class ChartLegendTableViewCell: UITableViewCell {
         
         dotView.layer.cornerRadius = 2
         
-        nameLabel.textColor = AppColors.label.secondary
+        titleLabel.textColor = AppColors.label.secondary
         valueLabel.textColor = AppColors.label.primary
         
-        nameLabel.font = .systemFont(ofSize: 15)
+        titleLabel.font = .systemFont(ofSize: 15)
         valueLabel.font = .systemFont(ofSize: 15)
         
         valueLabel.textAlignment = .right
         
         addSubview(dotView)
-        addSubview(nameLabel)
+        addSubview(titleLabel)
         addSubview(valueLabel)
         
         setNeedsUpdateConstraints()
@@ -61,9 +61,9 @@ class ChartLegendTableViewCell: UITableViewCell {
     
     private func updateValues() {
         
-        dotView.backgroundColor = value.color
-        nameLabel.text = value.name
-        valueLabel.text = value.value.toPercentString()
+        dotView.backgroundColor = value.accentColor
+        titleLabel.text = value.title
+        valueLabel.text = value.value
     }
 
 }
@@ -80,7 +80,7 @@ extension ChartLegendTableViewCell {
             make.height.width.equalTo(10)
         }
         
-        nameLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.left.equalTo(dotView.snp.right).offset(8)
             make.right.equalTo(contentView.snp.centerX).inset(8)
             make.centerY.equalToSuperview().inset(2)

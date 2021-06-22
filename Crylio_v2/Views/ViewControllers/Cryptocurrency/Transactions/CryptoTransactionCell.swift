@@ -12,7 +12,7 @@ class CryptoTransactionCell: BaseTableViewCell {
     
     static let reuseId = "CryptoTransactionCell"
     
-    lazy var backgroundBox = RoundShadowView()
+    lazy var backgroundBox = BackgroundBoxView()
     lazy var cellView = TransactionCellView()
     lazy var detailView = TransactionCellDetailView()
     

@@ -8,17 +8,37 @@
 import UIKit
 
 
+class GainersLosersCollectionViewCellModel: NSObject {
+
+    var iconUrl: String
+    var symbol: String
+    var name: String
+    var price: Float
+    var change: Float
+    var chartData: [Double]
+    
+    internal init(iconUrl: String, symbol: String, name: String, price: Float, change: Float, chartData: [Double]) {
+        self.iconUrl = iconUrl
+        self.symbol = symbol
+        self.name = name
+        self.price = price
+        self.change = change
+        self.chartData = chartData
+    }
+}
+
+
 class GainersLosersCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "GainersLosersCollectionViewCell"
     
-    lazy var backgroundBox = RoundShadowView()
+    lazy var backgroundBox = BackgroundBoxView()
     lazy var iconImageView = UIImageView()
     lazy var symbolLabel = UILabel()
     lazy var nameLabel = UILabel()
     lazy var priceLabel = UILabel()
     lazy var changeLabel = UILabel()
-    lazy var lineChartView = CustomLineChartView()
+    lazy var chartView = BaseChartView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,11 +62,11 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
         
         nameLabel.textColor = AppColors.label.secondary
         
-        lineChartView.lineColor = .white
-        lineChartView.lineWidth = 1
-        lineChartView.fillColor = .clear
-        lineChartView.shadow = false
-        lineChartView.pointEntries = generateRandomEntries()
+        chartView.axesColor = .clear
+        chartView.lineWidth = 1.5
+        chartView.showXLabelsAndGrid = false
+        chartView.showYLabelsAndGrid = false
+        chartView.isUserInteractionEnabled = false
         
         contentView.addSubview(backgroundBox)
         backgroundBox.addSubview(iconImageView)
@@ -54,23 +74,35 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
         backgroundBox.addSubview(nameLabel)
         backgroundBox.addSubview(priceLabel)
         backgroundBox.addSubview(changeLabel)
-        backgroundBox.addSubview(lineChartView)
+        backgroundBox.addSubview(chartView)
     }
     
-    private func generateRandomEntries() -> [PointEntry] {
+    func configure(with data: GainersLosersCollectionViewCellModel) {
         
-        var result: [PointEntry] = []
-        for i in 0..<40 {
-            let value = Float.random(in: 50000...100000)
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "d MMM"
-            var date = Date()
-            date.addTimeInterval(TimeInterval(24*60*60*i))
-            
-            result.append(PointEntry(value: value, label: formatter.string(from: date)))
+        iconImageView.setImage(from: data.iconUrl)
+        symbolLabel.text = data.symbol
+        nameLabel.text = data.name
+        priceLabel.text = data.price.toDollarString()
+        changeLabel.setPercentMutableString(value: data.change, colors: true)
+        
+        updateChartData(with: data.chartData, change: data.change)
+    }
+    
+    func updateChartData(with data: [Double], change: Float) {
+        
+        chartView.removeAllSeries()
+                
+        let series = ChartSeries(data)
+        series.area = false
+        
+        if  change >= 0 {
+            chartView.drawZeroLevelAxes = false
+            series.color = AppColors.accent.green
+        } else {
+            chartView.drawZeroLevelAxes = false
+            series.color = AppColors.accent.red
         }
-        return result
+        chartView.add(series)
     }
 }
 
@@ -82,9 +114,8 @@ extension GainersLosersCollectionViewCell {
     override func layoutIfNeeded() {
         
         backgroundBox.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.left.top.bottom.equalToSuperview()
             make.right.equalToSuperview().inset(10)
-            make.top.bottom.equalToSuperview()
         }
         
         iconImageView.snp.makeConstraints { make in
@@ -121,9 +152,9 @@ extension GainersLosersCollectionViewCell {
             make.height.equalTo(18)
         }
         
-        lineChartView.snp.makeConstraints { make in
+        chartView.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(changeLabel.snp.bottom).offset(2)
+            make.top.equalTo(changeLabel.snp.bottom)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.bottom.equalToSuperview()
         }

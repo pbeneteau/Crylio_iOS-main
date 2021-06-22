@@ -7,12 +7,8 @@
 
 import UIKit
 
-class MarketStatsView: UIView {
-    
-    lazy var titleLabel = UILabel()
-    
-    lazy var backgroundBoxView = RoundShadowView()
-    
+class MarketStatsView: BackgroundBoxWithTitleView {
+            
     lazy var volumeIcon = UIImageView(image: UIImage(named: "volumeIcon")!.withRenderingMode(.alwaysTemplate))
     lazy var marketCapIcon = UIImageView(image: UIImage(named: "marketCapIcon")!.withRenderingMode(.alwaysTemplate))
     lazy var availableSupplyIcon = UIImageView(image: UIImage(named: "availableSupplyIcon")!.withRenderingMode(.alwaysTemplate))
@@ -32,59 +28,38 @@ class MarketStatsView: UIView {
     
     var marketStats: CryptoMarketStats! {
         didSet {
-            initValues()
+            updateValues()
         }
     }
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
-        
-        backgroundColor = .clear
-        backgroundBoxView.backgroundColor = AppColors.background.secondary
-        
-        backgroundBoxView.layer.cornerRadius = 10
-        
+                
         titleLabel.text = "Market Stats"
         
         volume24TitleLabel.text = "Volume 24h"
         marketCapTitleLabel.text = "Market Cap"
         availableSupplyTitleLabel.text = "Available Supply"
         totalSupplyTitleLabel.text = "Total Supply"
-        
-        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
-        
-        volume24TitleLabel.font = .systemFont(ofSize: 13)
+                
+        volume24TitleLabel.font = .systemFont(ofSize: 13, weight: .medium)
         volume24Label.font = .systemFont(ofSize: 17, weight: .medium)
-        volume24ChangeLabel.font = .systemFont(ofSize: 15)
-        marketCapTitleLabel.font = .systemFont(ofSize: 13)
+        volume24ChangeLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        marketCapTitleLabel.font = .systemFont(ofSize: 13, weight: .medium)
         marketCapLabel.font = .systemFont(ofSize: 17, weight: .medium)
-        marketCapChangeLabel.font = .systemFont(ofSize: 15)
-        availableSupplyTitleLabel.font = .systemFont(ofSize: 13)
+        marketCapChangeLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        availableSupplyTitleLabel.font = .systemFont(ofSize: 13, weight: .medium)
         availableSupplyLabel.font = .systemFont(ofSize: 17, weight: .medium)
-        availableSupplyChangeLabel.font = .systemFont(ofSize: 15)
-        totalSupplyTitleLabel.font = .systemFont(ofSize: 13)
+        availableSupplyChangeLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        totalSupplyTitleLabel.font = .systemFont(ofSize: 13, weight: .medium)
         totalSupplyLabel.font = .systemFont(ofSize: 17, weight: .medium)
-        
-        titleLabel.textColor = .label
-        
-        volume24TitleLabel.textColor = .systemGray
-        marketCapTitleLabel.textColor = .systemGray
-        availableSupplyTitleLabel.textColor = .systemGray
-        totalSupplyTitleLabel.textColor = .systemGray
+                
+        volume24TitleLabel.textColor = AppColors.label.secondary
+        marketCapTitleLabel.textColor = AppColors.label.secondary
+        availableSupplyTitleLabel.textColor = AppColors.label.secondary
+        totalSupplyTitleLabel.textColor = AppColors.label.secondary
         
         volume24ChangeLabel.textAlignment = .right
         marketCapChangeLabel.textAlignment = .right
@@ -94,30 +69,28 @@ class MarketStatsView: UIView {
         marketCapIcon.tintColor = AppColors.icon
         availableSupplyIcon.tintColor = AppColors.icon
         totalSupplyIcon.tintColor = AppColors.icon
-                
-        addSubview(titleLabel)
-        addSubview(backgroundBoxView)
+                        
+        addSubview(volumeIcon)
+        addSubview(marketCapIcon)
+        addSubview(availableSupplyIcon)
+        addSubview(totalSupplyIcon)
         
-        backgroundBoxView.addSubview(volumeIcon)
-        backgroundBoxView.addSubview(marketCapIcon)
-        backgroundBoxView.addSubview(availableSupplyIcon)
-        backgroundBoxView.addSubview(totalSupplyIcon)
+        addSubview(volume24TitleLabel)
+        addSubview(volume24Label)
+        addSubview(volume24ChangeLabel)
+        addSubview(marketCapTitleLabel)
+        addSubview(marketCapLabel)
+        addSubview(marketCapChangeLabel)
+        addSubview(availableSupplyTitleLabel)
+        addSubview(availableSupplyLabel)
+        addSubview(availableSupplyChangeLabel)
+        addSubview(totalSupplyTitleLabel)
+        addSubview(totalSupplyLabel)
         
-        backgroundBoxView.addSubview(volume24TitleLabel)
-        backgroundBoxView.addSubview(volume24Label)
-        backgroundBoxView.addSubview(volume24ChangeLabel)
-        backgroundBoxView.addSubview(marketCapTitleLabel)
-        backgroundBoxView.addSubview(marketCapLabel)
-        backgroundBoxView.addSubview(marketCapChangeLabel)
-        backgroundBoxView.addSubview(availableSupplyTitleLabel)
-        backgroundBoxView.addSubview(availableSupplyLabel)
-        backgroundBoxView.addSubview(availableSupplyChangeLabel)
-        backgroundBoxView.addSubview(totalSupplyTitleLabel)
-        backgroundBoxView.addSubview(totalSupplyLabel)
-        
+        setNeedsUpdateConstraints()
     }
     
-    func initValues() {
+    func updateValues() {
         
         volume24Label.setDollarMutableString(value: marketStats.volume24, precision: 0)
         volume24ChangeLabel.setPercentMutableString(value: marketStats.volume24Change, colors: true)
@@ -126,28 +99,16 @@ class MarketStatsView: UIView {
         availableSupplyLabel.setAmountMutableString(value: marketStats.availableSupply)
         availableSupplyChangeLabel.setPercentMutableString(value: marketStats.availableSupplyChange, colors: true)
         totalSupplyLabel.setAmountMutableString(value: marketStats.totalSupply)
-        
     }
     
-    override func updateConstraints() {
-        
-        titleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.top.equalToSuperview()
-            make.height.equalTo(22)
-        }
-        
-        backgroundBoxView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(15)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-10)
-        }
+    // MARK: - Constraints
+    
+    override func makeConstraints() {
+        super.makeConstraints()
         
         volumeIcon.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+            make.top.equalTo(titleLabel.snp.bottom).offset(25)
             make.width.height.equalTo(32)
         }
         volume24TitleLabel.snp.makeConstraints { make in
@@ -234,13 +195,6 @@ class MarketStatsView: UIView {
             make.width.equalTo(totalSupplyLabel.intrinsicContentSize.width)
             make.height.equalTo(20)
         }
-        
-        super.updateConstraints()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Manually set subview frames here
-    }
 }

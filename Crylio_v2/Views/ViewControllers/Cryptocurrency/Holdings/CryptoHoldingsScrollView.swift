@@ -12,7 +12,7 @@ import SnapKit
 class CryptoHoldingsScrollView: UIScrollView {
 
     lazy var contentView = UIView()
-    lazy var balanceView = HoldingsBalanceView()
+    lazy var balanceView = BalanceView()
     lazy var costView = HoldingsStatView()
     lazy var amountView = HoldingsStatView()
     lazy var profitLossView = HoldingsStatView()
@@ -23,12 +23,6 @@ class CryptoHoldingsScrollView: UIScrollView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        commonInit()
-    }
-    
-    init() {
-        super.init(frame: CGRect.zero)
-                
         commonInit()
     }
     
@@ -48,7 +42,6 @@ class CryptoHoldingsScrollView: UIScrollView {
         contentView.backgroundColor = .clear
         
         addSubview(contentView)
-        
         contentView.addSubview(balanceView)
         contentView.addSubview(costView)
         contentView.addSubview(amountView)
@@ -70,7 +63,7 @@ class CryptoHoldingsScrollView: UIScrollView {
             profitLossView.title.text = "Loss"
         }
         
-        balanceView.value.setDollarMutableString(value: 13415.42)
+        balanceView.valueLabel.text = Float(13415.42).toDollarString()
         balanceView.progressBar.progress = 0.63
         balanceView.percent.text = Float(0.63*100).toPercentString()
         costView.value.text = Float(6421.74).toDollarString()
@@ -80,19 +73,14 @@ class CryptoHoldingsScrollView: UIScrollView {
     }
     
     func updateInsets(menuMaxY: CGFloat) {
+        
         contentInset = UIEdgeInsets(top: menuMaxY, left: 0, bottom: 0, right: 0)
         scrollIndicatorInsets = UIEdgeInsets(top: menuMaxY-20, left: 0, bottom: 0, right: 0)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        resizeScrollViewContent()
-    }
-
     func resizeScrollViewContent() {
         
-        contentSize = CGSize(width: frame.width, height: distributionView.frame.maxY + contentInset.top)
+        contentSize.height += contentInset.top
     }
 }
 

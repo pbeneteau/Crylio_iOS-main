@@ -15,17 +15,10 @@ struct BarValue {
 }
 
 
-class DistributionBar: RoundShadowView {
+class DistributionBar: BackgroundBoxView {
     
     var items = [BarValue]()
-    
     var bars = [UIView]()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
     
     init(values: [BarValue]) {
         super.init(frame: CGRect.zero)
@@ -35,13 +28,12 @@ class DistributionBar: RoundShadowView {
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-    private func commonInit() {
+    
+    override func commonInit() {
+        super.commonInit()
         
         layer.cornerRadius = 7
         layer.masksToBounds = true

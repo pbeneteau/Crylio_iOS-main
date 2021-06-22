@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 
-class HomeHeaderView: RoundShadowView {
+class HomeHeaderView: BackgroundBoxView {
     
     lazy var portfolioLabel = UILabel()
     lazy var changeLabel = UILabel()
@@ -20,19 +20,8 @@ class HomeHeaderView: RoundShadowView {
     
     var chartInitialized = false
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
@@ -109,16 +98,6 @@ class HomeHeaderView: RoundShadowView {
         }
         
         changeLabel.textColor = .white
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-//        if !chartInitialized && frame.height != 0 {
-//            lineChart.update()
-//            chartInitialized = true
-//        }
-        
     }
     
     func updateLayout(_ delta: CGFloat) {

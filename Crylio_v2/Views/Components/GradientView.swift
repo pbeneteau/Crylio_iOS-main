@@ -124,6 +124,7 @@ class GradientView: UIView {
 	// MARK: - UIView
 
 	override open func draw(_ rect: CGRect) {
+        
 		let context = UIGraphicsGetCurrentContext()
 		let size = bounds.size
 

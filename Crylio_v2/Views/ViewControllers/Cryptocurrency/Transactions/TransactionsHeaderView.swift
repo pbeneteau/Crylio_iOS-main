@@ -24,6 +24,7 @@ class TransactionsHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configure() {
+        
         backgroundView?.backgroundColor = .clear
         backgroundView?.layer.masksToBounds = false
         layer.masksToBounds = false

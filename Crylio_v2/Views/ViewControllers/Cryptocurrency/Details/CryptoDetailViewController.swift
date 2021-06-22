@@ -55,7 +55,7 @@ class CryptoDetailViewController: BaseViewController {
 
 // MARK: - Chart view delegate
 
-extension CryptoDetailViewController: ChartViewDelegate {
+extension CryptoDetailViewController: CryptoDetailsChartViewDelegate {
 
     func chartViewDoubleTapped() {
 

@@ -19,10 +19,9 @@ class CryptocurrencyViewController: BaseViewController, UIGestureRecognizerDeleg
     lazy var navigationTopBar = NavigationTopBarView()
     lazy var header = CryptoHeaderView()
     lazy var menu = CryptoMenuView(items: ["Details", "Holding", "News", "Transactions"])
-    lazy var addTransactionButton = RoundShadowView()
+    lazy var addTransactionButton = BackgroundBoxView()
 
     lazy var menuScrollView: UIScrollView = {
-        
         let view = UIScrollView()
         view.delegate = self
         view.isPagingEnabled = true
@@ -31,7 +30,6 @@ class CryptocurrencyViewController: BaseViewController, UIGestureRecognizerDeleg
         view.backgroundColor = .clear
         view.bounces = false
         view.contentSize = CGSize(width: 1, height: 1)
-        
         if #available(iOS 11.0, *) {
             view.contentInsetAdjustmentBehavior = .never
         }
@@ -159,30 +157,30 @@ extension CryptocurrencyViewController: ScrollViewDidScrollDelegate, UIScrollVie
 extension CryptocurrencyViewController {
     
     func updateOtherScrollViewsOffset(yOffset: CGFloat) {
-                
-        let newOffset = min(-131, yOffset)
+                        
+        let newOffset = min(-150, yOffset)
 
         if displayedVCTag != 0 {
-            if detailVC.scrollView.contentOffset.y <= -131 || menu.frame.maxY > 131 {
+            if detailVC.scrollView.contentOffset.y <= -150 || menu.frame.maxY > 150 {
                 detailVC.scrollView.contentOffset.y = newOffset
                 detailVC.blurredHeaderViewAlpha = 0
             }
         }
         if displayedVCTag != 1 {
-            if holdingsVC.scrollView.contentOffset.y <= -131 || menu.frame.maxY > 131 {
+            if holdingsVC.scrollView.contentOffset.y <= -150 || menu.frame.maxY > 150 {
                 holdingsVC.scrollView.contentOffset.y = newOffset
                 holdingsVC.blurredHeaderViewAlpha = 0
             }
             
         }
         if displayedVCTag != 2 {
-            if ordersVC.tableView.contentOffset.y <= -131 || menu.frame.maxY > 131 {
+            if ordersVC.tableView.contentOffset.y <= -150 || menu.frame.maxY > 150 {
                 ordersVC.tableView.contentOffset.y = newOffset
                 ordersVC.blurredHeaderViewAlpha = 0
             }
         }
         if displayedVCTag != 3 {
-            if transactionsVC.tableView.contentOffset.y <= -131 || menu.frame.maxY > 131 {
+            if transactionsVC.tableView.contentOffset.y <= -150 || menu.frame.maxY > 150 {
                 transactionsVC.tableView.contentOffset.y = newOffset
                 transactionsVC.blurredHeaderViewAlpha = 0
             }

@@ -76,13 +76,12 @@ class CryptoNewsFeedViewController: BaseViewController {
         tableView.addSubview(refreshControl)
         tableView.showsVerticalScrollIndicator = false
 
-
         view.addSubview(tableView)
     }
     
     func updateInsets(menuMaxY: CGFloat) {
         
-        tableView.contentInset = UIEdgeInsets(top: menuMaxY, left: 0, bottom: view.frame.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: menuMaxY, left: 0, bottom: 0, right: 0)
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: menuMaxY, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -tableView.contentInset.top)
     }

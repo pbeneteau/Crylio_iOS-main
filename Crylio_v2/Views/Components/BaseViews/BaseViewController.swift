@@ -22,12 +22,12 @@ class BaseViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.setAnimationsEnabled(true)
+        //UIView.setAnimationsEnabled(true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         
-        UIView.setAnimationsEnabled(false)
+        //UIView.setAnimationsEnabled(false)
         
         super.viewDidDisappear(animated)
     }
@@ -46,7 +46,6 @@ class BaseViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        initColors()
     }
     
 

@@ -9,52 +9,35 @@ import UIKit
 import WebKit
 
 
-protocol ChartViewDelegate: AnyObject {
+protocol CryptoDetailsChartViewDelegate: AnyObject {
     
     func chartViewDoubleTapped()
 }
 
-
-class ChartView: UIView, UIGestureRecognizerDelegate {
+class ChartView: BackgroundBoxView, UIGestureRecognizerDelegate {
         
-    lazy var backgroundBox = RoundShadowView()
-
     lazy var chartView = WKWebView()
     lazy var dateRangePicker = UISegmentedControl(items: ["1d", "1m", "3m", "1y", "all"])
     
-    weak var delegate: ChartViewDelegate!
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
+    weak var delegate: CryptoDetailsChartViewDelegate!
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
-                
         backgroundColor = .clear
         
-        backgroundBox.backgroundColor = AppColors.background.secondary
-        
+        chartView.backgroundColor = .clear
         chartView.allowsBackForwardNavigationGestures = false
         chartView.scrollView.isScrollEnabled = false
         chartView.scrollView.showsVerticalScrollIndicator = false
-        chartView.backgroundColor = .clear
         chartView.scrollView.bounces = false
         chartView.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
         chartView.scrollView.contentInsetAdjustmentBehavior = .never
         chartView.navigationDelegate = self
         chartView.allowsLinkPreview = false
-        chartView.layer.masksToBounds = true
-        chartView.layer.cornerRadius = 10
+        chartView.clipsToBounds = true
+        chartView.layer.cornerRadius = layer.cornerRadius
         //chartView.isUserInteractionEnabled = false
                 
         let tap = UITapGestureRecognizer(target: self, action: #selector(chartViewDoubleTapped))
@@ -67,9 +50,8 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
         dateRangePicker.backgroundColor = AppColors.background.secondary
         dateRangePicker.selectedSegmentTintColor = AppColors.background.secondary
         
-        addSubview(backgroundBox)
-        backgroundBox.addSubview(chartView)
-        backgroundBox.addSubview(dateRangePicker)
+        addSubview(chartView)
+        addSubview(dateRangePicker)
         
         reloadChart()
     }
@@ -93,10 +75,6 @@ class ChartView: UIView, UIGestureRecognizerDelegate {
 extension ChartView {
     
     override func updateConstraints() {
-        
-        backgroundBox.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         
         chartView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

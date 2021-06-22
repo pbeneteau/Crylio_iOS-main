@@ -11,7 +11,7 @@ class SearchTextFieldTableViewCell: UITableViewCell {
     
     static let reuseId = "SearchTextFieldTableViewCell"
 
-    lazy var selectionView = RoundShadowView()
+    lazy var selectionView = BackgroundBoxView()
     lazy var image = UIImageView()
     lazy var titleLabel = UILabel()
         

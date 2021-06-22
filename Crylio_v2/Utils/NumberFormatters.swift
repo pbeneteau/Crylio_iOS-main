@@ -11,7 +11,6 @@ import UIKit
 
 extension Float {
     
-    
     func toDollarString(sign: Bool = false, precision: Int = 2) -> String {
         
         let formatter = NumberFormatter()

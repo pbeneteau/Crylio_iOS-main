@@ -7,26 +7,15 @@
 
 import UIKit
 
-class SortByButtonView: UIView {
+class SortByButtonView: BaseView {
     
     lazy var sortByButton = UIButton()
     lazy var sortOrderButton = SortOrderButton()
     
     var options = ["Rank", "Change", "Market Cap", "Volume", "Circulating Supply", "Price", "Name"]
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-        
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = AppColors.background.tertiary

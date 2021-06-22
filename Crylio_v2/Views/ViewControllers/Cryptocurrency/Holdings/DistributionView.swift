@@ -9,22 +9,10 @@ import UIKit
 import Charts
 
 
-class DistributionView: UIView {
-    
-    lazy var title = UILabel()
-    
-    lazy var backgroundBox = RoundShadowView()
+class DistributionView: BackgroundBoxWithTitleView {
     
     lazy var statesTitle = UILabel()
-    
     lazy var pieChartView = PieChartView_2()
-    
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
     
     init(onOrder: Float,
          onTrade: Float,
@@ -42,25 +30,15 @@ class DistributionView: UIView {
     }
     
     
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
-                
-        backgroundBox.backgroundColor = AppColors.background.secondary
         
-        title.text = "Distribution"
-        statesTitle.text = "States"
-        
-        title.font = .systemFont(ofSize: 20, weight: .bold)
-        title.textColor = .label
-                
+        titleLabel.text = "Assets States"
         pieChartView.values = ["stacked": 34.42, "on order": 12.95, "available": 48.6, "on trade": 4.03]
-        
-        addSubview(title)
-        addSubview(backgroundBox)
-        backgroundBox.addSubview(statesTitle)
-        
-        backgroundBox.addSubview(pieChartView)
+   
+        addSubview(pieChartView)
     }
 
 }
@@ -72,23 +50,10 @@ extension DistributionView {
     
     override func updateConstraints() {
         
-        title.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.width.equalTo(200)
-            make.top.equalToSuperview()
-            make.height.equalTo(22)
-        }
-        
-        backgroundBox.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(title.snp.bottom).offset(15)
-            make.bottom.equalToSuperview().offset(-10)
-        }
-        
         pieChartView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalToSuperview().offset(20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.height.equalTo(pieChartView.snp.width).multipliedBy(0.4)
         }
 

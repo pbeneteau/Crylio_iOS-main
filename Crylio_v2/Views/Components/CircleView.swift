@@ -9,13 +9,17 @@ import Foundation
 import UIKit
 
 
-public class CircleView: UIView {
+class CircleView: BaseView {
+    
+    override func commonInit() {
+        super.commonInit()
+        
+        layer.masksToBounds = true
+    }
 
     public override func layoutSubviews() {
         super.layoutSubviews()
         
         layer.cornerRadius = bounds.size.width / 2
-        layer.masksToBounds = true
     }
-
 }

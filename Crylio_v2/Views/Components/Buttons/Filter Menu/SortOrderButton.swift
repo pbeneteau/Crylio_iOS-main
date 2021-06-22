@@ -18,26 +18,14 @@ fileprivate enum ProgressKeyFrames: CGFloat {
     case end_2 = 125
   }
 
-class SortOrderButton: UIView {
+class SortOrderButton: BaseView {
     
     lazy var arrowView = ArrowMacawView(frame: CGRect.zero)
     
     var ascendingOrder = true
 
-    // MARK: - init methods
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configure()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        configure()
-    }
-    
-    private func configure() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = AppColors.background.tertiary

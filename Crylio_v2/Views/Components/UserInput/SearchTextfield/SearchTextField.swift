@@ -534,7 +534,7 @@ class SearchTextField: BaseTextField {
     
     fileprivate func addBackground() {
         
-        let bg = RoundShadowView()
+        let bg = BackgroundBoxView()
         
         bg.backgroundColor = AppColors.background.primary
         bg.frame = self.tableView!.bounds

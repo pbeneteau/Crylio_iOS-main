@@ -10,7 +10,17 @@ import UIKit
 class BaseView: UIView {
 
     open var didMakeConstraints = false
-
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func updateConstraints() {
         super.updateConstraints()
         
@@ -21,6 +31,10 @@ class BaseView: UIView {
     }
     
     open func makeConstraints() {
+    }
+    
+    open func commonInit() {
         
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

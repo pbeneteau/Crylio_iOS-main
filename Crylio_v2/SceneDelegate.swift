@@ -23,11 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let homeVC = HomeViewController()
         let marketsVC = MarketViewController()
+        let analysisVC = PortfolioDetailViewController()
 
         homeVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         marketsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        analysisVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
         
-        tabBarVC.viewControllers = [homeVC, marketsVC]
+        tabBarVC.viewControllers = [homeVC, marketsVC, analysisVC]
         
         window.rootViewController = UINavigationController(rootViewController: tabBarVC)
         window.makeKeyAndVisible()

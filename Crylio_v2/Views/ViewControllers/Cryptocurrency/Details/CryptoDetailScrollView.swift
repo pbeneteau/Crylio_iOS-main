@@ -22,7 +22,6 @@ class CryptoDetailScrollView: UIScrollView {
         }
     }
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,10 +42,8 @@ class CryptoDetailScrollView: UIScrollView {
         showsVerticalScrollIndicator = false
         
         backgroundColor = .clear
-        contentView.backgroundColor = .clear
                 
         addSubview(contentView)
-        
         contentView.addSubview(chartView)
         contentView.addSubview(balanceView)
         contentView.addSubview(marketStatsView)
@@ -75,9 +72,8 @@ class CryptoDetailScrollView: UIScrollView {
     
     func resizeScrollViewContent() {
         
-        contentSize = CGSize(width: frame.width, height: aboutView.frame.maxY + contentInset.top)
+        contentSize.height += contentInset.top
     }
-    
 }
 
 

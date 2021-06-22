@@ -128,3 +128,25 @@ extension UIVisualEffectView {
     }
     
 }
+
+struct AttributedStringsParameters {
+    
+    var text: String!
+    var font: UIFont!
+    var color: UIColor!
+}
+
+extension UILabel {
+    
+    func setAttributedText(with fullText: String, attributedStrings: [AttributedStringsParameters]) {
+        
+        let attriText = NSMutableAttributedString(string: fullText)
+        for attributedString in attributedStrings {
+            let nsRange = NSString(string: fullText).range(of: attributedString.text, options: String.CompareOptions.caseInsensitive)
+            
+            attriText.addAttributes([NSAttributedString.Key.font: attributedString.font ?? .systemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: attributedString.color ?? .label], range: nsRange)
+        }
+        attributedText = attriText
+    }
+    
+}

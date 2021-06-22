@@ -7,10 +7,8 @@
 
 import UIKit
 
-class AboutView: UIView {
+class AboutView: BackgroundBoxWithTitleView {
     
-    lazy var titleLabel = UILabel()
-    lazy var backgroundBoxView = RoundShadowView()
     lazy var descriptionTextLabel = UILabel()
     
     var descriptionString: String! {
@@ -25,68 +23,28 @@ class AboutView: UIView {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    private func commonInit() {
+    override func commonInit() {
+        super.commonInit()
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = .clear
-        backgroundBoxView.backgroundColor = AppColors.background.secondary
-        
-        backgroundBoxView.layer.cornerRadius = 10
-        
-        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
-        titleLabel.textColor = .label
-        
         descriptionTextLabel.font = .systemFont(ofSize: 17)
-        descriptionTextLabel.textColor = .systemGray
+        descriptionTextLabel.textColor = AppColors.label.secondary
         descriptionTextLabel.numberOfLines = 0
         descriptionTextLabel.sizeToFit()
         
-        addSubview(titleLabel)
-        addSubview(backgroundBoxView)
-        backgroundBoxView.addSubview(descriptionTextLabel)
+        addSubview(descriptionTextLabel)
     }
     
-    override func updateConstraints() {
-        
-        titleLabel.snp.makeConstraints { make in
-            make.right.left.equalToSuperview()
-            make.top.equalToSuperview()
-            make.height.equalTo(22)
-        }
-        
-        backgroundBoxView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(15)
-            make.right.equalToSuperview()
-            make.bottom.equalTo(descriptionTextLabel.snp.bottom).offset(CONTENT_BOTTOM_MARGIN)
-        }
+    override func makeConstraints() {
+        super.makeConstraints()
         
         descriptionTextLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalToSuperview().offset(CONTENT_TOP_MARGIN)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
+            make.bottom.equalToSuperview().offset(-CONTENT_BOTTOM_MARGIN)
         }
-        
-        super.updateConstraints()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        descriptionTextLabel.sizeToFit()
     }
 
 }
