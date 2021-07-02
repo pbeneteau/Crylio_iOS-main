@@ -53,7 +53,6 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
     private func commonInit() {
         
         backgroundBox.translatesAutoresizingMaskIntoConstraints = false
-        backgroundBox.shadowOpacity = 0.05
         
         symbolLabel.font = .systemFont(ofSize: 15, weight: .regular)
         nameLabel.font = .systemFont(ofSize: 13, weight: .regular)

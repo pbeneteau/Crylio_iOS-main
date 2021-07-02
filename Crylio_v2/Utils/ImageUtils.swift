@@ -23,7 +23,7 @@ extension UIImageView {
                 } else {
                     self.loadImage(from: url) { result in
                         if let image = result {
-                            //self.image = image
+                            self.image = image
                         }
                     }
                 }
@@ -31,7 +31,7 @@ extension UIImageView {
         } else {
             self.loadImage(from: url) { result in
                 if let image = result {
-                    //self.image = image
+                    self.image = image
                 }
             }
         }
@@ -64,8 +64,6 @@ extension UIImageView {
             }
         }
     }
-    
-    
     
 }
 

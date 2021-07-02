@@ -39,13 +39,6 @@ class CryptoTransactionCell: BaseTableViewCell {
         
         detailView.alpha = 0
         
-        backgroundBox.layer.cornerRadius = 10
-        backgroundBox.insets = UIEdgeInsets(top: 10, left: SAFE_AREA_MARGIN, bottom: 10, right: SAFE_AREA_MARGIN)
-        backgroundBox.blur = 10
-        
-        detailView.alpha = 1
-        detailView.addTopBorder()
-        
         backgroundBox.translatesAutoresizingMaskIntoConstraints = false
         cellView.translatesAutoresizingMaskIntoConstraints = false
         detailView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,27 +77,27 @@ class CryptoTransactionCell: BaseTableViewCell {
     override func makeConstraints() {
                 
         backgroundBox.snp.remakeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.equalTo(SAFE_AREA_MARGIN)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.top.equalToSuperview().priority(999)
-            make.bottom.equalToSuperview()
-            make.height.equalTo(116).priority(999)
+            make.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(96).priority(999)
         }
         
         cellView.snp.remakeConstraints { make in
-            make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalToSuperview().offset(10)
-            make.height.equalTo(116-20)
+            make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
+            make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
+            make.top.equalToSuperview().offset(CONTENT_TOP_MARGIN)
+            make.height.equalTo(80)
         }
         
         if !(transaction.type == .transferIn || transaction.type == .transferOut) {
             
             detailView.snp.remakeConstraints { make in
-                make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
-                make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
+                make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
+                make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
                 make.top.equalTo(cellView.snp.bottom)
-                make.bottom.equalToSuperview().inset(10)
+                make.bottom.equalToSuperview()
             }
         }
     }
@@ -121,11 +114,11 @@ extension CryptoTransactionCell {
     func showDetailView() {
         
         self.backgroundBox.snp.remakeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.equalTo(SAFE_AREA_MARGIN)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.top.equalToSuperview().priority(999)
-            make.bottom.equalToSuperview()
-            make.height.equalTo(273).priority(999)
+            make.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(254).priority(999)
         }
         
         UIView.animate(withDuration: 0.15, delay: 0.0, options: [.curveEaseOut], animations: {
@@ -141,7 +134,7 @@ extension CryptoTransactionCell {
     func hideDetailView() {
         
         self.backgroundBox.snp.updateConstraints { make in
-            make.height.equalTo(116).priority(999)
+            make.height.equalTo(96).priority(999)
         }
         UIView.animate(withDuration: 0.15, delay: 0.0, options: [.curveEaseOut], animations: {
             self.layoutSubviews()

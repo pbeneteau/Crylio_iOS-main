@@ -1,5 +1,5 @@
 //
-//  SelectCryptoTableViewCell.swift
+//  SelectionTableViewCell.swift
 //  Crylio_v2
 //
 //  Created by Paul Bénéteau on 15/06/2021.
@@ -7,20 +7,19 @@
 
 import UIKit
 
-class SelectCryptoTableViewCell: BaseTableViewCell {
+class SelectionTableViewCell: BaseTableViewCell {
     
     static let reuseId = "SelectCryptoTableViewCell"
     
     lazy var iconImageView = UIImageView()
     
-    lazy var symbolLabel = UILabel()
-    lazy var nameLabel = UILabel()
+    lazy var titleLabel = UILabel()
+    lazy var descriptionLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         commonInit()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -33,14 +32,14 @@ class SelectCryptoTableViewCell: BaseTableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         
-        nameLabel.font = .systemFont(ofSize: 17, weight: .medium)
+        titleLabel.font = .systemFont(ofSize: 17, weight: .medium)
         
-        symbolLabel.font = .systemFont(ofSize: 15)
-        symbolLabel.tintColor = AppColors.label.secondary
-        
+        descriptionLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        descriptionLabel.textColor = AppColors.label.secondary
+
         contentView.addSubview(iconImageView)
-        contentView.addSubview(symbolLabel)
-        contentView.addSubview(nameLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(descriptionLabel)
         
         setNeedsUpdateConstraints()
     }
@@ -52,21 +51,21 @@ class SelectCryptoTableViewCell: BaseTableViewCell {
         iconImageView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(CONTENT_HORIZONTAL_MARGIN)
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(contentView.snp.height).multipliedBy(0.7)
+            make.width.height.equalTo(contentView.snp.height).multipliedBy(0.6)
         }
         
-        nameLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.left.equalTo(iconImageView.snp.right).offset(10)
             make.centerY.equalToSuperview()
-            make.width.equalTo(nameLabel.intrinsicContentSize.width)
+            make.width.equalTo(titleLabel.intrinsicContentSize.width)
             make.height.equalTo(20)
         }
         
-        symbolLabel.snp.makeConstraints { make in
-            make.left.equalTo(nameLabel.snp.right).offset(5)
-            make.centerY.equalToSuperview()
+        descriptionLabel.snp.makeConstraints { make in
+            make.left.equalTo(titleLabel.snp.right).offset(5)
+            make.centerY.equalTo(titleLabel)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.height.equalTo(16)
+            make.height.equalTo(20)
         }
     }
     

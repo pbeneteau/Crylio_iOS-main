@@ -96,7 +96,7 @@ class CryptoTransactionsViewController: BaseViewController {
         tableView.estimatedRowHeight = 112
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.sectionHeaderHeight = 30
+        tableView.sectionHeaderHeight = 40
         
         tableView.register(CryptoTransactionCell.self, forCellReuseIdentifier: CryptoTransactionCell.reuseId)
         tableView.register(TransactionsHeaderView.self, forHeaderFooterViewReuseIdentifier: TransactionsHeaderView.reuseId)
@@ -177,14 +177,6 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         return sections[section].transactions.count
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TransactionsHeaderView.reuseId) as! TransactionsHeaderView
-        header.date.text = sections[section].getDateString()
-        
-        return header
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTransactionCell.reuseId, for: indexPath) as? CryptoTransactionCell  else {
@@ -194,6 +186,15 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         cell.transaction = sections[indexPath.section].transactions[indexPath.row]
         cell.layoutIfNeeded()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TransactionsHeaderView.reuseId) as! TransactionsHeaderView
+        
+        header.configure(with: sections[section].getDateString())
+        
+        return header
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -217,6 +218,10 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         }
         tableView.performBatchUpdates(nil)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
         
     // Add some space after section
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -228,9 +233,6 @@ extension CryptoTransactionsViewController: UITableViewDelegate, UITableViewData
         return UIView()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
 }
 
 

@@ -1,5 +1,5 @@
 //
-//  TradingViewChartView.swift
+//  TradingviewChart.swift
 //  Crylio_v2
 //
 //  Created by Paul Bénéteau on 05/05/2021.
@@ -11,12 +11,10 @@ import Foundation
 fileprivate let firstPart = """
     
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-
-    <body style="background-color:rgba(18,23,34,255);">
+    <body style="background-color:transparent;">
     
     <div class="tradingview-widget-container">
-      <div id="tradingview_bab73"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+      <div id="tradingview_21e5b"></div>
       <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
       <script type="text/javascript">
       new TradingView.widget(
@@ -29,7 +27,13 @@ fileprivate let secondPart = """
      </body>
      """
 
-enum TradingViewChartTimeInterval: CaseIterable {
+enum TradingviewChartType {
+    
+    case big
+    case small
+}
+
+enum TradingviewChartTimeInterval: CaseIterable {
     
     case minute1
     case minute3
@@ -59,7 +63,7 @@ enum TradingViewChartTimeInterval: CaseIterable {
             }
         }
     
-    var tradingViewValue: String {
+    var tradingviewValue: String {
         switch self {
         case .minute1: return "1"
         case .minute3: return "3"
@@ -76,7 +80,7 @@ enum TradingViewChartTimeInterval: CaseIterable {
     }
 }
 
-enum TradingViewChartDateRange: CaseIterable {
+enum TradingviewChartDateRange: CaseIterable {
     
     case day
     case days5
@@ -100,7 +104,7 @@ enum TradingViewChartDateRange: CaseIterable {
             }
     }
     
-    var tradingViewValue: String {
+    var tradingviewValue: String {
         switch self {
         case .day: return "1D"
         case .days5: return "5D"
@@ -114,20 +118,28 @@ enum TradingViewChartDateRange: CaseIterable {
     }
 }
 
-enum TradingViewChartExchange: String {
+enum TradingviewChartExchange: String {
     
     case binance = "BINANCE"
     case bitfinex = "BITFINEX"
     case coinbase = "COINBASE"
+    
+    var description: String {
+        switch self {
+        case .binance: return "Binance"
+        case .bitfinex: return "Bitfinex"
+        case .coinbase: return "Coinbase"
+        }
+    }
 }
 
-enum TradingViewChartTheme: String {
+enum TradingviewChartTheme: String {
     
     case dark = "dark"
     case light = "light"
 }
 
-enum TadingViewChartBarStyle: CaseIterable {
+enum TadingviewChartBarStyle: CaseIterable {
     
     case bars
     case candles
@@ -155,7 +167,7 @@ enum TadingViewChartBarStyle: CaseIterable {
             }
     }
     
-    var tradingViewValue: Int {
+    var tradingviewValue: Int {
         switch self {
         case .bars: return 0
         case .candles: return 1
@@ -172,43 +184,37 @@ enum TadingViewChartBarStyle: CaseIterable {
 }
 
 
-class TradingViewChart {
+class TradingviewChart {
     
+    var type: TradingviewChartType!
     var symbol: String!
-    var theme: TradingViewChartTheme!
-    var exchange: TradingViewChartExchange!
-    var barStyle: TadingViewChartBarStyle!
+    var theme: TradingviewChartTheme!
+    var exchange: TradingviewChartExchange!
+    var barStyle: TadingviewChartBarStyle = .line
+    var dateRange: TradingviewChartDateRange = .day
     
-    init(symbol: String, exchange: TradingViewChartExchange, theme: TradingViewChartTheme, barStyle: TadingViewChartBarStyle = .line) {
+    init(type: TradingviewChartType, symbol: String, exchange: TradingviewChartExchange, theme: TradingviewChartTheme = .light, barStyle: TadingviewChartBarStyle = .line) {
         
+        self.type = type
         self.symbol = symbol
         self.theme = theme
         self.exchange = exchange
         self.barStyle = barStyle
     }
 
-    func getMinimizedChart(with interval: TradingViewChartTimeInterval = .day) -> String {
+    func getChart(with interval: TradingviewChartTimeInterval = .day) -> String {
         
-        return getChartString(with: interval, hideLegend: true)
+        return getChartString(with: interval)
     }
     
-    func getMinimizedChart(with range: TradingViewChartDateRange = .day) -> String {
+    func getChart() -> String {
         
-        return getChartString(with: range, hideLegend: true)
+        return getChartString(with: dateRange)
     }
     
-    func getFullChart(with interval: TradingViewChartTimeInterval = .day) -> String {
+    func getChartString(with range: TradingviewChartDateRange) -> String {
         
-        return getChartString(with: interval, hideLegend: false)
-    }
-    
-    func getFullChart(with range: TradingViewChartDateRange = .day) -> String {
-        
-        return getChartString(with: range, hideLegend: false)
-    }
-    
-    func getChartString(with range: TradingViewChartDateRange, hideLegend: Bool) -> String {
-        let params = ["autosize":true, "symbol":self.exchange.rawValue + ":" + self.symbol, "range":range.tradingViewValue, "timezone":"Etc/UTC", "theme":self.theme.rawValue, "style":self.barStyle.tradingViewValue, "local":"en", "toolbar_bg":"#f1f3f6", "enable_publishing":false, "withdateranges": false, "hide_legend":hideLegend, "hide_top_toolbar": true, "save_image":false, "container_id": "tradingview_bab73",
+        let params = ["autosize":true, "symbol":self.exchange.rawValue + ":" + self.symbol, "range":range.tradingviewValue, "timezone":"Etc/UTC", "theme":self.theme.rawValue, "style":self.barStyle.tradingviewValue, "local":"en", "toolbar_bg":"#f1f3f6", "enable_publishing":false, "withdateranges": false, "hide_legend":type == .small ? true:false, "hide_top_toolbar": true, "save_image":false, "container_id": "tradingview_bab73",
                       "studies":[]] as [String : Any]
         do {
             let json = try params.toJson()
@@ -219,8 +225,9 @@ class TradingViewChart {
         }
     }
     
-    func getChartString(with interval: TradingViewChartTimeInterval, hideLegend: Bool) -> String {
-        let params = ["autosize":true, "symbol":self.exchange.rawValue + ":" + self.symbol, "interval":interval.tradingViewValue, "timezone":"Etc/UTC", "theme":self.theme.rawValue, "style":self.barStyle.tradingViewValue, "local":"en", "toolbar_bg":"#f1f3f6", "enable_publishing":false, "withdateranges": false, "hide_legend":hideLegend, "hide_top_toolbar": true, "save_image":false, "container_id": "tradingview_bab73",
+    func getChartString(with interval: TradingviewChartTimeInterval) -> String {
+        
+        let params = ["autosize":true, "symbol":self.exchange.rawValue + ":" + self.symbol, "interval":interval.tradingviewValue, "timezone":"Etc/UTC", "theme":self.theme.rawValue, "style":self.barStyle.tradingviewValue, "local":"en", "toolbar_bg":"#f1f3f6", "enable_publishing":false, "withdateranges": false, "hide_legend":type == .small ? true:false, "hide_top_toolbar": true, "save_image":false, "container_id": "tradingview_bab73",
                       "studies":[]] as [String : Any]
         do {
             let json = try params.toJson()

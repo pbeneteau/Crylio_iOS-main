@@ -184,7 +184,7 @@ extension CryptoNewsCell {
             make.left.equalTo(SAFE_AREA_MARGIN)
             make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
             make.top.equalToSuperview()
-            make.bottom.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(16)
         }
         
         if news.imageURL != nil {

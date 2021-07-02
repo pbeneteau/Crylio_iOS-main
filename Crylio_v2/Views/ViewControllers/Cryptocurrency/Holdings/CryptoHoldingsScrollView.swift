@@ -41,6 +41,10 @@ class CryptoHoldingsScrollView: UIScrollView {
         
         contentView.backgroundColor = .clear
         
+        balanceView.backgroundColor = AppColors.background.secondary
+        balanceView.layer.cornerRadius = 10
+        balanceView.clipsToBounds = true
+        
         addSubview(contentView)
         contentView.addSubview(balanceView)
         contentView.addSubview(costView)
@@ -95,7 +99,6 @@ extension CryptoHoldingsScrollView {
             make.top.bottom.equalToSuperview()
             make.left.equalTo(SAFE_AREA_MARGIN)
             make.width.equalToSuperview().offset(-SAFE_AREA_MARGIN*2)
-            make.height.equalTo(700)
         }
         
         balanceView.snp.makeConstraints { make in
@@ -118,7 +121,7 @@ extension CryptoHoldingsScrollView {
         }
         
         profitLossView.snp.makeConstraints { make in
-            make.left.equalTo(0)
+            make.left.equalToSuperview()
             make.right.equalTo(contentView.snp.centerX).offset(-8)
             make.top.equalTo(costView.snp.bottom).offset(16)
             make.height.equalTo(76)
@@ -133,8 +136,9 @@ extension CryptoHoldingsScrollView {
         
         distributionView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(profitLossView.snp.bottom).offset(30)
+            make.top.equalTo(profitLossView.snp.bottom).offset(16)
             make.height.equalTo(225)
+            make.bottom.equalToSuperview()
         }
         
         super.updateConstraints()

@@ -151,13 +151,13 @@ class AddTransactionViewController: UIViewController {
     @objc func didTapPairSwapButton(_ sender: UIButton) {
         
         print("selecting trading pair...")
-                
-        let controller = SelectCryptoViewController()
+        
+        let controller = SelectionViewController()
         controller.title = "Select Trading Pair"
-        controller.cryptos = [crypto, crypto, crypto, crypto, crypto]
+        controller.items = [crypto1, crypto2, crypto1, crypto2, crypto1]
         controller.selectionDelegate = self
         
-        navigationController?.pushViewController(controller, animated: true)
+        navigationController?.present(controller, animated: true, completion: nil)
     }
         
     private func setBuySellMode() {
@@ -204,14 +204,15 @@ class AddTransactionViewController: UIViewController {
 
 // MARK: - Trading pair selection delegate
 
-extension AddTransactionViewController: SelectCryptoViewControllerDegate {
+extension AddTransactionViewController: SelectionViewControllerDelegate {
     
-    func didSelectCrypto(_ crypto: Cryptocurrency) {
+    func didSelectItem(_ item: Any) {
         
-        print("did select", crypto.name, "as a trading pair")
-
-        pairButton.setTitle(crypto.symbol.uppercased(), for: .normal)
-        priceField.textField.text = crypto.price.toAmountString()
+        if let crypto = item as? Cryptocurrency {
+            print("did select", crypto.name, "as a trading pair")
+            pairButton.setTitle(crypto.symbol.uppercased(), for: .normal)
+            priceField.textField.text = crypto.price.toAmountString()
+        }
     }
 }
 

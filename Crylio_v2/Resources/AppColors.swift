@@ -11,26 +11,26 @@ import UIKit
 
 class AppColors {
     
+    struct background {
+        static var primary: UIColor { return UIColor(hexString: "#f2f2f6") | .systemBackground}
+        static var secondary: UIColor { return .systemBackground | UIColor(hexString: "#131621")}
+        static var tertiary: UIColor { UIColor(hexString: "767680").withAlphaComponent(0.12) | UIColor(hexString: "767680").withAlphaComponent(0.24) }
+    }
+    
+    struct foreground {
+        static var primary: UIColor { return .systemGray6 | UIColor(hexString: "#131721")}
+        static var secondary: UIColor { return .white | UIColor(hexString: "#181B26")}
+        static var tertiary: UIColor { return .systemGray5 | UIColor(hexString: "#2a2c39") }
+    }
+    
     struct accent {
         static var primary: UIColor { return UIColor(hexString: "#0A84FF") | UIColor(hexString: "#007AFF")}
         static var red: UIColor { return UIColor(hexString: "#F6465D") | UIColor(hexString: "#F6465D")}
         static var green: UIColor { return UIColor(hexString: "#2EBD85") | UIColor(hexString: "#2EBD85")}
     }
     
-    struct background {
-        static var primary: UIColor { return UIColor.systemBackground }
-        static var secondary: UIColor { return UIColor.systemBackground | UIColor(hexString: "#131621")}
-        static var tertiary: UIColor { UIColor(hexString: "767680").withAlphaComponent(0.12) | UIColor(hexString: "767680").withAlphaComponent(0.24) }
-    }
-    
-    struct foreground {
-        static var primary: UIColor { return UIColor.systemGray6 | UIColor(hexString: "#131721")}
-        static var secondary: UIColor { return UIColor.white | UIColor(hexString: "#181B26")}
-        static var tertiary: UIColor { return UIColor.systemGray5 | UIColor(hexString: "#2a2c39") }
-    }
-    
     struct label {
-        static var primary: UIColor { return UIColor.label }
+        static var primary: UIColor { return .label }
         static var secondary: UIColor { return UIColor(red: 0.45, green: 0.48, blue: 0.52, alpha: 1.00) }
         static var tertiary: UIColor { return UIColor(red: 0.56, green: 0.55, blue: 0.56, alpha: 1.00) }
         static var primaryReversed: UIColor { return UIColor.white | UIColor.black }

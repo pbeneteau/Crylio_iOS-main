@@ -11,7 +11,7 @@ import UIKit
 class CryptoDetailScrollView: UIScrollView {
     
     lazy var contentView = UIView()
-    lazy var chartView = ChartView()
+    lazy var chartView = CryptoDetailChartView()
     lazy var marketStatsView = MarketStatsView()
     lazy var aboutView = AboutView()
     lazy var balanceView = CryptoDetailBalanceView()
@@ -51,6 +51,8 @@ class CryptoDetailScrollView: UIScrollView {
     }
     
     private func initValues() {
+                
+        chartView.configure(with: crypto, exchange: .binance, pair: "USDT")
         
         marketStatsView.marketStats = crypto.marketStats
         
@@ -92,7 +94,6 @@ extension CryptoDetailScrollView {
         
         chartView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
-            make.height.equalTo(428)
         }
         
         balanceView.snp.makeConstraints { make in

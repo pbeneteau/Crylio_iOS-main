@@ -14,7 +14,6 @@ class User {
     var name: String
     
     var portfolios: [UserPortfolio]!
-    
 
     init?(id: Int,
           name: String,
@@ -24,8 +23,6 @@ class User {
         self.portfolios = portfolios
     }
     
-    
-    
 }
 
 class UserPortfolio {
@@ -34,7 +31,6 @@ class UserPortfolio {
     var name: String
     
     var balance: Float
-    
     
     init?(id: Int,
           name: String,

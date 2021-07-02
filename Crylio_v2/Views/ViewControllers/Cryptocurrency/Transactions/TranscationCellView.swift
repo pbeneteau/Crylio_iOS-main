@@ -96,14 +96,14 @@ class TransactionCellView: BaseView {
     override func makeConstraints() {
         
         transactionTypeImageView.snp.makeConstraints { make in
-            make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(20)
+            make.left.equalToSuperview()
+            make.top.equalTo(5)
             make.height.width.equalTo(29)
         }
         
         transactionTypeLabel.snp.makeConstraints { make in
             make.left.equalTo(transactionTypeImageView.snp.right).offset(8)
-            make.top.equalTo(CONTENT_TOP_MARGIN)
+            make.top.equalToSuperview()
             make.right.equalTo(snp.centerX).offset(-8)
             make.height.equalTo(20)
         }
@@ -118,26 +118,26 @@ class TransactionCellView: BaseView {
         dateLabel.snp.makeConstraints { make in
             make.left.equalTo(exchangeLabel)
             make.right.equalTo(snp.centerX).offset(-8)
-            make.bottom.equalToSuperview().offset(-CONTENT_BOTTOM_MARGIN)
+            make.bottom.equalToSuperview().inset(CONTENT_BOTTOM_MARGIN)
             make.height.equalTo(20)
         }
         
         worthLabel.snp.makeConstraints { make in
             make.left.equalTo(snp.centerX).offset(8)
-            make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
+            make.right.equalToSuperview()
             make.centerY.equalTo(transactionTypeLabel)
             make.height.equalTo(20)
         }
         
         amountLabel.snp.makeConstraints { make in
             make.left.equalTo(snp.centerX).offset(8)
-            make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
+            make.right.equalToSuperview()
             make.centerY.equalTo(exchangeLabel)
             make.height.equalTo(18)
         }
         
         filledStatusLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
+            make.right.equalToSuperview()
             make.centerY.equalTo(dateLabel)
             make.width.equalTo(filledStatusLabel.intrinsicContentSize.width + 8)
             make.height.equalTo(20)
@@ -298,7 +298,7 @@ final class TransactionCellDetailView: BaseView, BaseChartDelegate {
         }
         
         pnlLabel.snp.makeConstraints { make in
-            make.left.equalTo(51)
+            make.left.equalTo(35)
             make.right.equalTo(worthLabel.snp.left).offset(-8)
             make.top.bottom.equalToSuperview()
         }

@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol SelectCryptoViewControllerDegate: NSObjectProtocol {
-    func didSelectCrypto(_ crypto: Cryptocurrency)
+protocol SelectionViewControllerDelegate: NSObjectProtocol {
+    func didSelectItem(_ item: Any)
 }
 
-class SelectCryptoViewController: UITableViewController {
+class SelectionViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    weak var selectionDelegate: SelectCryptoViewControllerDegate!
+    weak var selectionDelegate: SelectionViewControllerDelegate!
     
-    var cryptos: [Cryptocurrency]!
-    var filteredCryptos = [Cryptocurrency]()
+    var items: [Any]!
+    var filteredItems = [Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +27,15 @@ class SelectCryptoViewController: UITableViewController {
         
         view.backgroundColor = AppColors.background.primary
         
-        tableView.register(SelectCryptoTableViewCell.self, forCellReuseIdentifier: SelectCryptoTableViewCell.reuseId)
-        tableView.rowHeight = 45
+        tableView.register(SelectionTableViewCell.self, forCellReuseIdentifier: SelectionTableViewCell.reuseId)
+        tableView.rowHeight = 55
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         
         tableView.tableHeaderView = searchController.searchBar
         
-        filteredCryptos = cryptos
+        filteredItems = items
         
         tableView.reloadData()
     }
@@ -49,7 +49,7 @@ class SelectCryptoViewController: UITableViewController {
 
 // MARK: - Table view delagte and datasource
 
-extension SelectCryptoViewController {
+extension SelectionViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -59,29 +59,36 @@ extension SelectCryptoViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredCryptos.count
+            return filteredItems.count
         }
-        return cryptos.count
+        return items.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: SelectCryptoTableViewCell.reuseId, for: indexPath) as? SelectCryptoTableViewCell  else {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: SelectionTableViewCell.reuseId, for: indexPath) as? SelectionTableViewCell  else {
             fatalError("The dequeued cell is not an instance of SelectCryptoTableViewCell.")
         }
         
-        var crypto: Cryptocurrency!
+        var item: Any!
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            crypto = filteredCryptos[indexPath.row]
+            item = filteredItems[indexPath.row]
         } else {
-            crypto = cryptos[indexPath.row]
+            item = items[indexPath.row]
         }
         
-        cell.iconImageView.setImage(from: crypto.iconURL)
-        cell.nameLabel.text = crypto.name
-        cell.symbolLabel.text = crypto.symbol.uppercased()
+        if let crypto = item as? Cryptocurrency {
+            cell.iconImageView.setImage(from: crypto.iconURL)
+            cell.titleLabel.text = crypto.name
+            cell.descriptionLabel.text = crypto.symbol.uppercased()
+        }
+        
+        if let exchange = item as? Exchange {
+            cell.iconImageView.setImage(from: exchange.iconURL)
+            cell.titleLabel.text = exchange.name
+        }
         
         cell.iconImageView.kf.cancelDownloadTask()
         cell.layoutIfNeeded()
@@ -93,9 +100,9 @@ extension SelectCryptoViewController {
                 
         if let delegate = selectionDelegate {
             if searchController.isActive && searchController.searchBar.text != "" {
-                delegate.didSelectCrypto(filteredCryptos[indexPath.row])
+                delegate.didSelectItem(filteredItems[indexPath.row])
             } else {
-                delegate.didSelectCrypto(cryptos[indexPath.row])
+                delegate.didSelectItem(items[indexPath.row])
             }
             _ = navigationController?.popViewController(animated: true)
         }
@@ -106,14 +113,20 @@ extension SelectCryptoViewController {
 
 // MARK: - Search controller delegate
 
-extension SelectCryptoViewController: UISearchResultsUpdating {
+extension SelectionViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         
         guard let searchText = searchController.searchBar.text else { return }
         
-        filteredCryptos = cryptos.filter { $0.name.localizedCaseInsensitiveContains(searchText) || $0.symbol.localizedCaseInsensitiveContains(searchText)}
+        if let cryptos = items as? [Cryptocurrency] {
+            filteredItems = cryptos.filter { $0.name.localizedCaseInsensitiveContains(searchText) || $0.symbol.localizedCaseInsensitiveContains(searchText) }
+        }
         
+        if let exchanges = items as? [Exchange] {
+            filteredItems = exchanges.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+            
         tableView.reloadData()
     }
     

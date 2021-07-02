@@ -51,7 +51,7 @@ class CryptoMenuView: BaseView {
         layer.masksToBounds = false
         clipsToBounds = false
                 
-        selectedButtonView.shadowView.backgroundColor = AppColors.background.secondary
+        selectedButtonView.backgroundColor = AppColors.background.secondary
         selectedButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(scrollView)
@@ -78,12 +78,12 @@ class CryptoMenuView: BaseView {
     func setSelectedButton(index: Int) {
         
         selectedButtonTag = index
+        selectedButtonView.snp.remakeConstraints { make in
+            make.edges.equalTo(self.buttons[index])
+        }
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [.beginFromCurrentState, .curveEaseOut]) {
             
-            self.selectedButtonView.snp.remakeConstraints { make in
-                make.edges.equalTo(self.buttons[index])
-            }
             self.layoutIfNeeded()
         }
     }

@@ -6,75 +6,52 @@
 //
 
 import UIKit
-import WebKit
 
 
 protocol ChartViewControllerDelegate: NSObjectProtocol {
     
-    func dateRangeDidChange(range: TradingViewChartDateRange)
+    func dateRangeDidChange(dateRange: TradingviewChartDateRange)
 }
 
-
-class ChartViewController: UIViewController, WKNavigationDelegate {
+class ChartViewController: UIViewController {
     
-    lazy var webView = WKWebView()
-    var tradingViewChart: TradingViewChart!
+    lazy var tradingviewChartView = TradingviewChartView()
     lazy var dateRangeSelectorCV = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    private let ranges = TradingViewChartDateRange.allCases
-    
     weak var delegate: ChartViewControllerDelegate!
-    
+
+    var tradingviewChart: TradingviewChart!
+    private let ranges = TradingviewChartDateRange.allCases
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateRangeSelectorCV.backgroundColor = .clear
+        view.backgroundColor = AppColors.background.primary
+        
+        tradingviewChartView.tradingviewChart = tradingviewChart
                 
-        initChartView()
-        
-        dateRangeSelectorCV.delegate = self
-        dateRangeSelectorCV.dataSource = self
-        
         if let layout = dateRangeSelectorCV.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
         dateRangeSelectorCV.register(DateRangeSelectorCollectionViewCell.self, forCellWithReuseIdentifier: DateRangeSelectorCollectionViewCell.reuseId)
         dateRangeSelectorCV.showsHorizontalScrollIndicator = false
+        dateRangeSelectorCV.contentInset = UIEdgeInsets(top: 0, left: CONTENT_HORIZONTAL_MARGIN, bottom: 0, right: 0)
+        dateRangeSelectorCV.delegate = self
+        dateRangeSelectorCV.dataSource = self
+        dateRangeSelectorCV.backgroundColor = .clear
+        
+        dateRangeSelectorCV.reloadData()
         dateRangeSelectorCV.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
-        dateRangeSelectorCV.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         
-        view.addSubview(webView)
+        view.addSubview(tradingviewChartView)
         view.addSubview(dateRangeSelectorCV)
- 
-        reloadChart()
     }
     
-    
-    func initChartView() {
-        
-        view.backgroundColor = AppColors.background.primary
-        
-        webView.navigationDelegate = self
-        
-        webView.allowsBackForwardNavigationGestures = false
-        webView.scrollView.isScrollEnabled = false
-        //webView.isOpaque = false
-        webView.backgroundColor = .clear
-        webView.scrollView.bounces = false
-        webView.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
-        webView.scrollView.contentInsetAdjustmentBehavior = .never
-    }
-    
-    func reloadChart(range: TradingViewChartDateRange = .day) {
-        
-        webView.loadHTMLString(tradingViewChart.getFullChart(with: range), baseURL: nil)
-    }
 }
 
 // MARK: - Collection view delegate and datasource
 
-extension ChartViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ChartViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ranges.count
@@ -92,22 +69,19 @@ extension ChartViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        reloadChart(range: ranges[indexPath.row])
-        dateRangeDidChange(range: ranges[indexPath.row])
+        
         print("selected date range: " + ranges[indexPath.row].description)
+
+        tradingviewChartView.tradingviewChart.dateRange = ranges[indexPath.row]
+        tradingviewChartView.reloadChart()
     }
     
-}
-
-// MARK: - Chart view controller delegate
-
-extension ChartViewController: ChartViewControllerDelegate {
-    
-    func dateRangeDidChange(range: TradingViewChartDateRange) {
-        if let delegate = delegate {
-            delegate.dateRangeDidChange(range: range)
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = (ranges[indexPath.row].description as NSString).size(withAttributes: nil).width + 26
+        return CGSize(width: width, height: 30)
     }
+    
 }
 
 
@@ -117,7 +91,7 @@ extension ChartViewController {
     
     override func updateViewConstraints() {
         
-        webView.snp.makeConstraints { make in
+        tradingviewChartView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(50)
             make.bottom.equalToSuperview().inset(90)
@@ -126,8 +100,8 @@ extension ChartViewController {
         
         dateRangeSelectorCV.snp.makeConstraints { make in
             make.left.right.equalTo(view)
-            make.top.equalTo(webView.snp.bottom).offset(5)
-            make.height.equalTo(50)
+            make.top.equalTo(tradingviewChartView.snp.bottom).offset(5)
+            make.height.equalTo(35)
         }
 
         super.updateViewConstraints()
@@ -141,7 +115,7 @@ extension ChartViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         
-        tradingViewChart.theme = traitCollection.userInterfaceStyle == .dark ? .dark: .light
-        reloadChart()
+        tradingviewChartView.reloadChart()
     }
+        
 }

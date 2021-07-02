@@ -20,16 +20,15 @@ class CryptoDetailViewController: BaseViewController {
     
     var crypto: Cryptocurrency!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.crypto = crypto
         scrollView.delegate = self
+                
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         scrollView.chartView.delegate = self
-        
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         scrollView.addSubview(refreshControl)
         view.addSubview(scrollView)
@@ -55,17 +54,61 @@ class CryptoDetailViewController: BaseViewController {
 
 // MARK: - Chart view delegate
 
-extension CryptoDetailViewController: CryptoDetailsChartViewDelegate {
+extension CryptoDetailViewController: CryptoDetailChartViewDelegate {
 
-    func chartViewDoubleTapped() {
-
-        let vc = ChartViewController()
-        vc.tradingViewChart = TradingViewChart(symbol: crypto.symbol + "USDT", exchange: .binance, theme: .dark)
-
-        vc.modalPresentationStyle = .popover
+    func didTapPairButton() {
         
-        present(vc, animated: true, completion: nil)
+        print("selecting trading pair...")
+        
+        let controller = SelectionViewController()
+        controller.title = "Select Trading Pair"
+        controller.items = [crypto1, crypto2, crypto1, crypto2, crypto1]
+        controller.selectionDelegate = self
+        
+        navigationController?.present(controller, animated: true, completion: nil)
     }
+    
+    func didTapExchangeButton() {
+        
+        print("selecting exchange...")
+        
+        let controller = SelectionViewController()
+        controller.title = "Select Exchange"
+        controller.items = [Exchange(name: "Binance", iconURL: ""),
+                            Exchange(name: "Bitfinex", iconURL: ""),
+                            Exchange(name: "Coinbase", iconURL: "")]
+        controller.selectionDelegate = self
+        
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
+    func didTapFullScreenButton() {
+        
+        print("opening fullscreen chart view...")
+        
+        let controller = ChartViewController()
+        controller.title = "Chart"
+
+        controller.tradingviewChart = TradingviewChart(type: .big, symbol: crypto.symbol + "USDT", exchange: .binance, theme: traitCollection.userInterfaceStyle == .dark ? .dark: .light)
+
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
+}
+
+
+// MARK: - Trading pair selection delegate
+
+extension CryptoDetailViewController: SelectionViewControllerDelegate {
+    
+    func didSelectItem(_ item: Any) {
+        
+        if let crypto = item as? Cryptocurrency {
+            print("did select", crypto.name, "as a trading pair")
+            scrollView.chartView.pairButton.setTitle(crypto.symbol, for: UIControl.State.normal)
+        }
+    }
+    
 }
 
 
@@ -91,7 +134,6 @@ extension CryptoDetailViewController {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
         super.updateViewConstraints()
     }
 }
@@ -102,6 +144,7 @@ extension CryptoDetailViewController {
 extension CryptoDetailViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        scrollView.chartView.reloadChart()
+        
+        scrollView.chartView.tradingviewChartView.reloadChart()
     }
 }

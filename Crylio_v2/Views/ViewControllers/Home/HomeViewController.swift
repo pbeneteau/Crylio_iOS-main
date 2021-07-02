@@ -33,7 +33,6 @@ class HomeViewController: BaseViewController {
         blurredView.backgroundColor = AppColors.blur
         blurredView.alpha = 0
         
-        header.shadowOpacity = 0.15
         header.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeader(_:))))
         
         gainersLosersLabel.font = .systemFont(ofSize: 20, weight: .bold)

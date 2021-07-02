@@ -9,37 +9,35 @@ import UIKit
 
 class TransactionsHeaderView: UITableViewHeaderFooterView {
     
-    static let reuseId = "HeaderView"
-
+    static let reuseId = "TransactionsHeaderView"
     lazy var date = UILabel()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        configure()
+        backgroundView?.backgroundColor = .clear
+        tintColor = .clear
+        
+        date.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        addSubview(date)
+        
+        date.snp.makeConstraints { make in
+            make.left.equalTo(SAFE_AREA_MARGIN)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
+            make.top.equalTo(0)
+            make.height.equalTo(24)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+
+    func configure(with dateString: String) {
         
-        backgroundView?.backgroundColor = .clear
-        backgroundView?.layer.masksToBounds = false
-        layer.masksToBounds = false
-        tintColor = .clear
-        
-        date.font = .systemFont(ofSize: 20, weight: .bold)
-                
-        addSubview(date)
-        
-        date.snp.makeConstraints { make in
-            make.left.equalTo(SAFE_AREA_MARGIN)
-            make.bottom.equalToSuperview()
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.height.equalTo(24)
-        }
+        date.text = dateString
     }
     
 }

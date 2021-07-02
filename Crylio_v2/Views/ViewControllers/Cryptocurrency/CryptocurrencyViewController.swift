@@ -108,9 +108,9 @@ class CryptocurrencyViewController: BaseViewController, UIGestureRecognizerDeleg
         menuScrollView.addSubview(transactionsVC.view)
         
         addTransactionButton.cornerRadius = 30
-        addTransactionButton.shadowView.backgroundColor = .systemBlue
+        addTransactionButton.backgroundColor = .systemBlue
         addTransactionButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonAction(_:))))
-        addTransactionButton.shadowView.layer.shadowOpacity = 0.13
+        addTransactionButton.layer.shadowOpacity = 0.13
         
         view.addSubview(menuScrollView)
         view.addSubview(header)

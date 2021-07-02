@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class DateRangeSelectorCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "DateRangeSelectorCollectionViewCell"
@@ -23,7 +24,6 @@ class DateRangeSelectorCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -35,42 +35,40 @@ class DateRangeSelectorCollectionViewCell: UICollectionViewCell {
     }
     
     private func commonInit() {
+        
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         
-        dateRangeLabel.font = .systemFont(ofSize: 15)
+        dateRangeLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        dateRangeLabel.textColor = AppColors.label.secondary
         dateRangeLabel.textAlignment = .center
+        dateRangeLabel.layer.cornerRadius = 10
         dateRangeLabel.clipsToBounds = true
-        
+        dateRangeLabel.layer.masksToBounds = true
+
         contentView.addSubview(dateRangeLabel)
+        
+        dateRangeLabel.sizeToFit()
+        
+        dateRangeLabel.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func setSelected() {
-        self.dateRangeLabel.backgroundColor = AppColors.buttonActiveBackground
+        
+        dateRangeLabel.textColor = .white
+        dateRangeLabel.backgroundColor = .systemBlue
     }
     
     func setDeselected() {
-        self.dateRangeLabel.backgroundColor = .clear.withAlphaComponent(0)
+        
+        dateRangeLabel.textColor = AppColors.label.secondary
+        dateRangeLabel.backgroundColor = .clear
     }
     
-}
-
-
-// MARK: - Constraints
-
-extension DateRangeSelectorCollectionViewCell {
-    
     override func layoutSubviews() {
-        dateRangeLabel.snp.removeConstraints()
-        
-        dateRangeLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(34)
-        }
-        
         super.layoutSubviews()
         
-        dateRangeLabel.layer.cornerRadius = 10
     }
 }
