@@ -49,7 +49,7 @@ extension CALayer {
         shadowOpacity = alpha
         shadowOffset = CGSize(width: x, height: y)
         shadowRadius = blur / 2.0
-        
+
         if spread == 0 {
             shadowPath = nil
         } else {
@@ -67,7 +67,6 @@ extension CALayer {
 extension UIView {
     
     func roundCorners(corners: UIRectCorner, radius: CGFloat = 8) {
-        
         let maskPath1 = UIBezierPath(roundedRect: bounds,
                                      byRoundingCorners: corners,
                                      cornerRadii: CGSize(width: radius, height: radius))
@@ -78,7 +77,6 @@ extension UIView {
     }
     
     func addDropShadow(shouldRasterize: Bool = true) {
-        
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.5
@@ -93,7 +91,6 @@ extension UIView {
     }
     
     func addBlurEffect() {
-        
         let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = bounds
@@ -104,7 +101,6 @@ extension UIView {
     }
     
     func addTopBorder() {
-        
         let border = UIView()
         border.backgroundColor = .systemGray.withAlphaComponent(0.1)
         border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
@@ -119,7 +115,6 @@ extension UIView {
 extension UIVisualEffectView {
     
     func addBottomBorder() {
-        
         let border = UIView()
         border.backgroundColor = .systemGray.withAlphaComponent(0.1)
         border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
@@ -130,7 +125,6 @@ extension UIVisualEffectView {
 }
 
 struct AttributedStringsParameters {
-    
     var text: String!
     var font: UIFont!
     var color: UIColor!
@@ -139,7 +133,6 @@ struct AttributedStringsParameters {
 extension UILabel {
     
     func setAttributedText(with fullText: String, attributedStrings: [AttributedStringsParameters]) {
-        
         let attriText = NSMutableAttributedString(string: fullText)
         for attributedString in attributedStrings {
             let nsRange = NSString(string: fullText).range(of: attributedString.text, options: String.CompareOptions.caseInsensitive)
@@ -149,4 +142,22 @@ extension UILabel {
         attributedText = attriText
     }
     
+}
+
+extension UIButton {
+    
+    func setInsets(forContentPadding contentPadding: UIEdgeInsets, imageTitlePadding: CGFloat) {
+        self.contentEdgeInsets = UIEdgeInsets(
+            top: contentPadding.top,
+            left: contentPadding.left,
+            bottom: contentPadding.bottom,
+            right: contentPadding.right + imageTitlePadding
+        )
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0,
+            left: imageTitlePadding,
+            bottom: 0,
+            right: -imageTitlePadding
+        )
+    }
 }

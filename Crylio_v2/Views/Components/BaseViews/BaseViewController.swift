@@ -12,6 +12,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     open var didMakeConstraints = false
+    open var hideNavigationBar = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = hideNavigationBar
     }
     
     func initColors() {

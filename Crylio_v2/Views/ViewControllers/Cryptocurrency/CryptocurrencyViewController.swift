@@ -124,12 +124,19 @@ class CryptocurrencyViewController: BaseViewController, UIGestureRecognizerDeleg
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        navigationTopBar.backButton.alpha = 1
         menu.resizeScrollViewContent()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationTopBar.backButton.alpha = 0
     }
     
 }

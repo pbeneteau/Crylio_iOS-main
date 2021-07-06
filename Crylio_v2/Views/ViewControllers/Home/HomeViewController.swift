@@ -9,34 +9,292 @@ import UIKit
 import SnapKit
 
 
-class HomeViewController: BaseViewController {
+protocol HomeViewControllerDelegate: NSObjectProtocol {
+    func searchDidBegin()
+    func searchDidEnd()
+}
+
+protocol HomeViewControllerTableViewHeaderViewDelegate: NSObjectProtocol {
+    func didTapHeader(_ sender: UITapGestureRecognizer)
+    func didTapCollectionViewCell()
+}
+
+class HomeViewController: UITableViewController {
     
-    lazy var blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-    lazy var header = HomeHeaderView()
-    lazy var gainersLosersLabel = UILabel()
-    lazy var gainersLosersCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    lazy var assetsLabel = UILabel()
     lazy var subMenuView = MarketSubMenu(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-    lazy var cryptosTableView = UITableView()
-    var searchBar = CustomSearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
     
-    var searchActive = false
-    var viewAppeard = false
-    var savedYOffset: CGFloat!
+    let searchController = UISearchController(searchResultsController: nil)
     
-    var gainersLosers = [Cryptocurrency]()
+    var headerHeight: CGFloat = 0
+        
     var cryptos = [Cryptocurrency]()
     var filteredCryptos = [Cryptocurrency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        blurredView.backgroundColor = AppColors.blur
-        blurredView.alpha = 0
+        view.backgroundColor = AppColors.background.primary
+                        
+        tabBarController?.title = "Home"
+                
+        let settingsIcon = UIImage(named: "mainSettingsIcon")?.withRenderingMode(.alwaysTemplate)
+        let portfoliosIcon = UIImage(named: "portfoliosIcon")?.withRenderingMode(.alwaysTemplate)
         
-        header.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeader(_:))))
+        let settingsNavigationItem = UIBarButtonItem(image: settingsIcon, style: .plain, target: self, action: #selector(didTapSettingsButton(_:)))
+        let portfoliosNavigationItem = UIBarButtonItem(image: portfoliosIcon, style: .plain, target: self, action: #selector(didTapPortfoliosButton(_:)))
         
-        gainersLosersLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        settingsNavigationItem.tintColor = AppColors.label.primary
+        portfoliosNavigationItem.tintColor = AppColors.label.primary
+                        
+        tabBarController?.navigationItem.rightBarButtonItems = [settingsNavigationItem, portfoliosNavigationItem]
+        tabBarController?.navigationItem.searchController = searchController
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        
+        assetsLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        assetsLabel.text = "Assets"
+            
+        tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseId)
+        tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
+        tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = 86
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+                
+        view.addSubview(assetsLabel)
+        view.addSubview(subMenuView)
+        
+        loadCryptos()
+    }
+    
+    func loadCryptos() {
+        
+        cryptos += [crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1]
+        filteredCryptos = cryptos
+                
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.navigationController?.navigationBar.isHidden = false
+        tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    @objc func didTapPortfoliosButton(_ sender: UIButton) {
+        
+ 
+    }
+    
+    @objc func didTapSettingsButton(_ sender: UIButton) {
+        
+    }
+    
+}
+
+
+// MARK: - Table view delegate and datasource
+
+extension HomeViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 { return 0 }
+        
+        if isSearching() {
+            return filteredCryptos.count
+        }
+        return cryptos.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseId, for: indexPath) as? HomeTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of HomeTableViewCell.")
+        }
+                
+        if isSearching() {
+            cell.crypto = filteredCryptos[indexPath.row]
+        } else {
+            cell.crypto = cryptos[indexPath.row]
+        }
+        
+        cell.iconImageView.kf.cancelDownloadTask()
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let controller = CryptocurrencyViewController(crypto: cryptos[indexPath.row])
+        
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 {
+            let tableViewHeader = HomeViewControllerTableViewHeaderView()
+            tableViewHeader.delegate = self
+            return tableViewHeader
+        } else if section == 1 {
+            let headerView = HomeViewControllerTableViewAssetsHeaderView()
+            return headerView
+        }
+        return nil
+    }
+    
+}
+
+
+// MARK: - Filter delegate
+
+extension HomeViewController: AssetsFilterDelegate {
+    
+    func filterDidChanged(_ sender: RoundCornersButton, order: FilterOrderingMode) {
+        
+        switch sender.tag {
+        case 0:
+            /// name
+            filteredCryptos = cryptos.sorted { ($0.name >= $1.name) ? order == .ascending: ($0.name <= $1.name)}
+        case 1:
+            /// holdings
+            filteredCryptos = cryptos.sorted { ($0.balance >= $1.balance) ? order == .ascending: ($0.balance <= $1.balance) }
+        case 2:
+            /// change
+            filteredCryptos = cryptos.sorted { ($0.change >= $1.change) ? order == .ascending: ($0.change <= $1.change) }
+        default:
+            filteredCryptos = cryptos
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func filterIsNotActive() {
+        
+        tableView.reloadData()
+    }
+    
+}
+
+
+// MARK: - Search bar delegate
+
+extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+     }
+    
+    private func isSearchBarEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private func isSearching() -> Bool {
+        return searchController.isActive && !isSearchBarEmpty()
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        
+        filteredCryptos = cryptos.filter { $0.name.localizedCaseInsensitiveContains(searchText) || $0.symbol.localizedCaseInsensitiveContains(searchText)}
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        headerHeight = tableView.sectionHeaderHeight
+        
+        if let header = tableView.headerView(forSection: 0) as? HomeViewControllerTableViewHeaderView {
+            header.hide(animated: true)
+        }
+        tableView.beginUpdates()
+        tableView.sectionHeaderHeight = 0
+        tableView.endUpdates()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if let header = tableView.headerView(forSection: 0) as? HomeViewControllerTableViewHeaderView {
+            header.show(animated: true)
+        }
+        tableView.beginUpdates()
+        tableView.sectionHeaderHeight = headerHeight
+        tableView.endUpdates()
+        tableView.layoutSubviews()
+    }
+    
+}
+
+
+// MARK: - Header delegates
+
+extension HomeViewController: HomeViewControllerTableViewHeaderViewDelegate {
+  
+    
+    func didTapHeader(_ sender: UITapGestureRecognizer) {
+        
+        let controller = PortfolioDetailViewController()
+        controller.title = "Main Portfolio"
+        
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func didTapCollectionViewCell() {
+        
+        
+    }
+    
+    
+}
+
+
+// MARK: - Constraints
+
+extension HomeViewController {
+    
+    override func updateViewConstraints() {
+        
+        super.updateViewConstraints()
+    }
+}
+
+class HomeViewControllerTableViewHeaderView: UITableViewHeaderFooterView {
+    
+    lazy var headerView = HomeHeaderView()
+
+    lazy var gainersLosersLabel = UILabel()
+    lazy var gainersLosersCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    weak var delegate: HomeViewControllerTableViewHeaderViewDelegate!
+    
+    var gainersLosers = [Cryptocurrency]()
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func commonInit() {
+                
+        headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeader(_:))))
+
+        gainersLosersLabel.font = .systemFont(ofSize: 15, weight: .bold)
         gainersLosersLabel.text = "Gainers & Losers"
+        gainersLosersLabel.textColor = AppColors.label.secondary
         
         gainersLosersCollectionView.delegate = self
         gainersLosersCollectionView.dataSource = self
@@ -50,47 +308,15 @@ class HomeViewController: BaseViewController {
             layout.scrollDirection = .horizontal
         }
         
-        cryptosTableView.delegate = self
-        cryptosTableView.dataSource = self
-        cryptosTableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseId)
-        cryptosTableView.backgroundColor = .clear
-        cryptosTableView.separatorStyle = .none
-        cryptosTableView.keyboardDismissMode = .onDrag
-        cryptosTableView.tableHeaderView = searchBar
-        cryptosTableView.contentInset = UIEdgeInsets(top: 505, left: 0, bottom: 100, right: 0)
-        cryptosTableView.contentOffset.y = -cryptosTableView.contentInset.top
-        cryptosTableView.contentInsetAdjustmentBehavior = .never
-        cryptosTableView.showsVerticalScrollIndicator = false
-        
-        searchBar.delegate = self
-        searchBar.backgroundColor = .clear
-        searchBar.tintColor = .clear
-        
-        view.addSubview(cryptosTableView)
-        view.addSubview(gainersLosersLabel)
-        view.addSubview(gainersLosersCollectionView)
-        view.addSubview(blurredView)
-        view.addSubview(subMenuView)
-        view.addSubview(header)
-        
-        loadCryptos()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
-    
-    func loadCryptos() {
-        
-        cryptos += [crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1, crypto2, crypto1]
-        filteredCryptos = cryptos
         gainersLosers += [crypto1, crypto2, crypto1]
-        
         sortGainersLosers()
-        
-        cryptosTableView.reloadData()
         gainersLosersCollectionView.reloadData()
+        
+        contentView.addSubview(gainersLosersLabel)
+        contentView.addSubview(gainersLosersCollectionView)
+        contentView.addSubview(headerView)
+        
+        contentView.setNeedsUpdateConstraints()
     }
     
     private func sortGainersLosers() {
@@ -100,19 +326,48 @@ class HomeViewController: BaseViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewAppeard = true
-        //cryptosTableView.setContentOffset(CGPoint(x: 0, y: -512), animated: false)
+    func hide(animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.contentView.alpha = 0
+            })
+        } else {
+            contentView.alpha = 0
+        }
     }
     
-    private func setCryptosTableViewSearchOffset() {
-        
-        if searchActive {
-            cryptosTableView.setContentOffset(CGPoint(x: 0, y: 180), animated: true)
+    func show(animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.contentView.alpha = 1
+            })
         } else {
-            searchBar.endEditing(true)
-            cryptosTableView.setContentOffset(CGPoint(x: 0, y: savedYOffset ?? cryptosTableView.contentInset.top), animated: true)
+            contentView.alpha = 1
+        }
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+
+        headerView.snp.remakeConstraints { make in
+            make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
+            make.width.equalTo(UIScreen.main.bounds.width-SAFE_AREA_MARGIN*2)
+            make.top.equalToSuperview()
+        }
+        
+        gainersLosersLabel.snp.remakeConstraints { make in
+            make.left.equalTo(SAFE_AREA_MARGIN)
+            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
+            make.top.equalTo(headerView.snp.bottom).offset(20)
+            make.height.equalTo(18)
+        }
+        
+        gainersLosersCollectionView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width)
+            make.top.equalTo(gainersLosersLabel.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().priority(999)
+            make.height.equalTo(150).priority(999)
         }
     }
     
@@ -121,7 +376,7 @@ class HomeViewController: BaseViewController {
 
 // MARK: - Collection view delegate and datasource
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeViewControllerTableViewHeaderView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return gainersLosers.count
@@ -159,7 +414,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        
+        let width = (UIScreen.main.bounds.width - SAFE_AREA_MARGIN*2-10)/2
+        return CGSize(width: width, height: 150)
     }
     
 }
@@ -167,215 +424,50 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 // MARK: - Gestures delegate
 
-extension HomeViewController {
+extension HomeViewControllerTableViewHeaderView {
     
     @objc func didTapHeader(_ sender: UITapGestureRecognizer) {
         
-        let controller = PortfolioDetailViewController()
-        controller.title = "Main Portfolio"
-        
-        navigationController?.pushViewController(controller, animated: true)
+        if let delegate = delegate {
+            delegate.didTapHeader(sender)
+        }
     }
 }
 
+class HomeViewControllerTableViewAssetsHeaderView: UITableViewHeaderFooterView {
+    
+    lazy var label = UILabel()
 
-// MARK: - Table view delegate and datasource
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func commonInit() {
+        
+        label.text = "Assets"
+        label.textColor = AppColors.label.secondary
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        
+        contentView.addSubview(label)
+        
+        contentView.setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if searchActive == true && searchBar.text != "" {
-            return filteredCryptos.count
-        }
-        return cryptos.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 85
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = self.cryptosTableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseId, for: indexPath) as? HomeTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of HomeTableViewCell.")
-        }
-        
-        if searchActive == true && searchBar.text != "" {
-            cell.crypto = filteredCryptos[indexPath.row]
-        } else {
-            cell.crypto = cryptos[indexPath.row]
-        }
-        
-        cell.iconImageView.kf.cancelDownloadTask()
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let controller = CryptocurrencyViewController(crypto: cryptos[indexPath.row])
-        
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if viewAppeard {
-            if scrollView.isKind(of: UITableView.self) {
-                savedYOffset = scrollView.contentOffset.y
-                let y = scrollView.contentOffset.y + scrollView.contentInset.top
-                updateContentOffset(y)
-            }
-        }
-    }
-    
-    private func updateContentOffset(_ yOffset: CGFloat) {
-        
-        header.snp.updateConstraints { make in
-            make.height.equalTo(min(max(150-yOffset, 50), 150))
-        }
-        
-        gainersLosersLabel.transform = CGAffineTransform(translationX: 0, y: -yOffset)
-        gainersLosersCollectionView.transform = CGAffineTransform(translationX: 0, y: -yOffset)
-        
-        subMenuView.snp.remakeConstraints { make in
+        label.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(max(gainersLosersCollectionView.frame.maxY+30, header.frame.maxY + 20)).priority(999)
-            make.height.equalTo(35)
+            make.width.equalTo(UIScreen.main.bounds.width-SAFE_AREA_MARGIN*2)
+            make.top.equalToSuperview().offset(10).priority(999)
+            make.height.equalTo(18).priority(999)
+            make.bottom.equalToSuperview().priority(999)
         }
-        
-        header.updateLayout(min(1, (header.frame.height-50)/100))
-        blurredView.alpha = 1 - (subMenuView.frame.maxY-5-blurredView.frame.maxY)/30
-    }
-    
-}
-
-
-// MARK: - Filter delegate
-
-extension HomeViewController: AssetsFilterDelegate {
-    
-    func filterDidChanged(_ sender: RoundCornersButton, order: FilterOrderingMode) {
-        
-        switch sender.tag {
-        case 0:
-            /// name
-            filteredCryptos = cryptos.sorted { ($0.name >= $1.name) ? order == .ascending: ($0.name <= $1.name)}
-        case 1:
-            /// holdings
-            filteredCryptos = cryptos.sorted { ($0.balance >= $1.balance) ? order == .ascending: ($0.balance <= $1.balance) }
-        case 2:
-            /// change
-            filteredCryptos = cryptos.sorted { ($0.change >= $1.change) ? order == .ascending: ($0.change <= $1.change) }
-        default:
-            filteredCryptos = cryptos
-        }
-        
-        searchActive = true
-        cryptosTableView.reloadData()
-    }
-    
-    func filterIsNotActive() {
-        
-        searchActive = false
-        cryptosTableView.reloadData()
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        
-        searchBar.layer.borderColor = AppColors.background.primary.cgColor
-    }
-}
-
-
-// MARK: - Search bar delegate
-
-extension HomeViewController: UISearchBarDelegate {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        cryptosTableView.reloadData()
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filteredCryptos = cryptos.filter { $0.name.localizedCaseInsensitiveContains(searchText) || $0.symbol.localizedCaseInsensitiveContains(searchText)}
-        
-        if searchText == "" {
-            searchActive = false
-        } else {
-            searchActive = true
-        }
-        cryptosTableView.reloadData()
-    }
-    
-}
-
-
-// MARK: - Constraints
-
-extension HomeViewController {
-    
-    override func updateViewConstraints() {
-        
-        cryptosTableView.snp.remakeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        blurredView.snp.remakeConstraints { make in
-            make.left.width.top.equalToSuperview()
-            make.height.equalTo(170)
-        }
-        
-        header.snp.remakeConstraints { make in
-            make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(60)
-            make.height.equalTo(150)
-        }
-        
-        gainersLosersLabel.snp.remakeConstraints { make in
-            make.left.equalTo(SAFE_AREA_MARGIN)
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.height.equalTo(22)
-            make.top.equalTo(60 + 150 + 30)
-        }
-        
-        gainersLosersCollectionView.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.height.equalTo(150)
-            make.top.equalTo(gainersLosersLabel.snp.bottom).offset(15)
-        }
-        
-        subMenuView.snp.remakeConstraints { make in
-            make.left.equalToSuperview().offset(SAFE_AREA_MARGIN)
-            make.right.equalToSuperview().inset(SAFE_AREA_MARGIN)
-            make.top.equalTo(460)
-            make.height.equalTo(35)
-        }
-        
-        super.updateViewConstraints()
     }
 }

@@ -27,7 +27,7 @@ class TransactionCellView: BaseView {
     override func commonInit() {
         super.commonInit()
         
-        transactionTypeLabel.font = .systemFont(ofSize: 17)
+        transactionTypeLabel.font = .systemFont(ofSize: 17, weight: .medium)
         
         exchangeLabel.font = .systemFont(ofSize: 15)
         exchangeLabel.textColor = AppColors.label.secondary

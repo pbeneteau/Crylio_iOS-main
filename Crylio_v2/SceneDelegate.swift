@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let tabBarVC = UITabBarController()
         
+        
         let homeVC = HomeViewController()
         let marketsVC = MarketViewController()
         let analysisVC = PortfolioDetailViewController()
@@ -30,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         analysisVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
         
         tabBarVC.viewControllers = [homeVC, marketsVC, analysisVC]
-        
+
         window.rootViewController = UINavigationController(rootViewController: tabBarVC)
         window.makeKeyAndVisible()
         

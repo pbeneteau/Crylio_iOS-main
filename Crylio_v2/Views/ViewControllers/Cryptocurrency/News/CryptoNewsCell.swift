@@ -58,7 +58,7 @@ class CryptoNewsCell: UITableViewCell, UITextViewDelegate {
         timeLabel.font = .systemFont(ofSize: 15)
         timeLabel.textColor = AppColors.label.secondary
         
-        textView.font = .systemFont(ofSize: 17, weight: .semibold)
+        textView.font = .systemFont(ofSize: 17, weight: .medium)
         textView.isSelectable = true
         textView.isEditable = false
         textView.delegate = self
@@ -97,7 +97,7 @@ class CryptoNewsCell: UITableViewCell, UITextViewDelegate {
         
         if news.type == .web {
             typeImageView.tintColor = AppColors.label.primary
-            textView.font = .systemFont(ofSize: 17, weight: .bold)
+            textView.font = .systemFont(ofSize: 17, weight: .semibold)
         }
         
         if let url =  news.imageURL {

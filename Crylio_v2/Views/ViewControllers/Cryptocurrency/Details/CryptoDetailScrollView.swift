@@ -98,19 +98,19 @@ extension CryptoDetailScrollView {
         
         balanceView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(chartView.snp.bottom).offset(30)
+            make.top.equalTo(chartView.snp.bottom).offset(16)
             make.height.equalTo(74)
         }
 
         marketStatsView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(balanceView.snp.bottom).offset(30)
+            make.top.equalTo(balanceView.snp.bottom).offset(16)
             make.height.equalTo(297)
         }
         
         aboutView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(marketStatsView.snp.bottom).offset(30)
+            make.top.equalTo(marketStatsView.snp.bottom).offset(16)
         }
         
         super.updateConstraints()

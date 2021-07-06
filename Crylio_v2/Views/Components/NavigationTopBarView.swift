@@ -42,11 +42,13 @@ class NavigationTopBarView: BaseView {
         blurredView.alpha = 0
 
         // create chevron image
-        let config = UIImage.SymbolConfiguration(pointSize: 25.0, weight: .medium, scale: .medium)
+        let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .light, scale: .default)
         let image = UIImage(systemName: "chevron.left", withConfiguration: config)
         
-        backButton.setTitle(" Back", for: .normal)
+        backButton.setTitle("Home", for: .normal)
         backButton.setImage(image, for: .normal)
+        backButton.titleEdgeInsets.left = 4.33
+        backButton.titleLabel?.font = .systemFont(ofSize: 17)
         backButton.setTitleColor(backButton.tintColor, for: .normal)
         backButton.addTarget(self, action: #selector(self.backButtonAction(sender:)), for: .touchUpInside)
         
@@ -117,10 +119,10 @@ extension NavigationTopBarView {
         }
         
         backButton.snp.makeConstraints { make in
-            make.left.equalTo(6)
-            make.top.equalTo(55)
-            make.height.equalTo(22)
-            make.width.equalTo(100)
+            make.left.equalTo(9.33)
+            make.top.equalTo(57.33)
+            make.height.equalTo(23)
+            make.width.equalTo(backButton.intrinsicContentSize.width+backButton.titleEdgeInsets.left)
         }
         
         titleLabel.snp.remakeConstraints { make in

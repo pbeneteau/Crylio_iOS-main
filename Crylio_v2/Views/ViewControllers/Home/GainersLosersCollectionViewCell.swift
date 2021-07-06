@@ -36,7 +36,7 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
     lazy var iconImageView = UIImageView()
     lazy var symbolLabel = UILabel()
     lazy var nameLabel = UILabel()
-    lazy var priceLabel = UILabel()
+    lazy var balanceLabel = UILabel()
     lazy var changeLabel = UILabel()
     lazy var chartView = BaseChartView()
     
@@ -54,9 +54,9 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
         
         backgroundBox.translatesAutoresizingMaskIntoConstraints = false
         
-        symbolLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        symbolLabel.font = .systemFont(ofSize: 15, weight: .medium)
         nameLabel.font = .systemFont(ofSize: 13, weight: .regular)
-        priceLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        balanceLabel.font = .systemFont(ofSize: 17, weight: .medium)
         changeLabel.font = .systemFont(ofSize: 15, weight: .medium)
         
         nameLabel.textColor = AppColors.label.secondary
@@ -71,7 +71,7 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
         backgroundBox.addSubview(iconImageView)
         backgroundBox.addSubview(symbolLabel)
         backgroundBox.addSubview(nameLabel)
-        backgroundBox.addSubview(priceLabel)
+        backgroundBox.addSubview(balanceLabel)
         backgroundBox.addSubview(changeLabel)
         backgroundBox.addSubview(chartView)
     }
@@ -81,7 +81,7 @@ class GainersLosersCollectionViewCell: UICollectionViewCell {
         iconImageView.setImage(from: data.iconUrl)
         symbolLabel.text = data.symbol
         nameLabel.text = data.name
-        priceLabel.text = data.price.toDollarString()
+        balanceLabel.text = data.price.toDollarString()
         changeLabel.setPercentMutableString(value: data.change, colors: true)
         
         updateChartData(with: data.chartData, change: data.change)
@@ -114,41 +114,41 @@ extension GainersLosersCollectionViewCell {
         
         backgroundBox.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
-            make.right.equalToSuperview().inset(10)
+            make.right.equalToSuperview()
         }
         
         iconImageView.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
             make.top.equalTo(CONTENT_TOP_MARGIN)
-            make.width.height.equalTo(24)
+            make.width.height.equalTo(29)
         }
         
         symbolLabel.snp.makeConstraints { make in
-            make.left.equalTo(iconImageView.snp.right).offset(5)
+            make.left.equalTo(iconImageView.snp.right).offset(8)
             make.top.equalTo(CONTENT_TOP_MARGIN)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.height.equalTo(18)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.left.equalTo(iconImageView.snp.right).offset(5)
+            make.left.equalTo(iconImageView.snp.right).offset(8)
             make.top.equalTo(symbolLabel.snp.bottom).offset(1)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.height.equalTo(16)
         }
         
-        priceLabel.snp.makeConstraints { make in
+        balanceLabel.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.top.equalTo(iconImageView.snp.bottom).offset(13)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
             make.height.equalTo(20)
         }
         
         changeLabel.snp.makeConstraints { make in
             make.left.equalTo(CONTENT_HORIZONTAL_MARGIN)
-            make.top.equalTo(priceLabel.snp.bottom).offset(5)
+            make.top.equalTo(balanceLabel.snp.bottom).offset(5)
             make.right.equalToSuperview().inset(CONTENT_HORIZONTAL_MARGIN)
-            make.height.equalTo(18)
+            make.height.equalTo(16)
         }
         
         chartView.snp.makeConstraints { make in
