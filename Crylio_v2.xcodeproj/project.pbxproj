@@ -94,6 +94,23 @@
 		389E2407267CB222006DDE51 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E2406267CB222006DDE51 /* BaseTableViewCell.swift */; };
 		38A3F32F2673900B0018E1D7 /* ContextTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3F32E2673900B0018E1D7 /* ContextTextView.swift */; };
 		38A3F3312674CE1C0018E1D7 /* CustomLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3F3302674CE1C0018E1D7 /* CustomLineChartView.swift */; };
+		38B06402269A242300D9F0EA /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06401269A242300D9F0EA /* SettingsTableViewController.swift */; };
+		38B0640B269A34C400D9F0EA /* DetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0640A269A34C400D9F0EA /* DetailText.swift */; };
+		38B06410269A34E500D9F0EA /* RadioSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0640C269A34E500D9F0EA /* RadioSection.swift */; };
+		38B06411269A34E500D9F0EA /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0640D269A34E500D9F0EA /* Icon.swift */; };
+		38B06412269A34E500D9F0EA /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0640E269A34E500D9F0EA /* Section.swift */; };
+		38B06419269A351C00D9F0EA /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06414269A351C00D9F0EA /* Configurable.swift */; };
+		38B0641A269A351C00D9F0EA /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06415269A351C00D9F0EA /* Row.swift */; };
+		38B0641B269A351C00D9F0EA /* RowCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06416269A351C00D9F0EA /* RowCompatible.swift */; };
+		38B0641C269A351C00D9F0EA /* RowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06417269A351C00D9F0EA /* RowStyle.swift */; };
+		38B0641D269A351C00D9F0EA /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06418269A351C00D9F0EA /* Reusable.swift */; };
+		38B06422269A352A00D9F0EA /* SwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0641E269A352A00D9F0EA /* SwitchRow.swift */; };
+		38B06423269A352A00D9F0EA /* TapActionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0641F269A352A00D9F0EA /* TapActionRow.swift */; };
+		38B06424269A352A00D9F0EA /* NavigationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06420269A352A00D9F0EA /* NavigationRow.swift */; };
+		38B06425269A352A00D9F0EA /* OptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06421269A352A00D9F0EA /* OptionRow.swift */; };
+		38B06428269A353500D9F0EA /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06426269A353500D9F0EA /* SwitchCell.swift */; };
+		38B06429269A353500D9F0EA /* TapActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06427269A353500D9F0EA /* TapActionCell.swift */; };
+		38B0642B269A3ED700D9F0EA /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0642A269A3ED700D9F0EA /* SettingsTableViewCell.swift */; };
 		38B6D5AB25D5A9D700AC8238 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 38B6D5AA25D5A9D700AC8238 /* Lottie */; };
 		38C0DCC72677A387002D17D6 /* BezierConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0DCC62677A387002D17D6 /* BezierConfiguration.swift */; };
 		38C0DCCA2678A910002D17D6 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0DCC92678A910002D17D6 /* SelectionViewController.swift */; };
@@ -233,6 +250,23 @@
 		389E2406267CB222006DDE51 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		38A3F32E2673900B0018E1D7 /* ContextTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTextView.swift; sourceTree = "<group>"; };
 		38A3F3302674CE1C0018E1D7 /* CustomLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineChartView.swift; sourceTree = "<group>"; };
+		38B06401269A242300D9F0EA /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		38B0640A269A34C400D9F0EA /* DetailText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailText.swift; sourceTree = "<group>"; };
+		38B0640C269A34E500D9F0EA /* RadioSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSection.swift; sourceTree = "<group>"; };
+		38B0640D269A34E500D9F0EA /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		38B0640E269A34E500D9F0EA /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		38B06414269A351C00D9F0EA /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		38B06415269A351C00D9F0EA /* Row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		38B06416269A351C00D9F0EA /* RowCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowCompatible.swift; sourceTree = "<group>"; };
+		38B06417269A351C00D9F0EA /* RowStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowStyle.swift; sourceTree = "<group>"; };
+		38B06418269A351C00D9F0EA /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		38B0641E269A352A00D9F0EA /* SwitchRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchRow.swift; sourceTree = "<group>"; };
+		38B0641F269A352A00D9F0EA /* TapActionRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapActionRow.swift; sourceTree = "<group>"; };
+		38B06420269A352A00D9F0EA /* NavigationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRow.swift; sourceTree = "<group>"; };
+		38B06421269A352A00D9F0EA /* OptionRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionRow.swift; sourceTree = "<group>"; };
+		38B06426269A353500D9F0EA /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		38B06427269A353500D9F0EA /* TapActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapActionCell.swift; sourceTree = "<group>"; };
+		38B0642A269A3ED700D9F0EA /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		38C0DCC62677A387002D17D6 /* BezierConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierConfiguration.swift; sourceTree = "<group>"; };
 		38C0DCC92678A910002D17D6 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		38C0DCCB2679157E002D17D6 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -438,6 +472,7 @@
 		384CFAD725C1F2F90064C932 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				38B06400269A240B00D9F0EA /* Settings */,
 				38E4D3FC268200EA00F4E659 /* Home */,
 				3880AF7D2680AE68007D9C57 /* Portfolio Analysis */,
 				382D6A97266A9A2C00509669 /* Market */,
@@ -599,6 +634,62 @@
 				389E2406267CB222006DDE51 /* BaseTableViewCell.swift */,
 			);
 			path = BaseViews;
+			sourceTree = "<group>";
+		};
+		38B06400269A240B00D9F0EA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				38B06401269A242300D9F0EA /* SettingsTableViewController.swift */,
+				38B06406269A346400D9F0EA /* Model */,
+				38B06407269A346B00D9F0EA /* Protocol */,
+				38B06408269A348000D9F0EA /* Rows */,
+				38B06409269A348B00D9F0EA /* Views */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		38B06406269A346400D9F0EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				38B0640A269A34C400D9F0EA /* DetailText.swift */,
+				38B0640D269A34E500D9F0EA /* Icon.swift */,
+				38B0640C269A34E500D9F0EA /* RadioSection.swift */,
+				38B0640E269A34E500D9F0EA /* Section.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		38B06407269A346B00D9F0EA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				38B06414269A351C00D9F0EA /* Configurable.swift */,
+				38B06418269A351C00D9F0EA /* Reusable.swift */,
+				38B06415269A351C00D9F0EA /* Row.swift */,
+				38B06416269A351C00D9F0EA /* RowCompatible.swift */,
+				38B06417269A351C00D9F0EA /* RowStyle.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		38B06408269A348000D9F0EA /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				38B06420269A352A00D9F0EA /* NavigationRow.swift */,
+				38B06421269A352A00D9F0EA /* OptionRow.swift */,
+				38B0641E269A352A00D9F0EA /* SwitchRow.swift */,
+				38B0641F269A352A00D9F0EA /* TapActionRow.swift */,
+			);
+			path = Rows;
+			sourceTree = "<group>";
+		};
+		38B06409269A348B00D9F0EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				38B0642A269A3ED700D9F0EA /* SettingsTableViewCell.swift */,
+				38B06426269A353500D9F0EA /* SwitchCell.swift */,
+				38B06427269A353500D9F0EA /* TapActionCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		38B6D5B425D5AB1D00AC8238 /* Lottie animations */ = {
@@ -939,15 +1030,19 @@
 				388A95A026611AAE009094A6 /* InputValidityCheck.swift in Sources */,
 				38570390265686C30073724A /* PieChartView.swift in Sources */,
 				38626DBA267B75630028BF9A /* TranscationCellView.swift in Sources */,
+				38B0641D269A351C00D9F0EA /* Reusable.swift in Sources */,
 				389E2407267CB222006DDE51 /* BaseTableViewCell.swift in Sources */,
 				3891ADAA2656A004005FF3CA /* ChartLegendTableViewCell.swift in Sources */,
 				384CFB0225C21EC70064C932 /* PriceChangeBox.swift in Sources */,
 				38C4EA3C267A05BA000FD901 /* GainersLosersCollectionViewCell.swift in Sources */,
 				38C4E24C268F9BC5005F2A46 /* Exchange.swift in Sources */,
 				388BBA51265D709200F8C524 /* AddTransactionViewController.swift in Sources */,
+				38B06429269A353500D9F0EA /* TapActionCell.swift in Sources */,
 				382D6A99266A9D4500509669 /* MarketStatsScrollView.swift in Sources */,
 				3820C5AB26618BB50022F1C5 /* Constants.swift in Sources */,
+				38B06422269A352A00D9F0EA /* SwitchRow.swift in Sources */,
 				384CFB0725C2224D0064C932 /* AppColors.swift in Sources */,
+				38B06410269A34E500D9F0EA /* RadioSection.swift in Sources */,
 				382D6A9B266AA10200509669 /* MarketSubMenu.swift in Sources */,
 				38E4D3FB2680C9F100F4E659 /* DataSample.swift in Sources */,
 				38C0DCCC2679157E002D17D6 /* SelectionTableViewCell.swift in Sources */,
@@ -958,10 +1053,15 @@
 				38A3F3312674CE1C0018E1D7 /* CustomLineChartView.swift in Sources */,
 				388BBA4F265D5BA400F8C524 /* AddToFavoriteButton.swift in Sources */,
 				3837C12325FFA0390056BB27 /* NumberFormatters.swift in Sources */,
+				38B0641B269A351C00D9F0EA /* RowCompatible.swift in Sources */,
 				389E23FF267BBF1E006DDE51 /* BaseChartView.swift in Sources */,
+				38B06412269A34E500D9F0EA /* Section.swift in Sources */,
 				3844884325D3177F002BF26C /* HomeHeaderPortfolioView.swift in Sources */,
 				382D6A942667F17100509669 /* ChangeTimelineButton.swift in Sources */,
 				389DE66425C8269E00954F4F /* CryptoHeaderView.swift in Sources */,
+				38B06424269A352A00D9F0EA /* NavigationRow.swift in Sources */,
+				38B06402269A242300D9F0EA /* SettingsTableViewController.swift in Sources */,
+				38B06419269A351C00D9F0EA /* Configurable.swift in Sources */,
 				382D6A96266A9A2400509669 /* MarketViewController.swift in Sources */,
 				389451F3265EB8A200C3CC26 /* SearchTextFieldTableViewCell.swift in Sources */,
 				384CFB2825C451C50064C932 /* GradientView.swift in Sources */,
@@ -969,6 +1069,7 @@
 				3800219925CD728000FA4773 /* MarketStatsView.swift in Sources */,
 				389DE65F25C76F4700954F4F /* BackgroundBoxView.swift in Sources */,
 				38619A742613B0660044D273 /* CryptoNewsCell.swift in Sources */,
+				38B06411269A34E500D9F0EA /* Icon.swift in Sources */,
 				38E5D008268DEC2100D5F91B /* RoundShadowView.swift in Sources */,
 				38E1AEC42647479500CD7D91 /* CryptoDetailBalanceView.swift in Sources */,
 				389E23FE267BBF1E006DDE51 /* ChartColors.swift in Sources */,
@@ -985,6 +1086,7 @@
 				384CE01926459F7800C016DF /* User.swift in Sources */,
 				38463C4E2645E80B005331E4 /* BalanceView.swift in Sources */,
 				38F153A7260911EC00AE7CE7 /* CryptoTransactionCell.swift in Sources */,
+				38B06428269A353500D9F0EA /* SwitchCell.swift in Sources */,
 				3870A503266E77D90089BB4A /* MarketTableViewCell.swift in Sources */,
 				38C0DCCA2678A910002D17D6 /* SelectionViewController.swift in Sources */,
 				389E2405267CB07F006DDE51 /* BaseView.swift in Sources */,
@@ -993,10 +1095,12 @@
 				38EF197B2667DBF500C92859 /* SortOrderButton.swift in Sources */,
 				38598139261B8ABA002F2FE3 /* TransactionsHeaderView.swift in Sources */,
 				384CE01626456DF100C016DF /* BaseViewController.swift in Sources */,
+				38B06425269A352A00D9F0EA /* OptionRow.swift in Sources */,
 				3848D1BD25C4DC2B00203D7A /* CryptoMenuView.swift in Sources */,
 				3894FCDF25D17FAB00BFD26F /* CryptoHoldingsViewController.swift in Sources */,
 				38598135261B75D1002F2FE3 /* DateUtils.swift in Sources */,
 				38E4D3FE26822F1A00F4E659 /* PortfolioDetailViewController.swift in Sources */,
+				38B06423269A352A00D9F0EA /* TapActionRow.swift in Sources */,
 				389E2400267BBF1E006DDE51 /* ChartSeries.swift in Sources */,
 				389DE65725C758B500954F4F /* NavigationTopBarView.swift in Sources */,
 				388BBA53265D76D800F8C524 /* AddTransactionTableViewCell.swift in Sources */,
@@ -1009,8 +1113,10 @@
 				3823E8E0265C262D00B93C31 /* DateRangeSelectorCollectionViewCell.swift in Sources */,
 				38538058266FED5B005E5D46 /* Extensions.swift in Sources */,
 				3894FCE325D17FC500BFD26F /* CryptoTransactionsViewController.swift in Sources */,
+				38B0640B269A34C400D9F0EA /* DetailText.swift in Sources */,
 				387B5F4A26827E25009AB20B /* DailyPNLView.swift in Sources */,
 				384CFA9A25C1E67D0064C932 /* HomeViewController.swift in Sources */,
+				38B0641A269A351C00D9F0EA /* Row.swift in Sources */,
 				38C0EB862658536B0034179C /* RoundCornersButton.swift in Sources */,
 				389451F1265EAB2700C3CC26 /* SearchTextField.swift in Sources */,
 				384CFA9625C1E67D0064C932 /* AppDelegate.swift in Sources */,
@@ -1018,7 +1124,9 @@
 				3880AF852680C25E007D9C57 /* AssetAllocationBubblesView.swift in Sources */,
 				384CFAF625C1F7E20064C932 /* Cryptocurrency.swift in Sources */,
 				3894FCED25D18CCB00BFD26F /* CryptoNewsFeedViewController.swift in Sources */,
+				38B0641C269A351C00D9F0EA /* RowStyle.swift in Sources */,
 				38463C4C2645E3B4005331E4 /* HoldingsStatView.swift in Sources */,
+				38B0642B269A3ED700D9F0EA /* SettingsTableViewCell.swift in Sources */,
 				38C0EB88265855510034179C /* UserAssetsView.swift in Sources */,
 				384CFA9825C1E67D0064C932 /* SceneDelegate.swift in Sources */,
 				3837C12925FFB06F0056BB27 /* DistributionView.swift in Sources */,

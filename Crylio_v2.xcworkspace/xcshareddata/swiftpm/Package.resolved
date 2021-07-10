@@ -2,7 +2,7 @@
   "object": {
     "pins": [
       {
-        "package": "AAInfographics",
+        "package": "AAChartKit-Swift",
         "repositoryURL": "https://github.com/AAChartModel/AAChartKit-Swift.git",
         "state": {
           "branch": null,
@@ -38,7 +38,7 @@
         }
       },
       {
-        "package": "Lottie",
+        "package": "lottie-ios",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {
           "branch": null,

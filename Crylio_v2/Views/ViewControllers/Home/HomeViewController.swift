@@ -94,6 +94,9 @@ class HomeViewController: UITableViewController {
     
     @objc func didTapSettingsButton(_ sender: UIButton) {
         
+        let settingsVC = SettingsTableViewController()
+        
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
 }

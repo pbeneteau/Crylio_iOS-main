@@ -18,7 +18,6 @@ class UserAssetsView: BaseView {
     }
     
 }
- 
 
 // MARK: - Constraints
 

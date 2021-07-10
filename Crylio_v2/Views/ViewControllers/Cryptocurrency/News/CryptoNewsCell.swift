@@ -108,7 +108,7 @@ class CryptoNewsCell: UITableViewCell, UITextViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        newsImageView.roundCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radius: contentBox.layer.cornerRadius)
+        newsImageView.roundCorners([UIRectCorner.topLeft, UIRectCorner.topRight], radius: contentBox.layer.cornerRadius)
     }
     
 }

@@ -66,14 +66,21 @@ extension CALayer {
 
 extension UIView {
     
-    func roundCorners(corners: UIRectCorner, radius: CGFloat = 8) {
-        let maskPath1 = UIBezierPath(roundedRect: bounds,
-                                     byRoundingCorners: corners,
-                                     cornerRadii: CGSize(width: radius, height: radius))
-        let maskLayer1 = CAShapeLayer()
-        maskLayer1.frame = bounds
-        maskLayer1.path = maskPath1.cgPath
-        layer.mask = maskLayer1
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        if #available(iOS 11.0, *) {
+            clipsToBounds = true
+            layer.cornerRadius = radius
+            layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
+        } else {
+            let path = UIBezierPath(
+                roundedRect: bounds,
+                byRoundingCorners: corners,
+                cornerRadii: CGSize(width: radius, height: radius)
+            )
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            layer.mask = mask
+        }
     }
     
     func addDropShadow(shouldRasterize: Bool = true) {
