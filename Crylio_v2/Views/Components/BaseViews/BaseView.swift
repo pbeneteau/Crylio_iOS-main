@@ -30,7 +30,7 @@ class BaseView: UIView {
         }
     }
     
-    open func makeConstraints() {
+    @objc open dynamic func makeConstraints() {
     }
     
     open func commonInit() {

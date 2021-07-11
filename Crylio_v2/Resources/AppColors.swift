@@ -36,9 +36,12 @@ class AppColors {
         static var primaryReversed: UIColor { return UIColor.white | UIColor.black }
     }
     
+    static let portfolio = [UIColor(hexString: "#4A69BD"),
+                            UIColor(hexString: "#FA983A"),
+                            UIColor(hexString: "#38ADA9"),
+                            UIColor(hexString: "#60A3BC")]
+    
     static let action = UIColor(red: 0.21, green: 0.53, blue: 0.96, alpha: 1.00)
-    
-    
     
     static let icon = UIColor.label
     

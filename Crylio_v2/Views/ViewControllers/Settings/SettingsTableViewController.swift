@@ -122,7 +122,7 @@ extension SettingsTableViewController {
         cell.defaultSetUp(with: row)
         (cell as? SwitchCell)?.delegate = self
         row.customize?(cell, row)
-        
+
         return cell
     }
     

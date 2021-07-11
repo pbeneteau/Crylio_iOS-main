@@ -26,17 +26,15 @@ open class SettingsTableViewCell: UITableViewCell, Configurable {
         commonInit()
     }
 
-    
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func commonInit() {
 
-        
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-
+        
         containerView.backgroundColor = AppColors.background.secondary
         containerView.clipsToBounds = true
                 
@@ -49,6 +47,7 @@ open class SettingsTableViewCell: UITableViewCell, Configurable {
     // MARK: - Configurable
     
     open func configure(with row: Row & RowStyle, position: SettingsTableViewCellPosition) {
+        self.position = position
         
         switch position {
         case .top:
@@ -76,7 +75,9 @@ open class SettingsTableViewCell: UITableViewCell, Configurable {
     open override func updateConstraints() {
         
         containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.equalToSuperview()
+            make.width.equalTo(self)
+            make.top.bottom.equalToSuperview()
         }
 
         super.updateConstraints()
